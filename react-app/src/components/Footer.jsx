@@ -63,19 +63,16 @@ const Footer = () => {
                         </div>
                     </Col>
                     <Col>
-                        <div>
+                        <div className="mb-3">
+                            <p className="m-1">Lorem, ipsum.</p>
                             <p className="m-1">Lorem, ipsum.</p>
                         </div>
-                        <div>
+                        <div className="mb-3">
+                            <p className="m-1">Lorem, ipsum.</p>
                             <p className="m-1">Lorem, ipsum.</p>
                         </div>
-                        <div>
+                        <div className="mb-3">
                             <p className="m-1">Lorem, ipsum.</p>
-                        </div>
-                        <div>
-                            <p className="m-1">Lorem, ipsum.</p>
-                        </div>
-                        <div>
                             <p className="m-1">Lorem, ipsum.</p>
                         </div>
                     </Col>

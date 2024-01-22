@@ -48,3 +48,11 @@ a.text-black.active {
 .mt-7 {
     margin-top: 5rem !important;
 }
+
+.mt-respect-up {
+    margin-block-start: 2.8rem !important;
+}
+
+.mt-respect-down {
+    margin-block-end: 5rem !important;
+}

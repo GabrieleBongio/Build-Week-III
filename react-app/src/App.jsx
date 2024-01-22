@@ -11,6 +11,7 @@ import InformazioniProfilo from "./components/InformazioniProfilo";
 import Messaggistica from "./components/Messaggistica";
 import SideBar from "./components/SideBar";
 import MyNavigationBar from "./components/MyNavigationBar";
+import Footer from "./components/Footer";
 
 function App() {
     return (
@@ -33,6 +34,7 @@ function App() {
                 </Row>
             </Container>
             <Messaggistica />
+            <Footer />
         </div>
     );
 }

@@ -24,8 +24,9 @@ const ConsigliatoPerTe = () => {
                         <div className="border rounded-4 p-3 my-3">
                             <Row>
                                 <Col>
-                                    <div className="d-flex align-items-center">
-                                        <p className="m-0">
+                                    <div className="d-flex align-items-center gap-2">
+                                        <MagnetFill width={"50px"} height={"50px"} />
+                                        <p className="my-1 fw-semibold">
                                             Entra in contatto con una persona che ricopre il ruolo Programmatore per
                                             raggiungere i tuoi obiettivi professionali
                                         </p>
@@ -35,15 +36,17 @@ const ConsigliatoPerTe = () => {
                             <Row>
                                 <Col>
                                     <div>
-                                        Trova persone che possono fornire indicazioni e aiutarti a trovare potenziali
-                                        opportunità.
+                                        <p className="my-1">
+                                            Trova persone che possono fornire indicazioni e aiutarti a trovare
+                                            potenziali opportunità.
+                                        </p>
                                     </div>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
                                     <div>
-                                        <Button variant="outline-secondary" className="rounded-pill py-1 my-1">
+                                        <Button variant="outline-secondary" className="rounded-pill px-3 py-1 my-1">
                                             Cerca Persone
                                         </Button>
                                     </div>

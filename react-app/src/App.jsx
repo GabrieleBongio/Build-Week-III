@@ -15,6 +15,8 @@ function App() {
                     <InformazioniProfilo />
                     <ConsigliatoPerTe />
                 </Col>
+                {/*    <Col xs={12} md={5} lg={3}>
+                </Col> */}
             </Row>
         </Container>
         /*  </div> */

@@ -14,7 +14,12 @@ const Footer = () => {
                         <div>
                             <p className="m-1">Linee guida community</p>
                         </div>
-                        <NavDropdown id="nav-dropdown-dark-example" title="Privacy e condizioni " menuVariant="dark">
+                        <NavDropdown
+                            className="mb-4"
+                            id="nav-dropdown-dark-example"
+                            title="Privacy e condizioni "
+                            menuVariant="dark"
+                        >
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
@@ -33,7 +38,7 @@ const Footer = () => {
                             <p className="m-1">Accessibilità</p>
                         </div>
                         <div>
-                            <p className="m-1">Lorem, ipsum.</p>
+                            <p className="m-1">Carriera</p>
                         </div>
                         <div>
                             <p className="m-1">Lorem, ipsum.</p>

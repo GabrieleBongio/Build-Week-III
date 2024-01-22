@@ -1,7 +1,11 @@
 import React from "react";
 
 const InformazioniProfilo = () => {
-    return <></>;
+    return (
+        <>
+            <div></div>
+        </>
+    );
 };
 
 export default InformazioniProfilo;

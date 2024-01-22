@@ -10,29 +10,31 @@ import ConsigliatoPerTe from "./components/ConsigliatoPerTe";
 import InformazioniProfilo from "./components/InformazioniProfilo";
 import Messaggistica from "./components/Messaggistica";
 import SideBar from "./components/SideBar";
+import MyNavigationBar from "./components/MyNavigationBar";
 
 function App() {
-  return (
-    <div>
-      <Container>
-        <Row>
-          <Col xs={12} md={7} lg={9}>
-            <InformazioniProfilo />
-            <ConsigliatoPerTe />
-            <Analisi />
-            <Risorse />
-            <Attività />
-            <Formazione />
-            <Interessi />
-          </Col>
-          <Col xs={12} md={5} lg={3}>
-            <SideBar />
-          </Col>
-        </Row>
-      </Container>
-      <Messaggistica />
-    </div>
-  );
+    return (
+        <div>
+            <MyNavigationBar />
+            <Container>
+                <Row>
+                    <Col xs={12} md={7} lg={9}>
+                        <InformazioniProfilo />
+                        <ConsigliatoPerTe />
+                        <Analisi />
+                        <Risorse />
+                        <Attività />
+                        <Formazione />
+                        <Interessi />
+                    </Col>
+                    <Col xs={12} md={5} lg={3}>
+                        <SideBar />
+                    </Col>
+                </Row>
+            </Container>
+            <Messaggistica />
+        </div>
+    );
 }
 
 export default App;

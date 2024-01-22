@@ -1,0 +1,20 @@
+.bg-image {
+    background-image: url("https://bits.debian.org/images/futureprototype_login.png");
+    height: 20vh;
+}
+
+.sfondo-chiaro {
+    background-color: #dde7f1;
+}
+
+.custom-top {
+    top: 50% !important;
+}
+
+.custom-left {
+    left: 4% !important;
+}
+
+.bg-secondary-custom {
+    background-color: #f8fafd;
+}

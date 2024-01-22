@@ -9,6 +9,7 @@ import Interessi from "./components/Interessi";
 import ConsigliatoPerTe from "./components/ConsigliatoPerTe";
 import InformazioniProfilo from "./components/InformazioniProfilo";
 import Messaggistica from "./components/Messaggistica";
+import SideBar from "./components/SideBar";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             <Attività />
             <Formazione />
             <Interessi />
+          </Col>
+          <Col xs={12} md={5} lg={3}>
+            <SideBar />
           </Col>
         </Row>
       </Container>

@@ -24,3 +24,6 @@ yarn-error.log*
 
 #token
 /src/token.js
+
+#appunti
+/src/appunti.txt

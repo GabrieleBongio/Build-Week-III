@@ -1,3 +1,14 @@
+.bg-image {
+    background-image: url("https://media.istockphoto.com/id/1422146151/it/vettoriale/sfondo-creativo-astratto.jpg?s=2048x2048&w=is&k=20&c=adnL11F8oZVkmoTRUPD-KnDayaiD75tCKYhLxujKOWM=");
+    background-position: top;
+    height: 20vh;
+}
+
+.sfondo-chiaro {
+    background-color: #dde7f1;
+}
+
+
 .fs-7 {
   font-size: 0.9rem;
 }
@@ -11,6 +22,17 @@
   cursor: pointer;
 }
 
+.custom-top {
+    top: 50% !important;
+}
+
+.custom-left {
+    left: 4% !important;
+}
+
+.bg-secondary-custom {
+    background-color: #f8fafd;
+}
 a.text-black.active {
   color: #004c33 !important;
   border-bottom: 3px solid #004c33 !important;

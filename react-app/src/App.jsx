@@ -6,6 +6,8 @@ import Risorse from "./components/Risorse";
 import Attività from "./components/Attività";
 import Formazione from "./components/Formazione";
 import Interessi from "./components/Interessi";
+import ConsigliatoPerTe from "./components/ConsigliatoPerTe";
+import InformazioniProfilo from "./components/InformazioniProfilo";
 
 function App() {
   return (
@@ -13,12 +15,14 @@ function App() {
       <Container>
         <Row>
           <Col xs={12} md={7} lg={9}>
-            <Analisi></Analisi>
-            <Risorse></Risorse>
-            <Attività></Attività>
-            <Formazione></Formazione>
-            <Interessi></Interessi>
-          </Col>
+            <InformazioniProfilo />
+            <ConsigliatoPerTe />
+            <Analisi/>
+            <Risorse/>
+            <Attività/>
+            <Formazione/>
+            <Interessi/>
+            </Col>
         </Row>
       </Container>
     </div>

@@ -1,38 +1,42 @@
-.App {
-  text-align: center;
+.bg-image {
+  background-image: url("https://media.istockphoto.com/id/1422146151/it/vettoriale/sfondo-creativo-astratto.jpg?s=2048x2048&w=is&k=20&c=adnL11F8oZVkmoTRUPD-KnDayaiD75tCKYhLxujKOWM=");
+  background-position: top;
+  height: 20vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sfondo-chiaro {
+  background-color: #dde7f1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.fs-7 {
+  font-size: 0.9rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.fs-8 {
+  font-size: 0.8rem;
 }
 
-.App-link {
-  color: #61dafb;
+.hover:hover {
+  background-color: #ebebeb;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.custom-top {
+  top: 50% !important;
+}
+
+.custom-left {
+  left: 4% !important;
+}
+
+.bg-secondary-custom {
+  background-color: #f8fafd;
+}
+a.text-black.active {
+  color: #004c33 !important;
+  border-bottom: 3px solid #004c33 !important;
+}
+
+.messaggistica-height {
+  height: 80vh;
 }

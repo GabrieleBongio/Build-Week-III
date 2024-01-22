@@ -15,7 +15,7 @@ const MyNavigationBar = () => {
         <Container fluid>
             <Row>
                 {" "}
-                <Navbar expand="md" className="bg-body-tertiary">
+                <Navbar expand="md" className="bg-body-tertiary position-fixed top-0 index">
                     <Container>
                         <div className="d-flex align-items-center flex-grow-1">
                             <Navbar.Brand href="#home">

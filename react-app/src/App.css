@@ -40,3 +40,7 @@ a.text-black.active {
 .messaggistica-height {
     height: 80vh;
 }
+
+.index {
+    z-index: 999;
+}

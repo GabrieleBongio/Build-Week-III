@@ -37,7 +37,7 @@ const InformazioniProfilo = () => {
                         </Row>
                         <Row>
                             <Col>
-                                <div className="d-flex px-3">
+                                <div className="d-flex px-1">
                                     <div className="d-block d-lg-flex align-items-center gap-2">
                                         <h4>Nome Cognome</h4>
 
@@ -55,10 +55,10 @@ const InformazioniProfilo = () => {
                                         <h4>EPICODE</h4>
                                     </div>
                                 </div>
-                                <div className="px-3">
+                                <div className="px-1">
                                     <p className="mb-1">Studente Presso Epicode, Epicode Education </p>
                                 </div>
-                                <div className="px-3 d-flex gap-2">
+                                <div className="px-1 d-flex gap-2">
                                     <p className="mb-1"> Roma, Lazio, 00133 </p>
                                     <p>Informazioni di contatto</p>
                                 </div>
@@ -66,7 +66,7 @@ const InformazioniProfilo = () => {
                         </Row>
                         <Row>
                             <Col>
-                                <div className="d-block d-lg-flex gap-1">
+                                <div className="d-block d-lg-flex gap-1 px-1">
                                     <div className="px-3 border rounded-pill bg-primary text-light">
                                         <p className="m-0 p-1">Disponibile Per</p>
                                     </div>
@@ -85,7 +85,7 @@ const InformazioniProfilo = () => {
                         <Row>
                             <Col xs={8} sm={8} md={8} lg={6} xl={6} xxl={6}>
                                 {" "}
-                                <div className="sfondo-chiaro rounded rouded-5 m-3 p-2 position-relative">
+                                <div className="sfondo-chiaro rounded rouded-5 my-3 p-2 position-relative">
                                     <p className="m-1">disponibile a lavorare</p>
                                     <p className="m-1">Ruoli di programmatore</p>
                                     <p className="m-1">Mostra dettagli</p>

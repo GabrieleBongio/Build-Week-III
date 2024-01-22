@@ -13,7 +13,7 @@ function App() {
             <Row>
                 <Col xs={12} md={7} lg={9}>
                     <InformazioniProfilo />
-                    {/* <ConsigliatoPerTe /> */}
+                    <ConsigliatoPerTe />
                 </Col>
             </Row>
         </Container>

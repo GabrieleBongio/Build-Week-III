@@ -73,17 +73,19 @@ function SideBar() {
 			<div className="border square p-3 mb-2 rounded">
 				<Row className="border-bottom pb-2 mb-3">
 					<Col>
-						<img
-							src="https://img.freepik.com/premium-vector/square-linkedin-logo-isolated-white-background_469489-892.jpg"
-							alt="linkedin mini-logo"
-							width={20}
-							height={20}
-							className="me-2"
-						/>
-						<span>L E A R N I N G</span>
-						<span className="text-secondary d-flex justify-content-start">
-							Aggiungi nuove competenze con questi corsi, gratuiti per 24 ore
-						</span>
+						<div className="text-start">
+							<img
+								src="https://img.freepik.com/premium-vector/square-linkedin-logo-isolated-white-background_469489-892.jpg"
+								alt="linkedin mini-logo"
+								width={20}
+								height={20}
+								className="me-2"
+							/>
+							<span>L E A R N I N G</span>
+							<p className="text-secondary d-flex justify-content-start">
+								Aggiungi nuove competenze con questi corsi, gratuiti per 24 ore
+							</p>
+						</div>
 					</Col>
 				</Row>
 				<Row className="border-bottom pb-2 mb-2">

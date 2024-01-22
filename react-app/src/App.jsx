@@ -8,6 +8,7 @@ import Formazione from "./components/Formazione";
 import Interessi from "./components/Interessi";
 import ConsigliatoPerTe from "./components/ConsigliatoPerTe";
 import InformazioniProfilo from "./components/InformazioniProfilo";
+import Messaggistica from "./components/Messaggistica";
 
 function App() {
   return (
@@ -17,14 +18,15 @@ function App() {
           <Col xs={12} md={7} lg={9}>
             <InformazioniProfilo />
             <ConsigliatoPerTe />
-            <Analisi/>
-            <Risorse/>
-            <Attività/>
-            <Formazione/>
-            <Interessi/>
-            </Col>
+            <Analisi />
+            <Risorse />
+            <Attività />
+            <Formazione />
+            <Interessi />
+          </Col>
         </Row>
       </Container>
+      <Messaggistica />
     </div>
   );
 }

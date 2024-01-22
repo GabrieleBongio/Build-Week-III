@@ -68,13 +68,20 @@ const InformazioniProfilo = () => {
                         <Row>
                             <Col>
                                 <div className="d-block d-lg-flex gap-1 px-1">
-                                    <div className="px-3 border rounded-pill bg-primary text-light">
-                                        <Button className="m-0 p-1">Disponibile Per</Button>
+                                    <div>
+                                        <Button
+                                            variant="primary"
+                                            className="m-0 p-1 px-3 border rounded-pill bg-primary text-light"
+                                        >
+                                            Disponibile Per
+                                        </Button>
                                     </div>
 
-                                    <Button variant="outline-primary" className="m-0 p-1 border rounded-pill px-3 ">
-                                        Aggiungi Sezione del Profilo
-                                    </Button>
+                                    <div>
+                                        <Button variant="outline-primary" className="m-0 p-1 border rounded-pill px-3 ">
+                                            Aggiungi Sezione del Profilo
+                                        </Button>
+                                    </div>
 
                                     <div>
                                         <Button

@@ -2,7 +2,8 @@ import React from "react";
 import Row from "react-bootstrap/esm/Row";
 import { CameraFill, Pen, PatchCheckFill, PenFill, Camera2 } from "react-bootstrap-icons";
 import Col from "react-bootstrap/esm/Col";
-import { NavLink } from "react-router-dom";
+
+import Button from "react-bootstrap/esm/Button";
 
 const InformazioniProfilo = () => {
     return (
@@ -68,16 +69,28 @@ const InformazioniProfilo = () => {
                             <Col>
                                 <div className="d-block d-lg-flex gap-1 px-1">
                                     <div className="px-3 border rounded-pill bg-primary text-light">
-                                        <p className="m-0 p-1">Disponibile Per</p>
+                                        <Button className="m-0 p-1">Disponibile Per</Button>
                                     </div>
-                                    <div className="px-3 border rounded-pill">
-                                        <p className="m-0 p-1">Aggiungi Sezione del Profilo</p>
+
+                                    <Button variant="outline-primary" className="m-0 p-1 border rounded-pill px-3 ">
+                                        Aggiungi Sezione del Profilo
+                                    </Button>
+
+                                    <div>
+                                        <Button
+                                            variant="outline-secondary"
+                                            className="m-0 p-1 px-3 border rounded-pill"
+                                        >
+                                            Aggiungi Pulsante personalizzato
+                                        </Button>
                                     </div>
-                                    <div className="px-3 border rounded-pill">
-                                        <p className="m-0 p-1">Aggiungi Pulsante personalizzato</p>
-                                    </div>
-                                    <div className="px-3 border rounded-pill">
-                                        <p className="m-0 p-1">Altro</p>
+                                    <div>
+                                        <Button
+                                            variant="outline-secondary"
+                                            className="m-0 p-1 px-3 border rounded-pill"
+                                        >
+                                            Altro
+                                        </Button>
                                     </div>
                                 </div>
                             </Col>

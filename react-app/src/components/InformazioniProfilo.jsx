@@ -8,7 +8,7 @@ import Button from "react-bootstrap/esm/Button";
 const InformazioniProfilo = () => {
     return (
         <>
-            <div>
+            <div className="mt-7">
                 <Row>
                     {/* prima sezione  */}
                     <Col xs={12}>

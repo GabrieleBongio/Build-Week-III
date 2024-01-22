@@ -8,6 +8,20 @@
     background-color: #dde7f1;
 }
 
+
+.fs-7 {
+  font-size: 0.9rem;
+}
+
+.fs-8 {
+  font-size: 0.8rem;
+}
+
+.hover:hover {
+  background-color: #ebebeb;
+  cursor: pointer;
+}
+
 .custom-top {
     top: 50% !important;
 }
@@ -18,4 +32,8 @@
 
 .bg-secondary-custom {
     background-color: #f8fafd;
+}
+a.text-black.active {
+  color: #004c33 !important;
+  border-bottom: 3px solid #004c33 !important;
 }

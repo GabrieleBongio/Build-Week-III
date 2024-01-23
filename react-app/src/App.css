@@ -57,6 +57,10 @@ a.text-black.active {
   margin-block-end: 5rem !important;
 }
 
+.w-35 {
+  width: 35%;
+}
+
 #tarles {
   width: 300px;
   height: 250px;

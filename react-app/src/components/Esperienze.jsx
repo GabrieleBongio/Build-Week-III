@@ -40,7 +40,7 @@ const Esperienze = (props) => {
     const { userid } = props;
     const dispatch = useDispatch();
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [ismakingAPut, setIsMakingAput] = useState(false);
+    const [ismakingaput, setIsMakingAput] = useState(false);
     const datiFetchEsperienze = useSelector((state) => state.FetchData.dataFetchEsperienze);
     console.log("datiFetchEsperienze", datiFetchEsperienze);
 
@@ -84,18 +84,20 @@ const Esperienze = (props) => {
                         {(datiFetchEsperienze === null || datiFetchEsperienze.length === 0) && (
                             <div>Non ci sono esperienze da visualizzare.</div>
                         )}
-                        <Modale
-                            userid={userid}
-                            show={isModalVisible}
-                            onHide={() => setIsModalVisible(false)}
-                            ismakingAPut={ismakingAPut}
-                            setIsMakingAput={setIsMakingAput}
-                        />
+
                         <Row>
                             {" "}
                             {datiFetchEsperienze &&
                                 datiFetchEsperienze.map((esperienza) => (
                                     <Col key={`key-${esperienza._id}`} className="my-1" xs={12}>
+                                        <Modale
+                                            userid={userid}
+                                            show={isModalVisible}
+                                            onHide={() => setIsModalVisible(false)}
+                                            ismakingaput={ismakingaput}
+                                            setIsMakingAput={setIsMakingAput}
+                                            esperienza={esperienza}
+                                        />
                                         <div className="d-flex gap-2">
                                             <div>
                                                 <img

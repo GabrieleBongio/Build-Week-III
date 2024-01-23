@@ -11,9 +11,11 @@ import { optionsGet } from "../components/Esperienze";
 import { useDispatch } from "react-redux";
 
 /* const IdUtente = "65ae24f3600be100183a8682"; */
+const URL = "https://striveschool-api.herokuapp.com/api/profile/";
 
 const Modale = (props) => {
-    const { userId, show, onHide } = props;
+    const { userid, show, onHide } = props;
+    console.log("userid", userid);
     const dispatch = useDispatch();
     const [datiPost, setDatiPost] = useState({
         role: "",
@@ -33,13 +35,13 @@ const Modale = (props) => {
         body: JSON.stringify(datiPost),
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        fetchDataPost(optionsPost, userId, "experiences");
-        dispatch(fetchData(URL, `${userId}/experiences`, optionsGet, setDataFetchEsperienze));
-    };
+        props.onHide();
 
-    useEffect(() => {}, []);
+        await fetchDataPost(optionsPost, userid, "experiences");
+        await dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
+    };
 
     return (
         <div>
@@ -128,19 +130,18 @@ const Modale = (props) => {
                                         value={datiPost.area}
                                     />
                                 </Form.Group>
-                                <Button type="submit" variant="success">
+                                <Button className="me-2" type="submit" variant="success">
                                     {" "}
                                     Invia Dati{" "}
                                 </Button>
-                                <Modal.Footer>
-                                    <Button
-                                        onClick={() => {
-                                            props.onHide(); // Chiude il modal
-                                        }}
-                                    >
-                                        Chiudi
-                                    </Button>
-                                </Modal.Footer>
+
+                                <Button
+                                    onClick={() => {
+                                        props.onHide(); // Chiude il modal
+                                    }}
+                                >
+                                    Chiudi
+                                </Button>
                             </Form>
                         </Modal.Body>
                     </Col>

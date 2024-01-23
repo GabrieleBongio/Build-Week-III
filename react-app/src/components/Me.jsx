@@ -32,22 +32,23 @@ const Me = () => {
 
     return (
         <Container>
-            <Row>
-                <Col xs={12} md={7} lg={9}>
-                    {dataFetchProfilo && <InformazioniProfilo profile={dataFetchProfilo} />}
-                    <ConsigliatoPerTe />
-                    <Analisi />
-                    <Risorse />
-                    <Attività />
-                    <Formazione />
-
-                    {dataFetchProfilo && <Esperienze userId={dataFetchProfilo._id} />}
-                    <Interessi />
-                </Col>
-                <Col xs={12} md={5} lg={3}>
-                    <SideBar />
-                </Col>
-            </Row>
+            <div className="mt-7">
+                <Row>
+                    <Col xs={12} md={7} lg={9}>
+                        {dataFetchProfilo && <InformazioniProfilo profile={dataFetchProfilo} />}
+                        <ConsigliatoPerTe />
+                        <Analisi />
+                        <Risorse />
+                        <Attività />
+                        <Formazione />
+                        {dataFetchProfilo && <Esperienze userid={dataFetchProfilo._id} />}
+                        <Interessi />
+                    </Col>
+                    <Col xs={12} md={5} lg={3}>
+                        <SideBar />
+                    </Col>
+                </Row>
+            </div>
         </Container>
     );
 };

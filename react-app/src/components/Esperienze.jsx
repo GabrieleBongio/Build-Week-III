@@ -27,7 +27,8 @@ const optionsDelete = {
     },
 };
 
-const Esperienze = () => {
+const Esperienze = (props) => {
+    const { userId } = props;
     const dispatch = useDispatch();
     const [isModalVisible, setIsModalVisible] = useState(false);
     const datiFetchEsperienze = useSelector((state) => state.FetchData.dataFetchEsperienze);
@@ -36,8 +37,8 @@ const Esperienze = () => {
     console.log("previusState_FetchEsperienza", previusState_FetchEsperienza);
 
     useEffect(() => {
-        dispatch(fetchData(URL, "65ae24f3600be100183a8682/experiences", optionsGet, setDataFetchEsperienze));
-    }, []);
+        dispatch(fetchData(URL, `${userId}/experiences`, optionsGet, setDataFetchEsperienze));
+    }, [userId]);
 
     /*     useEffect(() => {
         if (datiFetchEsperienze !== previusState_FetchEsperienza) {
@@ -46,8 +47,8 @@ const Esperienze = () => {
     }, [previusState_FetchEsperienza]); */
 
     const handleDelete = (expId) => {
-        fetchDelete(optionsDelete, "65ae24f3600be100183a8682", expId);
-        dispatch(fetchData(URL, "65ae24f3600be100183a8682/experiences", optionsGet, setDataFetchEsperienze));
+        fetchDelete(optionsDelete, userId, expId);
+        dispatch(fetchData(URL, `${userId}/experiences`, optionsGet, setDataFetchEsperienze));
     };
 
     /*     useEffect(() => {
@@ -83,7 +84,7 @@ const Esperienze = () => {
                         {(datiFetchEsperienze === null || datiFetchEsperienze.length === 0) && (
                             <div>Non ci sono esperienze da visualizzare.</div>
                         )}
-                        <Modale show={isModalVisible} onHide={() => setIsModalVisible(false)} />
+                        <Modale userId={userId} show={isModalVisible} onHide={() => setIsModalVisible(false)} />
                         <Row>
                             {" "}
                             {datiFetchEsperienze &&

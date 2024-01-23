@@ -12,41 +12,44 @@ import { fetchData } from "../redux/functions/fetch";
 import { Token } from "../token";
 import { useEffect } from "react";
 import { setDataFetchProfilo } from "../redux/reducers/StateSliceReducers";
+import Esperienze from "./Esperienze";
 
 const link = "https://striveschool-api.herokuapp.com/api/profile/me";
 
 const options = {
-  headers: {
-    Authorization: "Bearer " + Token,
-  },
+    headers: {
+        Authorization: "Bearer " + Token,
+    },
 };
 
 const Me = () => {
-  const dispatch = useDispatch();
-  const { dataFetchProfilo } = useSelector((state) => state.FetchData);
+    const dispatch = useDispatch();
+    const { dataFetchProfilo } = useSelector((state) => state.FetchData);
 
-  useEffect(() => {
-    dispatch(fetchData(link, "", options, setDataFetchProfilo));
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(fetchData(link, "", options, setDataFetchProfilo));
+    }, [dispatch]);
 
-  return (
-    <Container>
-      <Row>
-        <Col xs={12} md={7} lg={9}>
-          {dataFetchProfilo && <InformazioniProfilo profile={dataFetchProfilo} />}
-          <ConsigliatoPerTe />
-          <Analisi />
-          <Risorse />
-          <Attività />
-          <Formazione />
-          <Interessi />
-        </Col>
-        <Col xs={12} md={5} lg={3}>
-          <SideBar />
-        </Col>
-      </Row>
-    </Container>
-  );
+    return (
+        <Container>
+            <Row>
+                <Col xs={12} md={7} lg={9}>
+                    {dataFetchProfilo && <InformazioniProfilo profile={dataFetchProfilo} />}
+                    <ConsigliatoPerTe />
+                    <Analisi />
+                    <Risorse />
+                    <Attività />
+                    <Formazione />
+
+                    {dataFetchProfilo && <Esperienze userId={dataFetchProfilo._id} />}
+                    <Interessi />
+                </Col>
+                <Col xs={12} md={5} lg={3}>
+                    <SideBar />
+                </Col>
+            </Row>
+        </Container>
+    );
 };
 
 export default Me;

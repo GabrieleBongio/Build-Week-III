@@ -10,9 +10,10 @@ import { setDataFetchEsperienze } from "../redux/reducers/StateSliceReducers";
 import { optionsGet } from "../components/Esperienze";
 import { useDispatch } from "react-redux";
 
-const IdUtente = "65ae24f3600be100183a8682";
+/* const IdUtente = "65ae24f3600be100183a8682"; */
 
 const Modale = (props) => {
+    const { userId, show, onHide } = props;
     const dispatch = useDispatch();
     const [datiPost, setDatiPost] = useState({
         role: "",
@@ -34,8 +35,8 @@ const Modale = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetchDataPost(optionsPost, IdUtente, "experiences");
-        dispatch(fetchData(URL, "65ae24f3600be100183a8682/experiences", optionsGet, setDataFetchEsperienze));
+        fetchDataPost(optionsPost, userId, "experiences");
+        dispatch(fetchData(URL, `${userId}/experiences`, optionsGet, setDataFetchEsperienze));
     };
 
     useEffect(() => {}, []);

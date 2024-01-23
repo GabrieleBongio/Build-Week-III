@@ -69,3 +69,9 @@ body {
 .w-35 {
   width: 35%;
 }
+
+#tarles {
+  width: 300px;
+  height: 250px;
+  margin: auto;
+}

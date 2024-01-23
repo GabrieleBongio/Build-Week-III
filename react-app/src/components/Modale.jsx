@@ -5,10 +5,15 @@ import Form from "react-bootstrap/Form";
 import { Col, Row } from "react-bootstrap";
 import { Token } from "../token";
 import { fetchDataPost } from "../redux/functions/fetchPost";
+import { fetchData } from "../redux/functions/fetch";
+import { setDataFetchEsperienze } from "../redux/reducers/StateSliceReducers";
+import { optionsGet } from "../components/Esperienze";
+import { useDispatch } from "react-redux";
 
 const IdUtente = "65ae24f3600be100183a8682";
 
 const Modale = (props) => {
+    const dispatch = useDispatch();
     const [datiPost, setDatiPost] = useState({
         role: "",
         company: "",
@@ -30,6 +35,7 @@ const Modale = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         fetchDataPost(optionsPost, IdUtente, "experiences");
+        dispatch(fetchData(URL, "65ae24f3600be100183a8682/experiences", optionsGet, setDataFetchEsperienze));
     };
 
     useEffect(() => {}, []);

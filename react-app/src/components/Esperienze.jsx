@@ -7,10 +7,11 @@ import { fetchData } from "../redux/functions/fetch";
 import { setDataFetchEsperienze } from "../redux/reducers/StateSliceReducers";
 import Modale from "./Modale";
 import { fetchDelete } from "../redux/functions/fetchDelete";
+import { usePrevious } from "@uidotdev/usehooks";
 
 const URL = "https://striveschool-api.herokuapp.com/api/profile/";
 
-const optionsGet = {
+export const optionsGet = {
     method: "GET",
     headers: {
         "Content-Type": "application/json",
@@ -30,18 +31,30 @@ const Esperienze = () => {
     const dispatch = useDispatch();
     const [isModalVisible, setIsModalVisible] = useState(false);
     const datiFetchEsperienze = useSelector((state) => state.FetchData.dataFetchEsperienze);
+    const previusState_FetchEsperienza = usePrevious(datiFetchEsperienze);
+    console.log("datiFetchEsperienze", datiFetchEsperienze);
+    console.log("previusState_FetchEsperienza", previusState_FetchEsperienza);
 
     useEffect(() => {
         dispatch(fetchData(URL, "65ae24f3600be100183a8682/experiences", optionsGet, setDataFetchEsperienze));
     }, []);
 
+    /*     useEffect(() => {
+        if (datiFetchEsperienze !== previusState_FetchEsperienza) {
+            dispatch(fetchData(URL, "65ae24f3600be100183a8682/experiences", optionsGet, setDataFetchEsperienze));
+        }
+    }, [previusState_FetchEsperienza]); */
+
     const handleDelete = (expId) => {
         fetchDelete(optionsDelete, "65ae24f3600be100183a8682", expId);
+        dispatch(fetchData(URL, "65ae24f3600be100183a8682/experiences", optionsGet, setDataFetchEsperienze));
     };
 
     /*     useEffect(() => {
-      dispatch(fetchData(URL, "65ae24f3600be100183a8682/experiences", optionsGet, setDataFetchEsperienze));
-    },[datiFetchEsperienze]) */
+        if (previusState_FetchEsperienza !== datiFetchEsperienze) {
+            dispatch(fetchData(URL, "65ae24f3600be100183a8682/experiences", optionsGet, setDataFetchEsperienze));
+        }
+    }, [previusState_FetchEsperienza]); */
 
     return (
         <div>
@@ -53,7 +66,7 @@ const Esperienze = () => {
                             <h5 className="m-0">Esperienze</h5>
                         </div>
                         <div className="ms-auto">
-                            <div className="rounded-pill hover pt-1 pb-2 px-2">
+                            <div className="rounded-pill hover ">
                                 <Button variant="secondary-outline" onClick={() => setIsModalVisible(true)}>
                                     {" "}
                                     <PlusLg></PlusLg>{" "}
@@ -61,7 +74,7 @@ const Esperienze = () => {
                             </div>
                         </div>
                         <div>
-                            <div className="rounded-pill hover pt-1 pb-2 px-2">
+                            <div className="rounded-pill hover ">
                                 <Pencil></Pencil>
                             </div>
                         </div>

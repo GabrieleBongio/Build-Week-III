@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -14,7 +14,7 @@ const Modale = (props) => {
         company: "",
         startDate: "",
         endDate: "", // può essere null
-        description: " ",
+        description: "",
         area: "",
     });
 
@@ -29,14 +29,16 @@ const Modale = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetchDataPost(optionsPost, IdUtente);
+        fetchDataPost(optionsPost, IdUtente, "experiences");
     };
+
+    useEffect(() => {}, []);
 
     return (
         <div>
             <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">Modal heading</Modal.Title>
+                    <Modal.Title id="contained-modal-title-vcenter">Inserisci Esperienze </Modal.Title>
                 </Modal.Header>
                 <Row>
                     <Col>
@@ -71,7 +73,7 @@ const Modale = (props) => {
                                     <Form.Control
                                         required
                                         type="text"
-                                        placeholder="data inizio lavoro"
+                                        placeholder="AAAA-MM-GG"
                                         onChange={(event) => {
                                             setDatiPost((prevState) => ({
                                                 ...prevState,
@@ -84,9 +86,8 @@ const Modale = (props) => {
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
                                     <Form.Label>Data fine lavoro: </Form.Label>
                                     <Form.Control
-                                        required
                                         type="text"
-                                        placeholder="Data fine lavoro"
+                                        placeholder="AAAA-MM-GG"
                                         onChange={(event) => {
                                             setDatiPost((prevState) => ({ ...prevState, endDate: event.target.value }));
                                         }}

@@ -1,5 +1,5 @@
-export const fetchDataPost = (optionPost, idUtente) => {
-    const URLPOST = `https://striveschool-api.herokuapp.com/api/profile/${idUtente}/experiences`;
+export const fetchDataPost = (optionPost, idUtente, linkEnd) => {
+    const URLPOST = `https://striveschool-api.herokuapp.com/api/profile/${idUtente}/${linkEnd}`;
 
     fetch(URLPOST, optionPost)
         .then((response) => {
@@ -8,7 +8,7 @@ export const fetchDataPost = (optionPost, idUtente) => {
             }
 
             if (response.ok) {
-                return response.status;
+                return response.json();
             }
         })
         .catch((error) => console.error(error));

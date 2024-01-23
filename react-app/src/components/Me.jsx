@@ -10,8 +10,9 @@ import SideBar from "./SideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../redux/functions/fetch";
 import { Token } from "../token";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setDataFetchProfilo } from "../redux/reducers/StateSliceReducers";
+import CambiaImmagine from "./CambiaImmagine";
 
 const link = "https://striveschool-api.herokuapp.com/api/profile/me";
 
@@ -24,6 +25,7 @@ const options = {
 const Me = () => {
   const dispatch = useDispatch();
   const { dataFetchProfilo } = useSelector((state) => state.FetchData);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     dispatch(fetchData(link, "", options, setDataFetchProfilo));
@@ -33,7 +35,10 @@ const Me = () => {
     <Container>
       <Row>
         <Col xs={12} md={7} lg={9}>
-          {dataFetchProfilo && <InformazioniProfilo profile={dataFetchProfilo} />}
+          {dataFetchProfilo && <InformazioniProfilo profile={dataFetchProfilo} setShow={setShow} />}
+          {dataFetchProfilo && (
+            <CambiaImmagine userId={dataFetchProfilo._id} show={show} setShow={setShow} img={dataFetchProfilo.image} />
+          )}
           <ConsigliatoPerTe />
           <Analisi />
           <Risorse />

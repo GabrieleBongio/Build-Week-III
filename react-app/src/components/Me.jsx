@@ -12,6 +12,7 @@ import { fetchData } from "../redux/functions/fetch";
 import { Token } from "../token";
 import { useEffect, useState } from "react";
 import { setDataFetchProfilo } from "../redux/reducers/StateSliceReducers";
+import Esperienze from "./Esperienze";
 import CambiaImmagine from "./CambiaImmagine";
 
 const link = "https://striveschool-api.herokuapp.com/api/profile/me";
@@ -44,6 +45,7 @@ const Me = () => {
           <Risorse />
           <Attività />
           <Formazione />
+          {dataFetchProfilo && <Esperienze userId={dataFetchProfilo._id} />}
           <Interessi />
         </Col>
         <Col xs={12} md={5} lg={3}>

@@ -24,7 +24,8 @@ const Esperienze = () => {
                         </div>
                     </div>
                     <Row>
-                        <Col xs={2}>
+                        {/* INSERIRE DATI FETCH  */}
+                        {/* <Col xs={2}>
                             <img
                                 src="https://consumersiteimages.trustpilot.net/business-units/62a6277627ee655c1226b624-198x149-2x.avif"
                                 alt="immagine-school"
@@ -34,7 +35,7 @@ const Esperienze = () => {
                         <Col>
                             <h5 className="mb-0 fs-6">EPICODE</h5>
                             <p className="fs-7 opacity-50">2023 - 2024</p>
-                        </Col>
+                        </Col> */}
                     </Row>
                 </div>
             </div>

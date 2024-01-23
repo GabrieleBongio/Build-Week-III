@@ -1,16 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const SliceMain = createSlice({
-    name: "mainSlice",
-    initialState: {
-        dataFetchProfilo: null,
-    },
+  name: "mainSlice",
+  initialState: {
+    dataFetchProfilo: null,
+  },
 
-    reducers: {
-        setDataFetchProfilo: (state, action) => {
-            state.dataFetchProfilo = action.payload;
-        },
+  reducers: {
+    setDataFetchProfilo: (state, action) => {
+      state.dataFetchProfilo = action.payload;
     },
+  },
 });
 
 export const { setDataFetchProfilo } = SliceMain.actions;

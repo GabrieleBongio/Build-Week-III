@@ -5,7 +5,7 @@ function SideBar() {
   return (
     <>
       {/* LINGUA E PROFILO */}
-      <div className="border square p-3 mb-2 rounded">
+      <div className="mb-2 border border-2 rounded-3 bg-white p-3 mt-7">
         <Row className="border-bottom pb-2 mb-3">
           <Col>
             <div className="d-flex justify-content-between">
@@ -27,7 +27,7 @@ function SideBar() {
       </div>
 
       {/* ALTRI PROFILI CONSULTATI */}
-      <div className="border square p-3 mb-2 rounded">
+      <div className="mb-2 border border-2 rounded-3 bg-white p-3">
         <h6>Altri profili consultati</h6>
         <Row className="border-bottom mb-2 mt-3 pb-3">
           <Col xs={12} md={4}>
@@ -48,7 +48,7 @@ function SideBar() {
       </div>
 
       {/* PERSONE CHE POTRESTI CONOSCERE */}
-      <div className="border rounded square p-3 mb-2">
+      <div className="mb-2 border border-2 rounded-3 bg-white p-3">
         <h6>Persone che potresti conoscere</h6>
         <span>Dalla tua scuola o università</span>
         <Row className="border-bottom mb-2 mt-3 pb-3">
@@ -70,7 +70,7 @@ function SideBar() {
       </div>
 
       {/* ROBA STATICA PER RENDERE LA PAGINA PIU SIMPATICA */}
-      <div className="border square p-3 mb-2 rounded">
+      <div className="mb-2 border border-2 rounded-3 bg-white p-3">
         <Row className="border-bottom pb-2 mb-3">
           <Col>
             <div className="text-start">
@@ -114,7 +114,6 @@ function SideBar() {
             </div>
           </Col>
         </Row>
-
         <Row className="border-bottom pb-2 mb-2">
           <Col xs={12} md={4}>
             <img

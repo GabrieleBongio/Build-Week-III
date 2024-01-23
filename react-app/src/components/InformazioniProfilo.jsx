@@ -5,7 +5,7 @@ import Col from "react-bootstrap/esm/Col";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/esm/Button";
 
-const InformazioniProfilo = ({ profile }) => {
+const InformazioniProfilo = ({ profile, setShow }) => {
   return (
     <div className="border border-2 rounded-3 mb-2">
       <Container fluid>
@@ -19,8 +19,16 @@ const InformazioniProfilo = ({ profile }) => {
                 </div>
               </div>
               {/* div in absolute  */}
-              <div className="overflow-hidden rounded-circle w-35 position-absolute custom-top custom-left bg-secondary-custom">
-                <img src={profile.image} alt="immagine profilo" className="img-fluid" />
+              <div className="position-absolute custom-top custom-left">
+                <Row>
+                  <Col xs="11" md="11" lg="6">
+                    <Row>
+                      <Col xs="4" md="5">
+                        <img src={profile.image} alt="immagine profilo" className="rounded-circle img-fluid" />
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
               </div>
             </div>
           </Col>
@@ -29,8 +37,8 @@ const InformazioniProfilo = ({ profile }) => {
             <Row>
               <Col>
                 <div className=" d-flex justify-content-end">
-                  <div className="p-2">
-                    <Pen className="m-2 fs-6" />
+                  <div className="p-2 hover rounded-pill" onClick={() => setShow(true)}>
+                    <Pen className="m-2 fs-6 hover" onClick={() => setShow(true)} />
                   </div>
                 </div>
               </Col>

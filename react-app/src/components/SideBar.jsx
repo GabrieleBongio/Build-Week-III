@@ -1,11 +1,11 @@
-import { Col, Container, Row, Button } from "react-bootstrap";
+import { Col, Row, Button } from "react-bootstrap";
 import { Pencil, SendFill, PersonPlusFill } from "react-bootstrap-icons";
 
 function SideBar() {
     return (
         <>
             {/* LINGUA E PROFILO */}
-            <div className="border square p-3 mb-2 rounded mt-7">
+            <div className="border square p-3 mb-2 rounded">
                 <Row className="border-bottom pb-2 mb-3">
                     <Col>
                         <div className="d-flex justify-content-between">

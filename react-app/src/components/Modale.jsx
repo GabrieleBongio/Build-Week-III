@@ -30,6 +30,15 @@ const Modale = (props) => {
         area: "",
     });
 
+    const [esperienzaData, setEsperienzaData] = useState({
+        role: "",
+        company: "",
+        startDate: "",
+        endDate: "",
+        description: "",
+        area: "",
+    });
+
     const optionsPost = {
         method: "POST",
         headers: {
@@ -45,7 +54,7 @@ const Modale = (props) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token} `,
         },
-        data: JSON.stringify(esperienza),
+        data: JSON.stringify(esperienzaData),
     };
 
     /* opzioni per la put  */
@@ -82,17 +91,15 @@ const Modale = (props) => {
                                         type="text"
                                         placeholder="Ruolo Lavorativo..."
                                         onChange={(event) => {
-                                            /* ismakingaput
-                                                ? dispatch(
-                                                      setDataFetchEsperienze((prevState) => ({
-                                                          ...prevState,
-                                                          role: event.target.value,
-                                                      }))
-                                                  )
-                                                :  */ setDatiPost((prevState) => ({
-                                                ...prevState,
-                                                role: event.target.value,
-                                            }));
+                                            ismakingaput
+                                                ? setEsperienzaData((prevState) => ({
+                                                      ...prevState,
+                                                      role: event.target.value,
+                                                  }))
+                                                : setDatiPost((prevState) => ({
+                                                      ...prevState,
+                                                      role: event.target.value,
+                                                  }));
                                         }}
                                         value={ismakingaput ? esperienza.role : datiPost.role}
                                     />
@@ -104,17 +111,15 @@ const Modale = (props) => {
                                         type="text"
                                         placeholder="Azienda"
                                         onChange={(event) => {
-                                            /* ismakingaput
-                                                ? dispatch(
-                                                      setDataFetchEsperienze((prevState) => ({
-                                                          ...prevState,
-                                                          company: event.target.value,
-                                                      }))
-                                                  )
-                                                : */ setDatiPost((prevState) => ({
-                                                ...prevState,
-                                                company: event.target.value,
-                                            }));
+                                            ismakingaput
+                                                ? setEsperienzaData((prevState) => ({
+                                                      ...prevState,
+                                                      company: event.target.value,
+                                                  }))
+                                                : setDatiPost((prevState) => ({
+                                                      ...prevState,
+                                                      company: event.target.value,
+                                                  }));
                                         }}
                                         value={ismakingaput ? esperienza.company : datiPost.company}
                                     />
@@ -126,17 +131,15 @@ const Modale = (props) => {
                                         type="text"
                                         placeholder="AAAA-MM-GG"
                                         onChange={(event) => {
-                                            /*  ismakingaput
-                                                ? dispatch(
-                                                      setDataFetchEsperienze((prevState) => ({
-                                                          ...prevState,
-                                                          startDate: event.target.value,
-                                                      }))
-                                                  )
-                                                : */ setDatiPost((prevState) => ({
-                                                ...prevState,
-                                                startDate: event.target.value,
-                                            }));
+                                            ismakingaput
+                                                ? setEsperienzaData((prevState) => ({
+                                                      ...prevState,
+                                                      startDate: event.target.value,
+                                                  }))
+                                                : setDatiPost((prevState) => ({
+                                                      ...prevState,
+                                                      startDate: event.target.value,
+                                                  }));
                                         }}
                                         value={ismakingaput ? esperienza.startDate : datiPost.startDate}
                                     />
@@ -147,17 +150,15 @@ const Modale = (props) => {
                                         type="text"
                                         placeholder="AAAA-MM-GG"
                                         onChange={(event) => {
-                                            /* ismakingaput
-                                                ? dispatch(
-                                                      setDataFetchEsperienze((prevState) => ({
-                                                          ...prevState,
-                                                          endDate: event.target.value,
-                                                      }))
-                                                  )
-                                                : */ setDatiPost((prevState) => ({
-                                                ...prevState,
-                                                endDate: event.target.value,
-                                            }));
+                                            ismakingaput
+                                                ? setEsperienzaData((prevState) => ({
+                                                      ...prevState,
+                                                      endDate: event.target.value,
+                                                  }))
+                                                : setDatiPost((prevState) => ({
+                                                      ...prevState,
+                                                      endDate: event.target.value,
+                                                  }));
                                         }}
                                         value={ismakingaput ? esperienza.endDate : datiPost.endDate}
                                     />
@@ -169,17 +170,15 @@ const Modale = (props) => {
                                         type="text"
                                         placeholder="ruolo aziendale"
                                         onChange={(event) => {
-                                            /* ismakingaput
-                                                ? dispatch(
-                                                      setDataFetchEsperienze((prevState) => ({
-                                                          ...prevState,
-                                                          description: event.target.value,
-                                                      }))
-                                                  )
-                                                : */ setDatiPost((prevState) => ({
-                                                ...prevState,
-                                                description: event.target.value,
-                                            }));
+                                            ismakingaput
+                                                ? setEsperienzaData((prevState) => ({
+                                                      ...prevState,
+                                                      description: event.target.value,
+                                                  }))
+                                                : setDatiPost((prevState) => ({
+                                                      ...prevState,
+                                                      description: event.target.value,
+                                                  }));
                                         }}
                                         value={ismakingaput ? esperienza.description : datiPost.description}
                                     />
@@ -191,17 +190,15 @@ const Modale = (props) => {
                                         type="text"
                                         placeholder="Luogo di lavoro..."
                                         onChange={(event) => {
-                                            /* ismakingaput
-                                                ? dispatch(
-                                                      setDataFetchEsperienze((prevState) => ({
-                                                          ...prevState,
-                                                          area: event.target.value,
-                                                      }))
-                                                  )
-                                                : */ setDatiPost((prevState) => ({
-                                                ...prevState,
-                                                area: event.target.value,
-                                            }));
+                                            ismakingaput
+                                                ? setEsperienzaData((prevState) => ({
+                                                      ...prevState,
+                                                      area: event.target.value,
+                                                  }))
+                                                : setDatiPost((prevState) => ({
+                                                      ...prevState,
+                                                      area: event.target.value,
+                                                  }));
                                         }}
                                         value={ismakingaput ? esperienza.area : datiPost.area}
                                     />

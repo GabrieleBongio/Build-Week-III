@@ -25,9 +25,9 @@ const Esperienze = () => {
         dispatch(fetchData(URL, "65ae24f3600be100183a8682/experiences", optionsGet, setDataFetchEsperienze));
     }, []);
     return (
-        <>
+        <div>
             {" "}
-            <div className="border border-2 rounded-3 mb-2">
+            <div className="border border-2 rounded-3 mb-2 overflow-auto">
                 <div className="p-3">
                     <div className="d-flex gap-3">
                         <div>
@@ -56,8 +56,8 @@ const Esperienze = () => {
                             {" "}
                             {datiFetchEsperienze &&
                                 datiFetchEsperienze.map((esperienza) => (
-                                    <Col className="my-1" xs={12}>
-                                        <div className="d-flex gap-1">
+                                    <Col key={`key-${esperienza._id}`} className="my-1" xs={12}>
+                                        <div className="d-flex gap-2">
                                             <div>
                                                 <img
                                                     className="rounded"
@@ -66,8 +66,29 @@ const Esperienze = () => {
                                                     alt="placeholder"
                                                 />
                                             </div>
-                                            <div>
-                                                <p>{esperienza.role}</p>
+                                            <div className="d-flex">
+                                                <div className="mx-2">
+                                                    <p className="m-0">
+                                                        <span className="fw-semibold">Ruolo: </span>
+                                                        {esperienza.role}
+                                                    </p>
+                                                </div>
+                                                <div className="mx-2">
+                                                    <p className="m-0">
+                                                        <span className="fw-semibold">Azienda:</span>{" "}
+                                                        {esperienza.company}
+                                                    </p>
+                                                </div>
+                                                <div className="mx-2">
+                                                    <p className="m-0">
+                                                        <span className="fw-semibold">Data Inizio:</span>
+                                                        {new Date(esperienza.startDate).toLocaleDateString("it-IT", {
+                                                            day: "2-digit",
+                                                            month: "2-digit",
+                                                            year: "numeric",
+                                                        })}
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </Col>
@@ -76,7 +97,7 @@ const Esperienze = () => {
                     </Row>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

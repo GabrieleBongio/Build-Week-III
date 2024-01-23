@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 
 const ConsigliatoPerTe = () => {
   return (
-    <div className="border border-2 rounded-3 mb-2 p-3">
+    <div className="border border-2 rounded-3 mb-2 p-3 bg-white">
       <Row>
         <Col>
           <div className="d-flex flex-column">

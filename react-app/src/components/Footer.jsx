@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-import { Col, Container, Nav, NavDropdown, Row, Dropdown } from "react-bootstrap";
-import DropdownToggle from "react-bootstrap/DropdownToggle";
+import { Col, Container, NavDropdown, Row, Dropdown } from "react-bootstrap";
 import { QuestionCircleFill, ShieldFillCheck, GearFill } from "react-bootstrap-icons";
 
 const Footer = () => {
@@ -105,18 +104,15 @@ const Footer = () => {
               <p className="m-1 fs-8">Selezione Lingua</p>
             </div>
             <Dropdown className="border border-dark border-1" style={{ height: "fit-content" }}>
-              <Dropdown.Toggle variant="white" id="dropdown-basic" className="w-100 text-start"></Dropdown.Toggle>
+              <Dropdown.Toggle variant="white" id="dropdown-basic" className="w-100 text-end">
+                {linguaSelezionata}
+              </Dropdown.Toggle>
 
               <Dropdown.Menu>
                 <Dropdown.Item onClick={() => cambiaLingua("Italiano")}>Italiano</Dropdown.Item>
                 <Dropdown.Item onClick={() => cambiaLingua("English")}>English</Dropdown.Item>
                 <Dropdown.Item onClick={() => cambiaLingua("Serbian")}>Serbian</Dropdown.Item>
               </Dropdown.Menu>
-              <div>
-                <span className="w-100 me-auto" style={{ fontSize: "14px" }}>
-                  {linguaSelezionata}
-                </span>
-              </div>
             </Dropdown>
             <div>
               <p className="m-1 fs-8">LinkedIn Corporation &copy; 2024</p>

@@ -18,47 +18,42 @@ import CambiaImmagine from "./CambiaImmagine";
 const link = "https://striveschool-api.herokuapp.com/api/profile/me";
 
 const options = {
-    headers: {
-        Authorization: "Bearer " + Token,
-    },
+  headers: {
+    Authorization: "Bearer " + Token,
+  },
 };
 
 const Me = () => {
-    const dispatch = useDispatch();
-    const { dataFetchProfilo } = useSelector((state) => state.FetchData);
-    const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
+  const { dataFetchProfilo } = useSelector((state) => state.FetchData);
+  const [show, setShow] = useState(false);
 
-    useEffect(() => {
-        dispatch(fetchData(link, "", options, setDataFetchProfilo));
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchData(link, "", options, setDataFetchProfilo));
+  }, [dispatch]);
 
-    return (
-        <Container>
-            <Row>
-                <Col xs={12} md={7} lg={9}>
-                    {dataFetchProfilo && <InformazioniProfilo profile={dataFetchProfilo} setShow={setShow} />}
-                    {dataFetchProfilo && (
-                        <CambiaImmagine
-                            userId={dataFetchProfilo._id}
-                            show={show}
-                            setShow={setShow}
-                            img={dataFetchProfilo.image}
-                        />
-                    )}
-                    <ConsigliatoPerTe />
-                    <Analisi />
-                    <Risorse />
-                    <Attività />
-                    <Formazione />
-                    {dataFetchProfilo && <Esperienze userId={dataFetchProfilo._id} />}
-                    <Interessi />
-                </Col>
-                <Col xs={12} md={5} lg={3}>
-                    <SideBar />
-                </Col>
-            </Row>
-        </Container>
-    );
+  return (
+    <Container>
+      <Row>
+        <Col xs={12} md={7} lg={9}>
+          {dataFetchProfilo && <InformazioniProfilo profile={dataFetchProfilo} setShow={setShow} />}
+          {dataFetchProfilo && (
+            <CambiaImmagine userId={dataFetchProfilo._id} show={show} setShow={setShow} img={dataFetchProfilo.image} />
+          )}
+          <ConsigliatoPerTe />
+          <Analisi />
+          <Risorse />
+          <Attività />
+          <Formazione />
+          {dataFetchProfilo && <Esperienze userid={dataFetchProfilo._id} />}
+          <Interessi />
+        </Col>
+        <Col xs={12} md={5} lg={3}>
+          <SideBar />
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
 export default Me;

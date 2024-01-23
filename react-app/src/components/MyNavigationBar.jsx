@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Form, FormControl, Nav, NavDropdown, Navbar, Row } from "react-bootstrap";
+import { Container, Form, FormControl, NavDropdown, Navbar, Row } from "react-bootstrap";
 import {
   BellFill,
   BriefcaseFill,
@@ -24,7 +24,7 @@ const MyNavigationBar = () => {
                   viewBox="0 0 24 24"
                   data-supported-dps="24x24"
                   fill="currentColor"
-                  class="mercado-match"
+                  className="mercado-match"
                   width="40"
                   height="40"
                   focusable="false"

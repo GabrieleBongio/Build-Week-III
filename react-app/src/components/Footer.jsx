@@ -1,6 +1,5 @@
 import React from "react";
 import { Col, Container, Nav, NavDropdown, Row } from "react-bootstrap";
-import DropdownToggle from "react-bootstrap/DropdownToggle";
 import { QuestionCircleFill, ShieldFillCheck, GearFill } from "react-bootstrap-icons";
 
 const Footer = () => {

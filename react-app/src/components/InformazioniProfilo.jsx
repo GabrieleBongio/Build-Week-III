@@ -1,14 +1,14 @@
 import React from "react";
 import Row from "react-bootstrap/esm/Row";
-import { CameraFill, Pen, PatchCheckFill, PenFill, Camera2 } from "react-bootstrap-icons";
+import { CameraFill, Pen, PatchCheckFill, PenFill } from "react-bootstrap-icons";
 import Col from "react-bootstrap/esm/Col";
-
+import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/esm/Button";
 
-const InformazioniProfilo = () => {
+const InformazioniProfilo = ({ profile }) => {
   return (
-    <>
-      <div className="mt-7">
+    <div className="border border-2 rounded-3 mb-2">
+      <Container fluid>
         <Row>
           {/* prima sezione  */}
           <Col xs={12}>
@@ -19,14 +19,13 @@ const InformazioniProfilo = () => {
                 </div>
               </div>
               {/* div in absolute  */}
-              <div className="rounded-circle d-inline-block position-absolute custom-top custom-left bg-secondary-custom">
-                {" "}
-                <Camera2 className="fs-1 m-5" />
+              <div className="overflow-hidden rounded-circle w-35 position-absolute custom-top custom-left bg-secondary-custom">
+                <img src={profile.image} alt="immagine profilo" className="img-fluid" />
               </div>
             </div>
           </Col>
           {/* seconda sezione */}
-          <Col xs={12}>
+          <Col xs={12} className="px-3 pb-3">
             <Row>
               <Col>
                 <div className=" d-flex justify-content-end">
@@ -40,7 +39,7 @@ const InformazioniProfilo = () => {
               <Col>
                 <div className="d-flex px-1">
                   <div className="d-block d-lg-flex align-items-center gap-2">
-                    <h4>Nome Cognome</h4>
+                    <h4>{profile.name + profile.surname}</h4>
 
                     <div className="border border-primary rounded-pill px-2">
                       <PatchCheckFill className="text-primary me-1" />
@@ -57,10 +56,10 @@ const InformazioniProfilo = () => {
                   </div>
                 </div>
                 <div className="px-1">
-                  <p className="mb-1">Studente Presso Epicode, Epicode Education </p>
+                  <p className="mb-1">{profile.title}</p>
                 </div>
                 <div className="px-1 d-flex gap-2">
-                  <p className="mb-1"> Roma, Lazio, 00133 </p>
+                  <p className="mb-1">{profile.area},</p>
                   <p>Informazioni di contatto</p>
                 </div>
               </Col>
@@ -106,8 +105,8 @@ const InformazioniProfilo = () => {
             </Row>
           </Col>
         </Row>
-      </div>
-    </>
+      </Container>
+    </div>
   );
 };
 

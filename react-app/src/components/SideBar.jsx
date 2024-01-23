@@ -1,11 +1,11 @@
-import { Col, Container, Row, Button } from "react-bootstrap";
+import { Col, Row, Button } from "react-bootstrap";
 import { Pencil, SendFill, PersonPlusFill, InfoSquareFill } from "react-bootstrap-icons";
 
 function SideBar() {
   return (
     <>
       {/* LINGUA E PROFILO */}
-      <div className="border square p-3 mb-2 rounded mt-7">
+      <div className="border square p-3 mb-2 rounded">
         <Row className="border-bottom pb-2 mb-3">
           <Col>
             <div className="d-flex justify-content-between">
@@ -33,7 +33,7 @@ function SideBar() {
           <Col xs={12} md={4}>
             <img id="sideImg" alt="profile picture"></img>
           </Col>
-          <Col Col xs={12} md={8}>
+          <Col xs={12} md={8}>
             <h6>Qui va il nome</h6>
             <span>Qui la posizione di lavoro</span>
           </Col>
@@ -55,7 +55,7 @@ function SideBar() {
           <Col xs={12} md={4}>
             <img id="sideImg" alt="profile picture"></img>
           </Col>
-          <Col Col xs={12} md={8}>
+          <Col xs={12} md={8}>
             <h6>Qui va il nome</h6>
             <span>Qui la posizione di lavoro</span>
           </Col>

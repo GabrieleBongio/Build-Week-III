@@ -31,7 +31,7 @@ function SideBar() {
         <h6>Altri profili consultati</h6>
         <Row className="border-bottom mb-2 mt-3 pb-3">
           <Col xs={12} md={4}>
-            <img id="sideImg" alt="profile picture"></img>
+            <img id="sideImg" alt="profile"></img>
           </Col>
           <Col xs={12} md={8}>
             <h6>Qui va il nome</h6>
@@ -53,7 +53,7 @@ function SideBar() {
         <span>Dalla tua scuola o università</span>
         <Row className="border-bottom mb-2 mt-3 pb-3">
           <Col xs={12} md={4}>
-            <img id="sideImg" alt="profile picture"></img>
+            <img id="sideImg" alt="profile"></img>
           </Col>
           <Col xs={12} md={8}>
             <h6>Qui va il nome</h6>

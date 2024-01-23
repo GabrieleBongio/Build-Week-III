@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchData } from "../redux/functions/fetch";
 import { setDataFetchEsperienze } from "../redux/reducers/StateSliceReducers";
 import Modale from "./Modale";
+import { fetchDelete } from "../redux/functions/fetchDelete";
 
 const URL = "https://striveschool-api.herokuapp.com/api/profile/";
 
@@ -17,13 +18,31 @@ const optionsGet = {
     },
 };
 
+const optionsDelete = {
+    method: "DELETE",
+    headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Token} `,
+    },
+};
+
 const Esperienze = () => {
     const dispatch = useDispatch();
     const [isModalVisible, setIsModalVisible] = useState(false);
     const datiFetchEsperienze = useSelector((state) => state.FetchData.dataFetchEsperienze);
+
     useEffect(() => {
         dispatch(fetchData(URL, "65ae24f3600be100183a8682/experiences", optionsGet, setDataFetchEsperienze));
     }, []);
+
+    const handleDelete = (expId) => {
+        fetchDelete(optionsDelete, "65ae24f3600be100183a8682", expId);
+    };
+
+    /*     useEffect(() => {
+      dispatch(fetchData(URL, "65ae24f3600be100183a8682/experiences", optionsGet, setDataFetchEsperienze));
+    },[datiFetchEsperienze]) */
+
     return (
         <div>
             {" "}
@@ -90,6 +109,13 @@ const Esperienze = () => {
                                                     </p>
                                                 </div>
                                             </div>
+                                            <Button
+                                                onClick={() => handleDelete(esperienza._id)}
+                                                variant="transparent"
+                                                className="ms-auto"
+                                            >
+                                                ❌
+                                            </Button>
                                         </div>
                                     </Col>
                                 ))}

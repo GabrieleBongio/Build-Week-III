@@ -1,5 +1,7 @@
-export const fetchDataPost = (url, options, parametroOpzionale) => {
-    fetch(url, options)
+export const fetchDataPost = (optionPost, idUtente) => {
+    const URLPOST = `https://striveschool-api.herokuapp.com/api/profile/${idUtente}/experiences`;
+
+    fetch(URLPOST, optionPost)
         .then((response) => {
             if (!response.ok) {
                 throw new Error("qualcosa è andato storto");

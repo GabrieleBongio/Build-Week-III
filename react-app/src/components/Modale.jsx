@@ -6,8 +6,7 @@ import { Col, Row } from "react-bootstrap";
 import { Token } from "../token";
 import { fetchDataPost } from "../redux/functions/fetchPost";
 
-const URLPOST = "https://striveschool-api.herokuapp.com/api/profile/ ";
-const parametriFetchPost = "65ae24f3600be100183a8682/experiences";
+const IdUtente = "65ae24f3600be100183a8682";
 
 const Modale = (props) => {
     const [datiPost, setDatiPost] = useState({
@@ -30,7 +29,7 @@ const Modale = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetchDataPost(URLPOST, optionsPost, parametriFetchPost);
+        fetchDataPost(optionsPost, IdUtente);
     };
 
     return (

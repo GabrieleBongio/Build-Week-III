@@ -33,7 +33,7 @@ function SideBar() {
                     <Col xs={12} md={4}>
                         <img id="sideImg" alt="profile picture"></img>
                     </Col>
-                    <Col Col xs={12} md={8}>
+                    <Col xs={12} md={8}>
                         <h6>Qui va il nome</h6>
                         <span>Qui la posizione di lavoro</span>
                     </Col>
@@ -55,7 +55,7 @@ function SideBar() {
                     <Col xs={12} md={4}>
                         <img id="sideImg" alt="profile picture"></img>
                     </Col>
-                    <Col Col xs={12} md={8}>
+                    <Col xs={12} md={8}>
                         <h6>Qui va il nome</h6>
                         <span>Qui la posizione di lavoro</span>
                     </Col>

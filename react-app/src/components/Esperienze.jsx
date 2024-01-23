@@ -8,6 +8,7 @@ import { setDataFetchEsperienze } from "../redux/reducers/StateSliceReducers";
 import Modale from "./Modale";
 import { fetchDelete } from "../redux/functions/fetchDelete";
 import { usePrevious } from "@uidotdev/usehooks";
+import { FetchPut } from "../redux/functions/fetchPut";
 
 const URL = "https://striveschool-api.herokuapp.com/api/profile/";
 
@@ -27,14 +28,21 @@ const optionsDelete = {
     },
 };
 
+const optionsPut = {
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Token} `,
+    },
+};
+
 const Esperienze = (props) => {
     const { userid } = props;
     const dispatch = useDispatch();
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [ismakingAPut, setIsMakingAput] = useState(false);
     const datiFetchEsperienze = useSelector((state) => state.FetchData.dataFetchEsperienze);
-    const previusState_FetchEsperienza = usePrevious(datiFetchEsperienze);
     console.log("datiFetchEsperienze", datiFetchEsperienze);
-    console.log("previusState_FetchEsperienza", previusState_FetchEsperienza);
 
     useEffect(() => {
         dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
@@ -46,6 +54,10 @@ const Esperienze = (props) => {
             dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
         }, 500);
     };
+
+    /*    const handlePut = (expId) => {
+        FetchPut(optionsPut, userid , expId);
+    };  */
 
     return (
         <div>
@@ -65,16 +77,20 @@ const Esperienze = (props) => {
                             </div>
                         </div>
                         <div>
-                            <div className="rounded-pill hover ">
-                                <Pencil></Pencil>
-                            </div>
+                            <div className="rounded-pill hover "></div>
                         </div>
                     </div>
                     <Row>
                         {(datiFetchEsperienze === null || datiFetchEsperienze.length === 0) && (
                             <div>Non ci sono esperienze da visualizzare.</div>
                         )}
-                        <Modale userid={userid} show={isModalVisible} onHide={() => setIsModalVisible(false)} />
+                        <Modale
+                            userid={userid}
+                            show={isModalVisible}
+                            onHide={() => setIsModalVisible(false)}
+                            ismakingAPut={ismakingAPut}
+                            setIsMakingAput={setIsMakingAput}
+                        />
                         <Row>
                             {" "}
                             {datiFetchEsperienze &&
@@ -119,6 +135,18 @@ const Esperienze = (props) => {
                                                 className="ms-auto"
                                             >
                                                 ❌
+                                            </Button>
+                                            <Button
+                                                onClick={
+                                                    () => {
+                                                        setIsModalVisible(true);
+                                                        setIsMakingAput(true);
+                                                    } /*  handlePut(esperienza._id) */
+                                                }
+                                                variant="transparent"
+                                                className="ms-auto"
+                                            >
+                                                <Pencil></Pencil>
                                             </Button>
                                         </div>
                                     </Col>

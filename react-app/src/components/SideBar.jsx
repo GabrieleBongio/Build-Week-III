@@ -1,5 +1,5 @@
 import { Col, Row, Button } from "react-bootstrap";
-import { Pencil, SendFill, PersonPlusFill } from "react-bootstrap-icons";
+import { Pencil, SendFill, PersonPlusFill, InfoSquareFill } from "react-bootstrap-icons";
 
 function SideBar() {
   return (
@@ -55,7 +55,7 @@ function SideBar() {
           <Col xs={12} md={4}>
             <img id="sideImg" alt="profile"></img>
           </Col>
-          <Col Col xs={12} md={8}>
+          <Col xs={12} md={8}>
             <h6>Qui va il nome</h6>
             <span>Qui la posizione di lavoro</span>
           </Col>
@@ -85,6 +85,32 @@ function SideBar() {
               <p className="text-secondary d-flex justify-content-start">
                 Aggiungi nuove competenze con questi corsi, gratuiti per 24 ore
               </p>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="py-4 px-1 border border-bottom rounded background-columns">
+            <div>
+              <div className="">
+                <div className="d-flex justify-content-between">
+                  <h5 className="mt-3 ms-3">Linkedln Notizie</h5>
+                  <InfoSquareFill className="me-3 cursor" />
+                </div>
+              </div>
+              <ul id="ul-sidebar">
+                <li className="fs-7">Single e fieri di esserlo</li>
+                <p className="text-secondary">3 giorni fa </p>
+                <li className="fs-7">Che cosa vuole l'Italia dall'AI</li>
+                <p className="text-secondary">3 giorni fa </p>
+                <li className="fs-7">PayPal si allarga alle bollette</li>
+                <p className="text-secondary">7 ore fa </p>
+                <li className="fs-7">Impennata degli attacchi informatici</li>
+                <p className="text-secondary">5 giorni fa </p>
+                <li className="fs-7">I primi supermercati senza casse</li>
+                <p className="text-secondary">3 giorni fa </p>
+                <li className="fs-7">Innovazione,ricerca e sviluppo</li>
+                <p className="text-secondary">1 ora fa </p>
+              </ul>
             </div>
           </Col>
         </Row>

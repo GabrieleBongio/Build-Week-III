@@ -24,7 +24,7 @@ const MyNavigationBar = () => {
                                     viewBox="0 0 24 24"
                                     data-supported-dps="24x24"
                                     fill="currentColor"
-                                    class="mercado-match"
+                                    /* class="mercado-match" */
                                     width="40"
                                     height="40"
                                     focusable="false"

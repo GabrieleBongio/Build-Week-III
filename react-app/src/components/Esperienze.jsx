@@ -39,11 +39,11 @@ const Esperienze = (props) => {
 
     useEffect(() => {
         dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
-    }, [userid]);
+    }, [userid, dispatch]);
 
-    const handleDelete = (expId) => {
-        fetchDelete(optionsDelete, userid, expId);
-        dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
+    const handleDelete = async (expId) => {
+        await fetchDelete(optionsDelete, userid, expId);
+        await dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
     };
 
     return (

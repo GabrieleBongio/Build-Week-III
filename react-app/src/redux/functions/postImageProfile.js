@@ -1,8 +1,7 @@
-/* FETCH MODALE RIUTILIZZABILE   */
-export const fetchData = (url, parametroOpzionale, options, action, lastAction) => async (dispatch) => {
+export const postImageProfile = (userId, options) => async (dispatch) => {
   try {
     // Set to true before fetching
-    const fetchResponse = await fetch(url + parametroOpzionale, options);
+    const fetchResponse = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/picture`, options);
 
     if (!fetchResponse.ok) {
       if (fetchResponse.status > 400 && fetchResponse.status < 500) {
@@ -19,13 +18,6 @@ export const fetchData = (url, parametroOpzionale, options, action, lastAction) 
 
     const fetchData = await fetchResponse.json();
     console.log(fetchData);
-
-    dispatch(action(fetchData));
-
-    /*  QUALCOSA DA FARE FINITA LA FETCH ?? */
-    if (lastAction) {
-      dispatch(lastAction());
-    }
   } catch (error) {
     console.error("Error fetching data:", error);
   }

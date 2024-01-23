@@ -12,6 +12,7 @@ import Messaggistica from "./components/Messaggistica";
 import SideBar from "./components/SideBar";
 import MyNavigationBar from "./components/MyNavigationBar";
 import Footer from "./components/Footer";
+import Esperienze from "./components/Esperienze";
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                         <Risorse />
                         <Attività />
                         <Formazione />
+                        <Esperienze />
                         <Interessi />
                     </Col>
                     <Col xs={12} md={5} lg={3}>

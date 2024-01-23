@@ -7,7 +7,7 @@ import Button from "react-bootstrap/esm/Button";
 
 const InformazioniProfilo = ({ profile, setShow }) => {
   return (
-    <div className="border border-2 rounded-3 mb-2">
+    <div className="border border-2 rounded-3 mb-2 mt-7 bg-white">
       <Container fluid>
         <Row>
           {/* prima sezione  */}

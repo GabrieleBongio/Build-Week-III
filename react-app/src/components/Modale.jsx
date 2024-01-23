@@ -9,6 +9,7 @@ import { fetchData } from "../redux/functions/fetch";
 import { setDataFetchEsperienze } from "../redux/reducers/StateSliceReducers";
 import { optionsGet } from "../components/Esperienze";
 import { useDispatch } from "react-redux";
+import { fetchDataPut } from "../redux/functions/fetchPut";
 
 /* const IdUtente = "65ae24f3600be100183a8682"; */
 const URL = "https://striveschool-api.herokuapp.com/api/profile/";
@@ -38,16 +39,28 @@ const Modale = (props) => {
         body: JSON.stringify(datiPost),
     };
 
+    const optionsPut = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${Token} `,
+        },
+        data: JSON.stringify(esperienza),
+    };
+
+    /* opzioni per la put  */
+    const handleSubmitPut = (event) => {
+        event.preventDefault();
+        console.log("ciao ciao ");
+        fetchDataPut(optionsPut, userid, esperienza._id);
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         props.onHide();
 
         await fetchDataPost(optionsPost, userid, "experiences");
         await dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
-    };
-
-    const handleSubmitPut = () => {
-        console.log("ciao ciao ");
     };
 
     return (

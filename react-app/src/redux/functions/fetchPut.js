@@ -8,9 +8,10 @@ export const fetchDataPut = (option, userid, expid) => {
             }
 
             if (response.ok) {
+                console.log(response);
                 return response.json();
             }
         })
-        .then((data) => {})
+
         .catch((error) => console.error(error));
 };

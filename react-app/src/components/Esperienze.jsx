@@ -7,8 +7,6 @@ import { fetchData } from "../redux/functions/fetch";
 import { setDataFetchEsperienze } from "../redux/reducers/StateSliceReducers";
 import Modale from "./Modale";
 import { fetchDelete } from "../redux/functions/fetchDelete";
-import { usePrevious } from "@uidotdev/usehooks";
-import { FetchPut } from "../redux/functions/fetchPut";
 
 const URL = "https://striveschool-api.herokuapp.com/api/profile/";
 
@@ -22,14 +20,6 @@ export const optionsGet = {
 
 const optionsDelete = {
     method: "DELETE",
-    headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${Token} `,
-    },
-};
-
-const optionsPut = {
-    method: "PUT",
     headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${Token} `,
@@ -54,10 +44,6 @@ const Esperienze = (props) => {
             dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
         }, 500);
     };
-
-    /*    const handlePut = (expId) => {
-        FetchPut(optionsPut, userid , expId);
-    };  */
 
     return (
         <div>

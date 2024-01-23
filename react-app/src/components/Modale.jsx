@@ -68,7 +68,7 @@ const Modale = (props) => {
             <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        {ismakingaput ? "Aggiorna Esperienza" : "Inserisci Esperienze"}
+                        {ismakingaput ? "Aggiorna Esperienza" : "Inserisci Nuova Esperienze"}
                     </Modal.Title>
                 </Modal.Header>
                 <Row>

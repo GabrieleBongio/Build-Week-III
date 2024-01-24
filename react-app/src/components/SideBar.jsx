@@ -5,6 +5,8 @@ import SideBarProfile from "./SideBarProfile";
 function SideBar() {
   return (
     <>
+      <div className="d-none d-md-block d-lg-none p-4"></div>
+
       {/* LINGUA E PROFILO */}
       <div className="mb-2 border border-2 rounded-3 bg-white p-3 mt-7">
         <Row className="border-bottom pb-2 mb-3">

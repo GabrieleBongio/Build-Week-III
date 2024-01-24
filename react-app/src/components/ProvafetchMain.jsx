@@ -122,17 +122,17 @@ const ProvafetchMain = () => {
                                                         </div>
                                                     </Col>
                                                 </Row>
-                                                <Col>
-                                                    <Col>
+
+                                                <Col xs="3">
+                                                    {" "}
+                                                    <div className="px-2">
                                                         {" "}
-                                                        <div className="px-2">
-                                                            {" "}
-                                                            <p className="m-0">{post.text}</p>
-                                                        </div>
-                                                    </Col>
+                                                        <p className="m-0">{post.text}</p>
+                                                    </div>
                                                 </Col>
+
                                                 <Col>
-                                                    <div className="d-flex justify-content-end">
+                                                    <div className="d-flex justify-content-end flex-grow-1 flex-wrap">
                                                         <div className="d-flex justify-content-end gap-2">
                                                             <div className="d-flex align-items-center p-1 gap-2">
                                                                 <HandThumbsUpFill fontSize={"25"} />{" "}
@@ -143,19 +143,19 @@ const ProvafetchMain = () => {
                                                             <div className="d-flex align-items-center p-1 gap-2">
                                                                 <ChatDotsFill fontSize={"25"} />{" "}
                                                                 <Button className="p-0" variant="transparent">
-                                                                    <p className="m-0 fs-7">Consiglia</p>
+                                                                    <p className="m-0 fs-7">Commenta</p>
                                                                 </Button>
                                                             </div>
                                                             <div className="d-flex align-items-center p-1 gap-2">
                                                                 <Shuffle fontSize={"25"} />{" "}
                                                                 <Button className="p-0" variant="transparent">
-                                                                    <p className="m-0 fs-7">Consiglia</p>
+                                                                    <p className="m-0 fs-7">Diffondi il Post</p>
                                                                 </Button>
                                                             </div>
                                                             <div className="d-flex align-items-center p-1 py-3 gap-2">
                                                                 <SendExclamationFill fontSize={"25"} />{" "}
                                                                 <Button className="p-0" variant="transparent">
-                                                                    <p className="m-0 fs-7">Consiglia</p>
+                                                                    <p className="m-0 fs-7">Invia</p>
                                                                 </Button>
                                                             </div>
                                                         </div>

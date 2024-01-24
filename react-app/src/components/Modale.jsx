@@ -57,7 +57,7 @@ const Modale = (props) => {
         await dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmitPost = async (event) => {
         event.preventDefault();
         props.onHide();
 
@@ -76,7 +76,7 @@ const Modale = (props) => {
                 <Row>
                     <Col>
                         <Modal.Body>
-                            <Form onSubmit={ismakingaput ? handleSubmitPut : handleSubmit}>
+                            <Form onSubmit={ismakingaput ? handleSubmitPut : handleSubmitPost}>
                                 <Form.Group className="mb-3" controlId="formGroupEmail">
                                     <Form.Label>Role:</Form.Label>
                                     <Form.Control
@@ -196,7 +196,15 @@ const Modale = (props) => {
                                         value={ismakingaput ? datiPost.area : datiPost.area}
                                     />
                                 </Form.Group>
-                                <Button className="me-2" type="submit" variant="success">
+                                <Button
+                                    /* onClick={() => {
+                                        props.onHide(); // Chiude il modal
+                                        setIsMakingAput(false);
+                                    }} */
+                                    className="me-2"
+                                    type="submit"
+                                    variant="success"
+                                >
                                     {" "}
                                     {ismakingaput ? "Aggiorna dati" : "Invia Dati"}
                                 </Button>

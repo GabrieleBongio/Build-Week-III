@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -15,226 +15,183 @@ import { fetchDataPut } from "../redux/functions/fetchPut";
 const URL = "https://striveschool-api.herokuapp.com/api/profile/";
 
 const Modale = (props) => {
-    const { userid, ismakingaput, setIsMakingAput, esperienza } = props;
+  /*  console.log("method === "PUT"", method === "PUT"); */
+  /*console.log("props.userid", props.userid);
+  console.log("esperienza", esperienza);
+  console.log("method === "PUT"", method === "PUT");*/
+  const dispatch = useDispatch();
+  const [method, setMethod] = useState("POST");
+  const [dati, setDati] = useState({
+    role: "",
+    company: "",
+    startDate: "",
+    endDate: "", // può essere null
+    description: "",
+    area: "",
+  });
 
-    /*  console.log("ismakingaput", ismakingaput); */
-    console.log("userid", userid);
-    console.log("esperienza", esperienza);
-    console.log("ismakingaput", ismakingaput);
-    const dispatch = useDispatch();
-    const [datiPost, setDatiPost] = useState({
-        role: "",
-        company: "",
-        startDate: "",
-        endDate: "", // può essere null
-        description: "",
-        area: "",
-    });
+  useEffect(() => {
+    if (props.esperienza !== undefined) {
+      setDati({
+        role: props.esperienza.role,
+        company: props.esperienza.company,
+        startDate: props.esperienza.startDate,
+        endDate: props.esperienza.endDate, // può essere null
+        description: props.esperienza.description,
+        area: props.esperienza.area,
+      });
+      setMethod("PUT");
+    }
+  }, [props.esperienza]);
 
-    const [EsperienzaPut, SetEsperienzaPut] = useState({
-        role: esperienza.role,
-        company: esperienza.company,
-        startDate: esperienza.startDate,
-        endDate: esperienza.endDate, // può essere null
-        description: esperienza.description,
-        area: esperienza.area,
-    });
+  /* opzioni per la put  */
+  const handleSubmitPut = async (event) => {
+    const optionsPut = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Token} `,
+      },
+      body: JSON.stringify(dati),
+    };
 
+    event.preventDefault();
+    console.log("ciao ciao ");
+    fetchDataPut(optionsPut, props.userid, props.esperienza._id);
+    setTimeout(() => {
+      dispatch(fetchData(URL, `${props.userid}/experiences`, optionsGet, setDataFetchEsperienze));
+    }, 500);
+  };
+
+  const handleSubmitPost = async (event) => {
     const optionsPost = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${Token} `,
-        },
-        body: JSON.stringify(datiPost),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Token} `,
+      },
+      body: JSON.stringify(dati),
     };
 
-    /* opzioni per la put  */
-    const handleSubmitPut = async (event) => {
-        const optionsPut = {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${Token} `,
-            },
-            data: JSON.stringify(EsperienzaPut),
-        };
+    event.preventDefault();
+    props.onHide();
 
-        event.preventDefault();
-        console.log("ciao ciao ");
-        fetchDataPut(optionsPut, userid, esperienza._id);
-        setTimeout(() => {
-            dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
-        }, 500);
-    };
+    fetchDataPost(optionsPost, props.userid, "experiences");
+    setTimeout(() => {
+      dispatch(fetchData(URL, `${props.userid}/experiences`, optionsGet, setDataFetchEsperienze));
+    }, 500);
+  };
 
-    const handleSubmitPost = async (event) => {
-        event.preventDefault();
-        props.onHide();
-
-        await fetchDataPost(optionsPost, userid, "experiences");
-        await dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
-    };
-
-    return (
-        <div>
-            <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-                <Modal.Header>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        {ismakingaput ? "Aggiorna Esperienza" : "Inserisci Nuova Esperienze"}
-                    </Modal.Title>
-                </Modal.Header>
-                <Row>
-                    <Col>
-                        <Modal.Body>
-                            <Form onSubmit={ismakingaput ? handleSubmitPut : handleSubmitPost}>
-                                <Form.Group className="mb-3" controlId="formGroupEmail">
-                                    <Form.Label>Role:</Form.Label>
-                                    <Form.Control
-                                        required
-                                        type="text"
-                                        placeholder="Ruolo Lavorativo..."
-                                        onChange={(event) => {
-                                            ismakingaput
-                                                ? SetEsperienzaPut((prevState) => ({
-                                                      ...prevState,
-                                                      role: event.target.value,
-                                                  }))
-                                                : setDatiPost((prevState) => ({
-                                                      ...prevState,
-                                                      role: event.target.value,
-                                                  }));
-                                        }}
-                                        value={ismakingaput ? EsperienzaPut.role : datiPost.role}
-                                    />
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="formGroupPassword">
-                                    <Form.Label>Company:</Form.Label>
-                                    <Form.Control
-                                        required
-                                        type="text"
-                                        placeholder="Azienda"
-                                        onChange={(event) => {
-                                            ismakingaput
-                                                ? SetEsperienzaPut((prevState) => ({
-                                                      ...prevState,
-                                                      company: event.target.value,
-                                                  }))
-                                                : setDatiPost((prevState) => ({
-                                                      ...prevState,
-                                                      company: event.target.value,
-                                                  }));
-                                        }}
-                                        value={ismakingaput ? EsperienzaPut.company : datiPost.company}
-                                    />
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="formGroupPassword">
-                                    <Form.Label>Data inizio lavoro:</Form.Label>
-                                    <Form.Control
-                                        required
-                                        type="text"
-                                        placeholder="AAAA-MM-GG"
-                                        onChange={(event) => {
-                                            ismakingaput
-                                                ? SetEsperienzaPut((prevState) => ({
-                                                      ...prevState,
-                                                      startDate: event.target.value,
-                                                  }))
-                                                : setDatiPost((prevState) => ({
-                                                      ...prevState,
-                                                      startDate: event.target.value,
-                                                  }));
-                                        }}
-                                        value={ismakingaput ? EsperienzaPut.startDate : datiPost.startDate}
-                                    />
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="formGroupPassword">
-                                    <Form.Label>Data fine lavoro: </Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="AAAA-MM-GG"
-                                        onChange={(event) => {
-                                            ismakingaput
-                                                ? SetEsperienzaPut((prevState) => ({
-                                                      ...prevState,
-                                                      endDate: event.target.value,
-                                                  }))
-                                                : setDatiPost((prevState) => ({
-                                                      ...prevState,
-                                                      endDate: event.target.value,
-                                                  }));
-                                        }}
-                                        value={ismakingaput ? EsperienzaPut.endDate : datiPost.endDate}
-                                    />
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="formGroupPassword">
-                                    <Form.Label>Description:</Form.Label>
-                                    <Form.Control
-                                        required
-                                        type="text"
-                                        placeholder="ruolo aziendale"
-                                        onChange={(event) => {
-                                            ismakingaput
-                                                ? SetEsperienzaPut((prevState) => ({
-                                                      ...prevState,
-                                                      description: event.target.value,
-                                                  }))
-                                                : setDatiPost((prevState) => ({
-                                                      ...prevState,
-                                                      description: event.target.value,
-                                                  }));
-                                        }}
-                                        value={ismakingaput ? EsperienzaPut.description : datiPost.description}
-                                    />
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="formGroupPassword">
-                                    <Form.Label>Luogo:</Form.Label>
-                                    <Form.Control
-                                        required
-                                        type="text"
-                                        placeholder="Luogo di lavoro..."
-                                        onChange={(event) => {
-                                            ismakingaput
-                                                ? SetEsperienzaPut((prevState) => ({
-                                                      ...prevState,
-                                                      area: event.target.value,
-                                                  }))
-                                                : setDatiPost((prevState) => ({
-                                                      ...prevState,
-                                                      area: event.target.value,
-                                                  }));
-                                        }}
-                                        value={ismakingaput ? EsperienzaPut.area : datiPost.area}
-                                    />
-                                </Form.Group>
-                                <Button
-                                    /* onClick={() => {
+  return (
+    <div>
+      <Modal show={props.show} onHide={props.onHide} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+        <Modal.Header>
+          <Modal.Title id="contained-modal-title-vcenter">
+            {method === "PUT" ? "Aggiorna Esperienza" : "Inserisci Nuova Esperienze"}
+          </Modal.Title>
+        </Modal.Header>
+        <Row>
+          <Col>
+            <Modal.Body>
+              <Form onSubmit={method === "PUT" ? handleSubmitPut : handleSubmitPost}>
+                <Form.Group className="mb-3" controlId="formGroupEmail">
+                  <Form.Label>Role:</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    placeholder="Ruolo Lavorativo..."
+                    onChange={(event) => {
+                      setDati({ ...dati, role: event.target.value });
+                    }}
+                    value={dati.role}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupPassword">
+                  <Form.Label>Company:</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    placeholder="Azienda"
+                    onChange={(event) => {
+                      setDati({ ...dati, company: event.target.value });
+                    }}
+                    value={dati.company}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupPassword">
+                  <Form.Label>Data inizio lavoro:</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    placeholder="AAAA-MM-GG"
+                    onChange={(event) => {
+                      setDati({ ...dati, startDate: event.target.value });
+                    }}
+                    value={dati.startDate}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupPassword">
+                  <Form.Label>Data fine lavoro: </Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="AAAA-MM-GG"
+                    onChange={(event) => {
+                      setDati({ ...dati, endDate: event.target.value });
+                    }}
+                    value={dati.endDate}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupPassword">
+                  <Form.Label>Description:</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    placeholder="ruolo aziendale"
+                    onChange={(event) => {
+                      setDati({ ...dati, description: event.target.value });
+                    }}
+                    value={dati.description}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupPassword">
+                  <Form.Label>Luogo:</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    placeholder="Luogo di lavoro..."
+                    onChange={(event) => {
+                      setDati({ ...dati, area: event.target.value });
+                    }}
+                    value={dati.area}
+                  />
+                </Form.Group>
+                <Button
+                  /* onClick={() => {
                                         props.onHide(); // Chiude il modal
-                                        setIsMakingAput(false);
+                                        setmethod === "PUT"(false);
                                     }} */
-                                    className="me-2"
-                                    type="submit"
-                                    variant="success"
-                                >
-                                    {" "}
-                                    {ismakingaput ? "Aggiorna dati" : "Invia Dati"}
-                                </Button>
+                  className="me-2"
+                  type="submit"
+                  variant="success"
+                >
+                  {" "}
+                  {method === "PUT" ? "Aggiorna dati" : "Invia Dati"}
+                </Button>
 
-                                <Button
-                                    onClick={() => {
-                                        props.onHide(); // Chiude il modal
-                                        setIsMakingAput(false);
-                                    }}
-                                >
-                                    Chiudi
-                                </Button>
-                            </Form>
-                        </Modal.Body>
-                    </Col>
-                </Row>
-            </Modal>
-        </div>
-    );
+                <Button
+                  onClick={() => {
+                    props.onHide(); // Chiude il modal
+                  }}
+                >
+                  Chiudi
+                </Button>
+              </Form>
+            </Modal.Body>
+          </Col>
+        </Row>
+      </Modal>
+    </div>
+  );
 };
 
 export default Modale;

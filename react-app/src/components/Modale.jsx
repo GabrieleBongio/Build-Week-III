@@ -17,9 +17,10 @@ const URL = "https://striveschool-api.herokuapp.com/api/profile/";
 const Modale = (props) => {
     const { userid, ismakingaput, setIsMakingAput, esperienza } = props;
 
-    console.log("ismakingAPut", ismakingaput);
+    /*  console.log("ismakingaput", ismakingaput); */
     console.log("userid", userid);
     console.log("esperienza", esperienza);
+    console.log("ismakingaput", ismakingaput);
     const dispatch = useDispatch();
     const [datiPost, setDatiPost] = useState({
         role: "",
@@ -30,13 +31,13 @@ const Modale = (props) => {
         area: "",
     });
 
-    const [esperienzaData, setEsperienzaData] = useState({
-        role: "",
-        company: "",
-        startDate: "",
-        endDate: "",
-        description: "",
-        area: "",
+    const [EsperienzaPut, SetEsperienzaPut] = useState({
+        role: esperienza.role,
+        company: esperienza.company,
+        startDate: esperienza.startDate,
+        endDate: esperienza.endDate, // può essere null
+        description: esperienza.description,
+        area: esperienza.area,
     });
 
     const optionsPost = {
@@ -48,23 +49,26 @@ const Modale = (props) => {
         body: JSON.stringify(datiPost),
     };
 
-    const optionsPut = {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${Token} `,
-        },
-        data: JSON.stringify(esperienzaData),
-    };
-
     /* opzioni per la put  */
-    const handleSubmitPut = (event) => {
+    const handleSubmitPut = async (event) => {
+        const optionsPut = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${Token} `,
+            },
+            data: JSON.stringify(EsperienzaPut),
+        };
+
         event.preventDefault();
         console.log("ciao ciao ");
         fetchDataPut(optionsPut, userid, esperienza._id);
+        setTimeout(() => {
+            dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
+        }, 500);
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmitPost = async (event) => {
         event.preventDefault();
         props.onHide();
 
@@ -83,7 +87,7 @@ const Modale = (props) => {
                 <Row>
                     <Col>
                         <Modal.Body>
-                            <Form onSubmit={ismakingaput ? handleSubmitPut : handleSubmit}>
+                            <Form onSubmit={ismakingaput ? handleSubmitPut : handleSubmitPost}>
                                 <Form.Group className="mb-3" controlId="formGroupEmail">
                                     <Form.Label>Role:</Form.Label>
                                     <Form.Control
@@ -92,7 +96,7 @@ const Modale = (props) => {
                                         placeholder="Ruolo Lavorativo..."
                                         onChange={(event) => {
                                             ismakingaput
-                                                ? setEsperienzaData((prevState) => ({
+                                                ? SetEsperienzaPut((prevState) => ({
                                                       ...prevState,
                                                       role: event.target.value,
                                                   }))
@@ -101,7 +105,7 @@ const Modale = (props) => {
                                                       role: event.target.value,
                                                   }));
                                         }}
-                                        value={ismakingaput ? esperienza.role : datiPost.role}
+                                        value={ismakingaput ? EsperienzaPut.role : datiPost.role}
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
@@ -112,7 +116,7 @@ const Modale = (props) => {
                                         placeholder="Azienda"
                                         onChange={(event) => {
                                             ismakingaput
-                                                ? setEsperienzaData((prevState) => ({
+                                                ? SetEsperienzaPut((prevState) => ({
                                                       ...prevState,
                                                       company: event.target.value,
                                                   }))
@@ -121,7 +125,7 @@ const Modale = (props) => {
                                                       company: event.target.value,
                                                   }));
                                         }}
-                                        value={ismakingaput ? esperienza.company : datiPost.company}
+                                        value={ismakingaput ? EsperienzaPut.company : datiPost.company}
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
@@ -132,7 +136,7 @@ const Modale = (props) => {
                                         placeholder="AAAA-MM-GG"
                                         onChange={(event) => {
                                             ismakingaput
-                                                ? setEsperienzaData((prevState) => ({
+                                                ? SetEsperienzaPut((prevState) => ({
                                                       ...prevState,
                                                       startDate: event.target.value,
                                                   }))
@@ -141,7 +145,7 @@ const Modale = (props) => {
                                                       startDate: event.target.value,
                                                   }));
                                         }}
-                                        value={ismakingaput ? esperienza.startDate : datiPost.startDate}
+                                        value={ismakingaput ? EsperienzaPut.startDate : datiPost.startDate}
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
@@ -151,7 +155,7 @@ const Modale = (props) => {
                                         placeholder="AAAA-MM-GG"
                                         onChange={(event) => {
                                             ismakingaput
-                                                ? setEsperienzaData((prevState) => ({
+                                                ? SetEsperienzaPut((prevState) => ({
                                                       ...prevState,
                                                       endDate: event.target.value,
                                                   }))
@@ -160,7 +164,7 @@ const Modale = (props) => {
                                                       endDate: event.target.value,
                                                   }));
                                         }}
-                                        value={ismakingaput ? esperienza.endDate : datiPost.endDate}
+                                        value={ismakingaput ? EsperienzaPut.endDate : datiPost.endDate}
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
@@ -171,7 +175,7 @@ const Modale = (props) => {
                                         placeholder="ruolo aziendale"
                                         onChange={(event) => {
                                             ismakingaput
-                                                ? setEsperienzaData((prevState) => ({
+                                                ? SetEsperienzaPut((prevState) => ({
                                                       ...prevState,
                                                       description: event.target.value,
                                                   }))
@@ -180,7 +184,7 @@ const Modale = (props) => {
                                                       description: event.target.value,
                                                   }));
                                         }}
-                                        value={ismakingaput ? esperienza.description : datiPost.description}
+                                        value={ismakingaput ? EsperienzaPut.description : datiPost.description}
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
@@ -191,7 +195,7 @@ const Modale = (props) => {
                                         placeholder="Luogo di lavoro..."
                                         onChange={(event) => {
                                             ismakingaput
-                                                ? setEsperienzaData((prevState) => ({
+                                                ? SetEsperienzaPut((prevState) => ({
                                                       ...prevState,
                                                       area: event.target.value,
                                                   }))
@@ -200,10 +204,18 @@ const Modale = (props) => {
                                                       area: event.target.value,
                                                   }));
                                         }}
-                                        value={ismakingaput ? esperienza.area : datiPost.area}
+                                        value={ismakingaput ? EsperienzaPut.area : datiPost.area}
                                     />
                                 </Form.Group>
-                                <Button className="me-2" type="submit" variant="success">
+                                <Button
+                                    /* onClick={() => {
+                                        props.onHide(); // Chiude il modal
+                                        setIsMakingAput(false);
+                                    }} */
+                                    className="me-2"
+                                    type="submit"
+                                    variant="success"
+                                >
                                     {" "}
                                     {ismakingaput ? "Aggiorna dati" : "Invia Dati"}
                                 </Button>

@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Token } from "../token";
 import { useDispatch } from "react-redux";
 import { postImageProfile } from "../redux/functions/postImageProfile";
 
-const CambiaImmagine = ({ show, setShow, img, userId }) => {
+const CambiaImmagine = ({ show, setShow, img, userid }) => {
   const dispatch = useDispatch();
   const [inputImg, setInputImg] = useState(img);
+
+  useEffect(() => {
+    setInputImg(img);
+  }, [img]);
 
   const handleChange = (e) => {
     const selectedPhoto = e.target.files[0];
@@ -22,18 +26,17 @@ const CambiaImmagine = ({ show, setShow, img, userId }) => {
     setShow(false);
   };
 
-  const options = {
-    method: "POST",
-    body: JSON.stringify({ profile: inputImg }),
-    headers: {
-      "Content-type": "application/json",
-      Authorization: "Bearer " + Token,
-    },
-  };
+  const handleSubmit = async (e) => {
+    const options = {
+      method: "POST",
+      body: new FormData(e.target),
+      headers: {
+        Authorization: "Bearer " + Token,
+      },
+    };
 
-  const handleSave = () => {
-    dispatch(postImageProfile(userId, options));
-    setShow(false);
+    e.preventDefault();
+    dispatch(postImageProfile(userid, options));
   };
 
   return (
@@ -43,25 +46,28 @@ const CambiaImmagine = ({ show, setShow, img, userId }) => {
       </Modal.Header>
       <Modal.Body>
         <div className="my-3">
-          <label htmlFor="formFileLg" className="form-label fw-normal fs-5">
-            Carica un'immagine qui
-          </label>
-          <input
-            className="form-control form-control-lg d-none"
-            id="formFileLg"
-            type="file"
-            accept="image/*"
-            onChange={handleChange}
-          />
-          {inputImg && <img src={inputImg} alt="immagine-profilo" className="w-100" />}
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="formFileLg" className="form-label fw-normal fs-5">
+              Carica un'immagine qui
+            </label>
+            <input
+              name="profile"
+              className="form-control form-control-lg d-none"
+              id="formFileLg"
+              type="file"
+              accept="image/*"
+              onChange={handleChange}
+            />
+            {inputImg && <img src={inputImg} alt="immagine-profilo" className="w-100" />}
+            <Button variant="primary" className="mt-3" type="submit">
+              Save Changes
+            </Button>
+          </form>
         </div>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
           Close
-        </Button>
-        <Button variant="primary" onClick={handleSave}>
-          Save Changes
         </Button>
       </Modal.Footer>
     </Modal>

@@ -5,7 +5,7 @@ import Col from "react-bootstrap/esm/Col";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/esm/Button";
 
-const InformazioniProfilo = ({ profile, setShow }) => {
+const InformazioniProfilo = (props) => {
   return (
     <>
       <div className="d-none d-md-block d-lg-none p-4"></div>
@@ -27,7 +27,11 @@ const InformazioniProfilo = ({ profile, setShow }) => {
                     <Col xs="11" md="11" lg="6">
                       <Row>
                         <Col xs="4" md="5">
-                          <img src={profile.image} alt="immagine profilo" className="rounded-circle img-fluid" />
+                          <img
+                            src={props.profile.image}
+                            alt="immagine profilo"
+                            className="rounded-circle img-fluid circle-img"
+                          />
                         </Col>
                       </Row>
                     </Col>
@@ -37,20 +41,22 @@ const InformazioniProfilo = ({ profile, setShow }) => {
             </Col>
             {/* seconda sezione */}
             <Col xs={12} className="px-3 pb-3">
-              <Row>
-                <Col>
-                  <div className=" d-flex justify-content-end">
-                    <div className="p-2 hover rounded-pill" onClick={() => setShow(true)}>
-                      <Pen className="m-2 fs-6 hover" onClick={() => setShow(true)} />
+              {props.setShow && (
+                <Row>
+                  <Col>
+                    <div className=" d-flex justify-content-end">
+                      <div className="z-3 p-2 hover rounded-pill" onClick={() => props.setShow(true)}>
+                        <Pen className="m-2 fs-6 hover" onClick={() => props.setShow(true)} />
+                      </div>
                     </div>
-                  </div>
-                </Col>
-              </Row>
+                  </Col>
+                </Row>
+              )}
               <Row>
                 <Col>
                   <div className="d-flex px-1">
                     <div className="d-block d-lg-flex align-items-center gap-2">
-                      <h4>{profile.name + profile.surname}</h4>
+                      <h4>{props.profile.name + " " + props.profile.surname}</h4>
 
                       <div className="border border-primary rounded-pill px-2">
                         <PatchCheckFill className="text-primary me-1" />
@@ -67,10 +73,10 @@ const InformazioniProfilo = ({ profile, setShow }) => {
                     </div>
                   </div>
                   <div className="px-1">
-                    <p className="mb-1">{profile.title}</p>
+                    <p className="mb-1">{props.profile.title}</p>
                   </div>
                   <div className="px-1 d-flex gap-2">
-                    <p className="mb-1">{profile.area},</p>
+                    <p className="mb-1">{props.profile.area},</p>
                     <p>Informazioni di contatto</p>
                   </div>
                 </Col>

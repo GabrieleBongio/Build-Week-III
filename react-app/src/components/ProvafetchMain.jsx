@@ -37,7 +37,7 @@ const ProvafetchMain = () => {
         <>
             {datiPaginaNotizie && (
                 <div id="sezioneNotizie" className="mt-7">
-                    <Container fluid>
+                    <Container>
                         <Row>
                             {/* SIDE SN */}
                             <Col xs="12" sm="12" md="3" lg="2"></Col>

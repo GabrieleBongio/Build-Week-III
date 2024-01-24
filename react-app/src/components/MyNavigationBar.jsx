@@ -17,7 +17,7 @@ const MyNavigationBar = () => {
                 {" "}
                 <Navbar expand="lg" className="bg-body-tertiary position-fixed top-0 index">
                     <Container>
-                        <div className="d-flex align-items-center flex-grow-1">
+                        <div className="d-flex justify-content-md-center align-items-center flex-grow-1">
                             <Navbar.Brand href="#home">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ const MyNavigationBar = () => {
                             </Col>
                         </div>
 
-                        <div className="d-flex justify-content-end gap-4 flex-grow-1">
+                        <div className="d-flex justify-content-sm-center justify-content-end gap-4 flex-grow-1">
                             <div className="d-flex flex-column align-items-center p-1">
                                 <HouseDoorFill className="fs-4" />
                                 <p className="m-0">Home</p>

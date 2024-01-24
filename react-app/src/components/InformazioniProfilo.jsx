@@ -42,7 +42,7 @@ const InformazioniProfilo = (props) => {
             {/* seconda sezione */}
             <Col xs={12} className="px-3 pb-3">
               {props.setShow ? (
-                <Row>
+                <Row className="mt-lg-2 mt-xl-5">
                   <Col>
                     <div className=" d-flex justify-content-end">
                       <div className="z-3 p-2 hover rounded-pill" onClick={() => props.setShow(true)}>
@@ -52,7 +52,7 @@ const InformazioniProfilo = (props) => {
                   </Col>
                 </Row>
               ) : (
-                <div className="p-4"></div>
+                <div className="p-4 p-xl-5"></div>
               )}
               <Row>
                 <Col>

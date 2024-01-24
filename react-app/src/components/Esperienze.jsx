@@ -39,7 +39,7 @@ const Esperienze = (props) => {
     }
   }, [props.me]);
 
-  console.log("datiFetchEsperienze", datiFetchEsperienze);
+  // console.log("datiFetchEsperienze", datiFetchEsperienze);
 
   useEffect(() => {
     dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
@@ -49,7 +49,6 @@ const Esperienze = (props) => {
     if (datiFetchEsperienze) {
       const arrayOfFalse = [];
       for (let i = 0; i <= datiFetchEsperienze.length; i++) {
-        console.log(i + 1);
         arrayOfFalse.push(false);
       }
       setIsModalVisible(arrayOfFalse);

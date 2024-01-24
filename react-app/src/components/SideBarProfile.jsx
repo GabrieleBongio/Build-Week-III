@@ -105,7 +105,10 @@ const SideBarProfile = () => {
           <h5 className="mb-3">Altri profili consultati</h5>
           {showMore
             ? otherProfile.map((profile, i) => (
-                <div key={`key ${i}`} className="d-flex justify-content-start text-secondary mb-3 gap-2">
+                <div
+                  key={`${profile.name} - ${profile.surname}`}
+                  className="d-flex justify-content-start text-secondary mb-3 gap-2"
+                >
                   <img width={45} height={45} className="me-1 rounded-circle" src={profile.image} alt="" />
                   <div>
                     <p className="attivitaAmiciNome m-0 fw-semibold">
@@ -123,7 +126,10 @@ const SideBarProfile = () => {
                 </div>
               ))
             : otherProfile.slice(0, 5).map((profile, i) => (
-                <div className="d-flex justify-content-start text-secondary mb-3 gap-2">
+                <div
+                  key={`${profile.name} - ${profile.surname}`}
+                  className="d-flex justify-content-start text-secondary mb-3 gap-2"
+                >
                   <img width={45} height={45} className="me-1 rounded-circle" src={profile.image} alt="" />
                   <div>
                     <p className="attivitaAmiciNome m-0 fw-semibold">

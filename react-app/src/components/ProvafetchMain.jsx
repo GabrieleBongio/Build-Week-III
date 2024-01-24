@@ -36,7 +36,7 @@ const ProvafetchMain = () => {
     return (
         <>
             {datiPaginaNotizie && (
-                <div className="mt-7">
+                <div id="sezioneNotizie" className="mt-7">
                     <Container fluid>
                         <Row>
                             {/* SIDE SN */}

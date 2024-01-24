@@ -5,6 +5,7 @@ const SliceMain = createSlice({
     initialState: {
         dataFetchProfilo: null,
         dataFetchEsperienze: null,
+        dataFetchPaginaNotizie: null,
     },
 
     reducers: {
@@ -15,8 +16,12 @@ const SliceMain = createSlice({
         setDataFetchEsperienze: (state, action) => {
             state.dataFetchEsperienze = action.payload;
         },
+
+        setDataFetchPaginaNotizie: (state, action) => {
+            state.dataFetchPaginaNotizie = action.payload;
+        },
     },
 });
 
-export const { setDataFetchProfilo, setDataFetchEsperienze } = SliceMain.actions;
+export const { setDataFetchProfilo, setDataFetchEsperienze, setDataFetchPaginaNotizie } = SliceMain.actions;
 export default SliceMain.reducer;

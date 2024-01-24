@@ -8,17 +8,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProfilePage from "./components/ProfilePage";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <MyNavigationBar />
-            <Routes>
-                <Route path="/me" element={<Me />} />
-                <Route path="/:userId" element={<ProfilePage />} />
-            </Routes>
-            <Messaggistica />
-            <Footer />
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <MyNavigationBar />
+      <Routes>
+        <Route path="/me" element={<Me />} />
+        <Route path="/:userId" element={<ProfilePage />} />
+      </Routes>
+      <Messaggistica />
+      <Footer />
+    </BrowserRouter>
+  );
 }
 
 export default App;

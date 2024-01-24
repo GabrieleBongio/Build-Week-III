@@ -29,8 +29,10 @@ const Me = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchData(link, "", options, setDataFetchProfilo));
-  }, [dispatch]);
+    if (show === false) {
+      dispatch(fetchData(link, "", options, setDataFetchProfilo));
+    }
+  }, [dispatch, show]);
 
   return (
     <Container>
@@ -38,7 +40,7 @@ const Me = () => {
         <Col xs={12} md={7} lg={9}>
           {dataFetchProfilo && <InformazioniProfilo profile={dataFetchProfilo} setShow={setShow} />}
           {dataFetchProfilo && (
-            <CambiaImmagine userId={dataFetchProfilo._id} show={show} setShow={setShow} img={dataFetchProfilo.image} />
+            <CambiaImmagine userid={dataFetchProfilo._id} show={show} setShow={setShow} img={dataFetchProfilo.image} />
           )}
           <ConsigliatoPerTe />
           <Analisi />

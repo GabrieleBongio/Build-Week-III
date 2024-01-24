@@ -81,10 +81,15 @@ body {
 }
 
 .dropdown-menu {
-    top: 155% !important;
-    left: -102px !important;
+  top: 155% !important;
+  left: -102px !important;
 }
 
 .w-90 {
-    width: 90% !important;
+  width: 90% !important;
+}
+
+.circle-img {
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }

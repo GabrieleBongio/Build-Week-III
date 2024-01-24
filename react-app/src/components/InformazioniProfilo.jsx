@@ -41,7 +41,7 @@ const InformazioniProfilo = (props) => {
             </Col>
             {/* seconda sezione */}
             <Col xs={12} className="px-3 pb-3">
-              {props.setShow && (
+              {props.setShow ? (
                 <Row>
                   <Col>
                     <div className=" d-flex justify-content-end">
@@ -51,6 +51,8 @@ const InformazioniProfilo = (props) => {
                     </div>
                   </Col>
                 </Row>
+              ) : (
+                <div className="p-4"></div>
               )}
               <Row>
                 <Col>

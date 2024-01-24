@@ -47,7 +47,7 @@ const Me = () => {
           <Risorse />
           <Attività />
           <Formazione />
-          {dataFetchProfilo && <Esperienze userid={dataFetchProfilo._id} />}
+          {dataFetchProfilo && <Esperienze userid={dataFetchProfilo._id} me={true} />}
           <Interessi />
         </Col>
         <Col xs={12} md={5} lg={3}>

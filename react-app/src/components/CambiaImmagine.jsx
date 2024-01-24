@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Token } from "../token";
 import { useDispatch } from "react-redux";
-import { postImageProfile } from "../redux/functions/postImageProfile";
+import { postImage } from "../redux/functions/postImage";
 
 const CambiaImmagine = ({ show, setShow, img, userid }) => {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const CambiaImmagine = ({ show, setShow, img, userid }) => {
     };
 
     e.preventDefault();
-    dispatch(postImageProfile(userid, options));
+    dispatch(postImage(userid, options));
   };
 
   return (

@@ -93,3 +93,13 @@ body {
   aspect-ratio: 1/1;
   object-fit: cover;
 }
+
+.add-image {
+  background-image: url("https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=");
+  background-size: cover;
+}
+
+.add-image:hover {
+  background-color: #444;
+  background-image: none;
+}

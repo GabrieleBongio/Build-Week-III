@@ -1,7 +1,7 @@
-export const postImageProfile = (userid, options) => async () => {
+export const postImage = (userid, end, options) => async () => {
   try {
     // Set to true before fetching
-    const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${userid}/picture`, options);
+    const response = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${userid}/${end}`, options);
 
     if (!response.ok) {
       if (response.status > 400 && response.status < 500) {

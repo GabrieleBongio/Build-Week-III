@@ -6,6 +6,8 @@ import Footer from "./components/Footer";
 import Me from "./components/Me";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProfilePage from "./components/ProfilePage";
+import ProvafetchMain from "./components/ProvafetchMain";
+import { useSelector } from "react-redux";
 
 function App() {
     return (
@@ -17,6 +19,8 @@ function App() {
             </Routes>
             <Messaggistica />
             <Footer />
+            {/* PROVA DELLA FETCH  */}
+            <ProvafetchMain />
         </BrowserRouter>
     );
 }

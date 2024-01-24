@@ -17,7 +17,7 @@ const URL = "https://striveschool-api.herokuapp.com/api/profile/";
 const Modale = (props) => {
     const { userid, ismakingaput, setIsMakingAput, esperienza } = props;
 
-    console.log("ismakingAPut", ismakingaput);
+    /*  console.log("ismakingaput", ismakingaput); */
     console.log("userid", userid);
     console.log("esperienza", esperienza);
     const dispatch = useDispatch();

@@ -31,6 +31,7 @@ const Esperienze = (props) => {
     const { userid } = props;
     const dispatch = useDispatch();
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [ismakingaput, setIsMakingAput] = useState(false);
     const datiFetchEsperienze = useSelector((state) => state.FetchData.dataFetchEsperienze);
     const previusState_FetchEsperienza = usePrevious(datiFetchEsperienze);
     console.log("datiFetchEsperienze", datiFetchEsperienze);
@@ -64,22 +65,26 @@ const Esperienze = (props) => {
                                 </Button>
                             </div>
                         </div>
-                        <div>
-                            <div className="rounded-pill hover ">
-                                <Pencil></Pencil>
-                            </div>
-                        </div>
                     </div>
                     <Row>
                         {(datiFetchEsperienze === null || datiFetchEsperienze.length === 0) && (
                             <div>Non ci sono esperienze da visualizzare.</div>
                         )}
-                        <Modale userid={userid} show={isModalVisible} onHide={() => setIsModalVisible(false)} />
+
                         <Row>
                             {" "}
                             {datiFetchEsperienze &&
                                 datiFetchEsperienze.map((esperienza) => (
                                     <Col key={`key-${esperienza._id}`} className="my-1" xs={12}>
+                                        {" "}
+                                        <Modale
+                                            userid={userid}
+                                            show={isModalVisible}
+                                            onHide={() => setIsModalVisible(false)}
+                                            esperienza={esperienza}
+                                            ismakingaput={ismakingaput}
+                                            setIsMakingAput={setIsMakingAput}
+                                        />
                                         <div className="d-flex gap-2">
                                             <div>
                                                 <img
@@ -119,6 +124,17 @@ const Esperienze = (props) => {
                                                 className="ms-auto"
                                             >
                                                 ❌
+                                            </Button>
+                                            <Button
+                                                onClick={() => {
+                                                    setIsMakingAput(true);
+                                                    setIsModalVisible(true);
+                                                }}
+                                                variant="transparent"
+                                            >
+                                                <div className="rounded-pill hover ">
+                                                    <Pencil></Pencil>
+                                                </div>
                                             </Button>
                                         </div>
                                     </Col>

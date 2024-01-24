@@ -42,7 +42,9 @@ const Esperienze = (props) => {
 
     const handleDelete = async (expId) => {
         await fetchDelete(optionsDelete, userid, expId);
-        await dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
+        setTimeout(() => {
+            dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
+        }, 500);
     };
 
     return (

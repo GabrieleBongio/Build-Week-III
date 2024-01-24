@@ -79,3 +79,12 @@ body {
 .custom-left-dropdown {
   left: -85px !important;
 }
+
+.dropdown-menu {
+    top: 155% !important;
+    left: -102px !important;
+}
+
+.w-90 {
+    width: 90% !important;
+}

@@ -12,6 +12,7 @@ export const fetchDataPut = (datas, userid, expid) => {
         data: JSON.stringify(datas),
     };
 
+    console.log("datas", datas);
     fetch(URLPUT, optionsPut)
         .then((response) => {
             if (!response.ok) {

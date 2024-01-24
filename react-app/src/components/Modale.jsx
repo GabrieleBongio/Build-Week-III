@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -32,12 +32,12 @@ const Modale = (props) => {
     });
 
     const [EsperienzaPut, SetEsperienzaPut] = useState({
-        role: esperienza.role,
-        company: esperienza.company,
-        startDate: esperienza.startDate,
-        endDate: esperienza.endDate, // può essere null
-        description: esperienza.description,
-        area: esperienza.area,
+        role: esperienza.role || "",
+        company: esperienza.company || "",
+        startDate: esperienza.startDate || "",
+        endDate: esperienza.endDate || "", // può essere null
+        description: esperienza.description || "",
+        area: esperienza.area || "",
     });
 
     const optionsPost = {
@@ -52,11 +52,12 @@ const Modale = (props) => {
     /* opzioni per la put  */
     const handleSubmitPut = async (event) => {
         event.preventDefault();
+        console.log("EsperienzaPut", EsperienzaPut);
         console.log("ciao ciao ");
         fetchDataPut(EsperienzaPut, userid, esperienza._id);
-        setTimeout(() => {
+        /* setTimeout(() => {
             dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
-        }, 1000);
+        }, 1000); */
     };
 
     const handleSubmitPost = async (event) => {

@@ -9,7 +9,9 @@ import {
     PersonFill,
     MenuAppFill,
     Hr,
+    Link,
 } from "react-bootstrap-icons";
+import { NavLink } from "react-router-dom";
 
 const MyNavigationBar = () => {
     return (
@@ -86,7 +88,9 @@ const MyNavigationBar = () => {
                         <div className="d-none d-md-flex justify-content-sm-center justify-content-end gap-4 flex-grow-1">
                             <div className="d-flex flex-column align-items-center p-1">
                                 <HouseDoorFill className="fs-4" />
-                                <p className="m-0">Home</p>
+                                <NavLink to={"/"}>
+                                    <p className="m-0">Home</p>
+                                </NavLink>
                             </div>
                             <div className="d-flex flex-column align-items-center p-1">
                                 <PeopleFill className="fs-4" />
@@ -132,9 +136,11 @@ const MyNavigationBar = () => {
                                             </div>
                                         </div>
                                         <div className="d-flex justify-content-center mt-2">
-                                            <Button variant="outline-primary" className=" px-4 py-0">
-                                                Visualizza Profilo
-                                            </Button>
+                                            <NavLink to={"/me"}>
+                                                <Button variant="outline-primary" className=" px-4 py-0">
+                                                    Visualizza Profilo
+                                                </Button>
+                                            </NavLink>
                                         </div>
                                     </div>
                                 </Row>

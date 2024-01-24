@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Form, FormControl, NavDropdown, Navbar, Row } from "react-bootstrap";
+import { Col, Container, Form, FormControl, NavDropdown, Navbar, Row } from "react-bootstrap";
 import {
     BellFill,
     BriefcaseFill,
@@ -33,42 +33,45 @@ const MyNavigationBar = () => {
                                 </svg>
                             </Navbar.Brand>
                             {/*   <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
-                            <Form className="w-100">
-                                <FormControl
-                                    type="search"
-                                    placeholder="Cerca..."
-                                    className="w-100"
-                                    aria-label="Search"
-                                />
-                                {/*    <Search /> */}
-                            </Form>{" "}
+                            <Col>
+                                {" "}
+                                <Form>
+                                    <FormControl
+                                        type="search"
+                                        placeholder="Cerca..."
+                                        className="w-100"
+                                        aria-label="Search"
+                                    />
+                                    {/*    <Search /> */}
+                                </Form>{" "}
+                            </Col>
                         </div>
 
-                        <div className="d-flex justify-content-end gap-5 flex-grow-1">
-                            <div className="d-flex flex-column align-items-center">
+                        <div className="d-flex justify-content-end gap-4 flex-grow-1">
+                            <div className="d-flex flex-column align-items-center p-1">
                                 <HouseDoorFill className="fs-4" />
                                 <p className="m-0">Home</p>
                             </div>
-                            <div className="d-flex flex-column align-items-center">
+                            <div className="d-flex flex-column align-items-center p-1">
                                 <PeopleFill className="fs-4" />
                                 <p className="m-0">Rete</p>
                             </div>
-                            <div className="d-flex flex-column align-items-center">
+                            <div className="d-flex flex-column align-items-center p-1">
                                 <BriefcaseFill className="fs-4" />
                                 <p className="m-0">Lavoro</p>
                             </div>
-                            <div className="d-flex flex-column align-items-center">
+                            <div className="d-flex flex-column align-items-center p-1">
                                 <ChatRightDotsFill className="fs-4" />
                                 <p className="m-0">Messaggistica</p>
                             </div>
-                            <div className="d-flex flex-column align-items-center">
+                            <div className="d-flex flex-column align-items-center p-1">
                                 <BellFill className="fs-4" />
                                 <p className="m-0">Notichife</p>
                             </div>
                         </div>
 
                         {/*    <Navbar.Collapse className="justify-content-start w-auto gap-3" id="basic-navbar-nav"> */}
-                        <div className="d-flex flex-column align-items-center ms-3 me-2">
+                        <div className="d-none d-md-flex d-flex flex-column align-items-center ms-3 me-2">
                             <PersonFill className="fs-4" />
                             <NavDropdown className="mx-2" title="Tu" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -78,8 +81,8 @@ const MyNavigationBar = () => {
                                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                             </NavDropdown>
                         </div>
-                        <div className="vr"></div>
-                        <div className="d-flex flex-column align-items-center">
+                        <div className="vr d-none d-md-block"></div>
+                        <div className="d-none d-md-flex d-flex flex-column align-items-center">
                             <MenuAppFill className="fs-4" />
                             <NavDropdown className="mx-2" title="Per le aziende" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

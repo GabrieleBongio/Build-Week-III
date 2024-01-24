@@ -33,7 +33,7 @@ const MyNavigationBar = () => {
                                 </svg>
                             </Navbar.Brand>
                             {/*   <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
-                            <Col>
+                            <Col xs="10" md="8" lg="10" xl="12">
                                 {" "}
                                 <Form>
                                     <FormControl

@@ -51,21 +51,12 @@ const Modale = (props) => {
 
     /* opzioni per la put  */
     const handleSubmitPut = async (event) => {
-        const optionsPut = {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${Token} `,
-            },
-            data: JSON.stringify(EsperienzaPut),
-        };
-
         event.preventDefault();
         console.log("ciao ciao ");
-        fetchDataPut(optionsPut, userid, esperienza._id);
+        fetchDataPut(EsperienzaPut, userid, esperienza._id);
         setTimeout(() => {
             dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
-        }, 500);
+        }, 1000);
     };
 
     const handleSubmitPost = async (event) => {

@@ -1,7 +1,18 @@
-export const fetchDataPut = (option, userid, expid) => {
+import { Token } from "../../token";
+
+export const fetchDataPut = (datas, userid, expid) => {
     const URLPUT = `https://striveschool-api.herokuapp.com/api/profile/${userid}/experiences/${expid} `;
 
-    fetch(URLPUT, option)
+    const optionsPut = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${Token} `,
+        },
+        data: JSON.stringify(datas),
+    };
+
+    fetch(URLPUT, optionsPut)
         .then((response) => {
             if (!response.ok) {
                 throw new Error("qualcosa è andato storto");

@@ -54,7 +54,8 @@ const Modale = (props) => {
         event.preventDefault();
         console.log("EsperienzaPut", EsperienzaPut);
         console.log("ciao ciao ");
-        fetchDataPut(EsperienzaPut, userid, esperienza._id);
+        await fetchDataPut(EsperienzaPut, userid, esperienza._id);
+        await dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
     };
 
     const handleSubmitPost = async (event) => {

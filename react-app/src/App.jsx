@@ -14,13 +14,13 @@ function App() {
         <BrowserRouter>
             <MyNavigationBar />
             <Routes>
+                <Route path="/" element={<ProvafetchMain />} />
                 <Route path="/me" element={<Me />} />
                 <Route path="/:userId" element={<ProfilePage />} />
             </Routes>
             <Messaggistica />
             <Footer />
             {/* PROVA DELLA FETCH  */}
-            <ProvafetchMain />
         </BrowserRouter>
     );
 }

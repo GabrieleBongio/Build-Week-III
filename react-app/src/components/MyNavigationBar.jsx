@@ -87,24 +87,26 @@ const MyNavigationBar = () => {
 
                         <div className="d-none d-md-flex justify-content-sm-center justify-content-end gap-4 flex-grow-1">
                             <div className="d-flex flex-column align-items-center p-1">
-                                <HouseDoorFill className="fs-4" />
-                                <NavLink to={"/"}>
-                                    <p className="m-0">Home</p>
+                                <NavLink className="text-decoration-none" to={"/"}>
+                                    <div className="d-flex flex-column align-items-center text-secondary">
+                                        <HouseDoorFill className="fs-4" />
+                                        <p className="m-0 ">Home</p>
+                                    </div>
                                 </NavLink>
                             </div>
-                            <div className="d-flex flex-column align-items-center p-1">
+                            <div className="d-flex flex-column align-items-center p-1 text-secondary">
                                 <PeopleFill className="fs-4" />
                                 <p className="m-0">Rete</p>
                             </div>
-                            <div className="d-flex flex-column align-items-center p-1">
+                            <div className="d-flex flex-column align-items-center p-1 text-secondary">
                                 <BriefcaseFill className="fs-4" />
                                 <p className="m-0">Lavoro</p>
                             </div>
-                            <div className="d-flex flex-column align-items-center p-1">
+                            <div className="d-flex flex-column align-items-center p-1 text-secondary">
                                 <ChatRightDotsFill className="fs-4" />
                                 <p className="m-0">Messaggistica</p>
                             </div>
-                            <div className="d-flex flex-column align-items-center p-1">
+                            <div className="d-flex flex-column align-items-center p-1 text-secondary">
                                 <BellFill className="fs-4" />
                                 <p className="m-0">Notifiche</p>
                             </div>
@@ -112,8 +114,8 @@ const MyNavigationBar = () => {
 
                         {/*    <Navbar.Collapse className="justify-content-start w-auto gap-3" id="basic-navbar-nav"> */}
                         <div className="d-none d-md-flex d-flex flex-column align-items-center ms-3 me-2">
-                            <PersonFill className="fs-4" />
-                            <NavDropdown drop="down-centered" className="mx-2" title="Tu">
+                            <PersonFill className="fs-4 text-secondary" />
+                            <NavDropdown drop="down-centered" className="mx-2 text-secondary" title="Tu">
                                 {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
@@ -186,8 +188,8 @@ const MyNavigationBar = () => {
                         </div>
                         <div className="vr d-none d-md-block"></div>
                         <div className="d-none d-md-flex d-flex flex-column align-items-center">
-                            <MenuAppFill className="fs-4" />
-                            <NavDropdown className="mx-2" title="Per le aziende" id="basic-nav-dropdown">
+                            <MenuAppFill className="fs-4 text-secondary" />
+                            <NavDropdown className="mx-2 text-secondary" title="Per le aziende" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>

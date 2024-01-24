@@ -127,7 +127,7 @@ const ProvafetchMain = () => {
                                                         {" "}
                                                         <div className="px-2">
                                                             {" "}
-                                                            <p>{post.text}</p>
+                                                            <p className="m-0">{post.text}</p>
                                                         </div>
                                                     </Col>
                                                 </Col>

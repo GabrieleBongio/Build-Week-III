@@ -138,7 +138,7 @@ const MyNavigationBar = () => {
                                         </div>
                                     </div>
                                 </Row>
-                                <hr className="my-1" />
+                                <hr className="my-1 w-90 m-auto" />
                                 <Row>
                                     <div>
                                         <div>
@@ -160,7 +160,7 @@ const MyNavigationBar = () => {
                                         </div>
                                     </div>
                                 </Row>
-                                <hr className="my-1" />
+                                <hr className="my-1 w-90 m-auto" />
                                 <Row>
                                     <div>
                                         <div>

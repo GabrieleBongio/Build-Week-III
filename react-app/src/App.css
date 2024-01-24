@@ -75,3 +75,7 @@ body {
     height: 250px;
     margin: auto;
 }
+
+.custom-left-dropdown {
+    left: -85px !important;
+}

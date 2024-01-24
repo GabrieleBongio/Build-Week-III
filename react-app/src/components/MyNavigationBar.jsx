@@ -108,12 +108,22 @@ const MyNavigationBar = () => {
                         {/*    <Navbar.Collapse className="justify-content-start w-auto gap-3" id="basic-navbar-nav"> */}
                         <div className="d-none d-md-flex d-flex flex-column align-items-center ms-3 me-2">
                             <PersonFill className="fs-4" />
-                            <NavDropdown className="mx-2" title="Tu" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                            <NavDropdown drop="down-centered" className="mx-2" title="Tu">
+                                {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
+                                <Row style={{ width: "300px" }}>
+                                    <Col xs="12">
+                                        <img
+                                            className="rounded-circle"
+                                            width={"40px"}
+                                            src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+                                            alt="placeholder"
+                                        />
+                                    </Col>
+                                </Row>
                             </NavDropdown>
                         </div>
                         <div className="vr d-none d-md-block"></div>

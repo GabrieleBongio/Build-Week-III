@@ -123,17 +123,13 @@ const ProvafetchMain = () => {
                                                     </Col>
                                                 </Row>
 
-                                                <Col xs="3">
-                                                    {" "}
+                                                <Col>
                                                     <div className="px-2">
                                                         {" "}
-                                                        <p className="m-0">{post.text}</p>
+                                                        <p className="m-0 mx-2">{post.text}</p>
                                                     </div>
-                                                </Col>
-
-                                                <Col>
-                                                    <div className="d-flex justify-content-end flex-grow-1 flex-wrap">
-                                                        <div className="d-flex justify-content-end gap-2">
+                                                    <div className="d-flex justify-content-center flex-grow-1 flex-wrap">
+                                                        <div className="d-flex justify-content-end gap-5">
                                                             <div className="d-flex align-items-center p-1 gap-2">
                                                                 <HandThumbsUpFill fontSize={"25"} />{" "}
                                                                 <Button className="p-0" variant="transparent">

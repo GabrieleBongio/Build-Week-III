@@ -1,5 +1,6 @@
-import { Col, Row, Button } from "react-bootstrap";
-import { Pencil, SendFill, PersonPlusFill, InfoSquareFill } from "react-bootstrap-icons";
+import { Col, Row } from "react-bootstrap";
+import { Pencil, InfoSquareFill } from "react-bootstrap-icons";
+import SideBarProfile from "./SideBarProfile";
 
 function SideBar() {
   return (
@@ -27,7 +28,7 @@ function SideBar() {
       </div>
 
       {/* ALTRI PROFILI CONSULTATI */}
-      <div className="d-flex flex-column mb-2 border border-2 rounded-3 bg-white">
+      {/* <div className="d-flex flex-column mb-2 border border-2 rounded-3 bg-white">
         <div className="p-3 border-bottom">
           <h6>Altri profili consultati</h6>
           <Row className="mb-2 mt-3">
@@ -49,10 +50,10 @@ function SideBar() {
         <div className="hover text-center">
           <p className="my-2 opacity-75">Mostra tutto</p>
         </div>
-      </div>
+  </div>*/}
 
       {/* PERSONE CHE POTRESTI CONOSCERE */}
-      <div className="d-flex flex-column mb-2 border border-2 rounded-3 bg-white">
+      {/* <div className="d-flex flex-column mb-2 border border-2 rounded-3 bg-white">
         <div className="border-bottom p-3">
           <h6>Persone che potresti conoscere</h6>
           <span>Dalla tua scuola o università</span>
@@ -75,7 +76,9 @@ function SideBar() {
         <div className="hover text-center">
           <p className="my-2 opacity-75">Mostra tutto</p>
         </div>
-      </div>
+      </div> */}
+
+      <SideBarProfile />
 
       {/* ROBA STATICA PER RENDERE LA PAGINA PIU SIMPATICA */}
       <div className="mb-2 border border-2 rounded-3 bg-white p-3">

@@ -55,9 +55,6 @@ const Modale = (props) => {
         console.log("EsperienzaPut", EsperienzaPut);
         console.log("ciao ciao ");
         fetchDataPut(EsperienzaPut, userid, esperienza._id);
-        /* setTimeout(() => {
-            dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
-        }, 1000); */
     };
 
     const handleSubmitPost = async (event) => {

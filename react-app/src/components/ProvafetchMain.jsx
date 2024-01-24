@@ -14,6 +14,7 @@ import {
     ChatDotsFill,
     Shuffle,
     SendExclamationFill,
+    InfoSquareFill,
 } from "react-bootstrap-icons";
 
 const options = {
@@ -37,11 +38,10 @@ const ProvafetchMain = () => {
         <>
             {datiPaginaNotizie && (
                 <div id="sezioneNotizie" className="mt-7">
-                    <Container>
+                    <Container fluid>
                         <Row>
                             {/* SIDE SN */}
                             <Col xs="12" sm="12" md="3" lg="2"></Col>
-
                             {/* CENTRALE */}
                             <Col xs="12" sm="12" md="9" lg="7">
                                 {/* aggiungi un post  */}
@@ -122,7 +122,7 @@ const ProvafetchMain = () => {
                                                         </div>
                                                     </Col>
                                                 </Row>
-                                                <Row>
+                                                <Col>
                                                     <Col>
                                                         {" "}
                                                         <div className="px-2">
@@ -130,45 +130,79 @@ const ProvafetchMain = () => {
                                                             <p>{post.text}</p>
                                                         </div>
                                                     </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col>
-                                                        <div className="d-flex justify-content-evenly">
-                                                            <div className="d-flex align-items-center p-3 gap-2">
+                                                </Col>
+                                                <Col>
+                                                    <div className="d-flex justify-content-end">
+                                                        <div className="d-flex justify-content-end gap-2">
+                                                            <div className="d-flex align-items-center p-1 gap-2">
                                                                 <HandThumbsUpFill fontSize={"25"} />{" "}
                                                                 <Button className="p-0" variant="transparent">
                                                                     <p className="m-0 fs-7">Consiglia</p>
                                                                 </Button>
                                                             </div>
-                                                            <div className="d-flex align-items-center p-3 gap-2">
+                                                            <div className="d-flex align-items-center p-1 gap-2">
                                                                 <ChatDotsFill fontSize={"25"} />{" "}
                                                                 <Button className="p-0" variant="transparent">
                                                                     <p className="m-0 fs-7">Consiglia</p>
                                                                 </Button>
                                                             </div>
-                                                            <div className="d-flex align-items-center p-3 gap-2">
+                                                            <div className="d-flex align-items-center p-1 gap-2">
                                                                 <Shuffle fontSize={"25"} />{" "}
                                                                 <Button className="p-0" variant="transparent">
                                                                     <p className="m-0 fs-7">Consiglia</p>
                                                                 </Button>
                                                             </div>
-                                                            <div className="d-flex align-items-center p-3 gap-2">
+                                                            <div className="d-flex align-items-center p-1 py-3 gap-2">
                                                                 <SendExclamationFill fontSize={"25"} />{" "}
                                                                 <Button className="p-0" variant="transparent">
                                                                     <p className="m-0 fs-7">Consiglia</p>
                                                                 </Button>
                                                             </div>
                                                         </div>
-                                                    </Col>
-                                                </Row>
+                                                    </div>
+                                                </Col>
                                             </Row>
                                         </Row>
                                     </div>
                                 ))}
                             </Col>
-
                             {/* SIDE DX */}
-                            <Col className="d-none d-lg-block" lg="3"></Col>
+                            <Col className="d-none d-lg-block" lg="3">
+                                <Row className="bg-light">
+                                    <Col className=" border rounded ">
+                                        <div className="d-flex justify-content-between">
+                                            <p className="fw-bold">LinkedIn Notizie</p>
+                                            <InfoSquareFill />
+                                        </div>
+                                        <Row>
+                                            <Col className="p-0">
+                                                <ul>
+                                                    <li className="border-0 fw-bold" style={{ fontSize: "13px" }}>
+                                                        Assunzioni e nuovi premi in Ferrari
+                                                        <p className="fw-light">Notizie principali | 182 lettori</p>
+                                                    </li>
+                                                    <li className="border-0 fw-bold" style={{ fontSize: "13px" }}>
+                                                        Saipem punta sull'eolico di Naval Enginering
+                                                        <p className="fw-light">2 ore fa</p>
+                                                    </li>
+                                                    <li className="border-0 fw-bold" style={{ fontSize: "13px" }}>
+                                                        Quante barriere ci sono nella società
+                                                        <p className="fw-light">4 ore fa</p>
+                                                    </li>
+                                                    <li className="border-0 fw-bold" style={{ fontSize: "13px" }}>
+                                                        Inclusione LGBTQ+
+                                                        <p className="fw-light">1 giorno fa | 1.1765 lettori</p>
+                                                    </li>
+                                                    <li className="border-0 fw-bold" style={{ fontSize: "13px" }}>
+                                                        Nuova acquisiszione per Zenga
+                                                        <p className="fw-light">11 ore fa | 124 lettori</p>
+                                                    </li>
+                                                </ul>
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                </Row>
+                            </Col>{" "}
                         </Row>
                     </Container>
                 </div>

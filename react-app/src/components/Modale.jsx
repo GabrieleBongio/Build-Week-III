@@ -30,15 +30,6 @@ const Modale = (props) => {
         area: "",
     });
 
-    const [esperienzaData, setEsperienzaData] = useState({
-        role: "",
-        company: "",
-        startDate: "",
-        endDate: "",
-        description: "",
-        area: "",
-    });
-
     const optionsPost = {
         method: "POST",
         headers: {
@@ -54,14 +45,16 @@ const Modale = (props) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token} `,
         },
-        data: JSON.stringify(esperienzaData),
+        data: JSON.stringify(datiPost),
     };
 
     /* opzioni per la put  */
-    const handleSubmitPut = (event) => {
+    const handleSubmitPut = async (event) => {
         event.preventDefault();
         console.log("ciao ciao ");
-        fetchDataPut(optionsPut, userid, esperienza._id);
+        await fetchDataPut(optionsPut, userid, esperienza._id);
+
+        await dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));
     };
 
     const handleSubmit = async (event) => {
@@ -92,7 +85,7 @@ const Modale = (props) => {
                                         placeholder="Ruolo Lavorativo..."
                                         onChange={(event) => {
                                             ismakingaput
-                                                ? setEsperienzaData((prevState) => ({
+                                                ? setDatiPost((prevState) => ({
                                                       ...prevState,
                                                       role: event.target.value,
                                                   }))
@@ -101,7 +94,7 @@ const Modale = (props) => {
                                                       role: event.target.value,
                                                   }));
                                         }}
-                                        value={ismakingaput ? esperienza.role : datiPost.role}
+                                        value={ismakingaput ? datiPost.role : datiPost.role}
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
@@ -112,7 +105,7 @@ const Modale = (props) => {
                                         placeholder="Azienda"
                                         onChange={(event) => {
                                             ismakingaput
-                                                ? setEsperienzaData((prevState) => ({
+                                                ? setDatiPost((prevState) => ({
                                                       ...prevState,
                                                       company: event.target.value,
                                                   }))
@@ -121,7 +114,7 @@ const Modale = (props) => {
                                                       company: event.target.value,
                                                   }));
                                         }}
-                                        value={ismakingaput ? esperienza.company : datiPost.company}
+                                        value={ismakingaput ? datiPost.company : datiPost.company}
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
@@ -132,7 +125,7 @@ const Modale = (props) => {
                                         placeholder="AAAA-MM-GG"
                                         onChange={(event) => {
                                             ismakingaput
-                                                ? setEsperienzaData((prevState) => ({
+                                                ? setDatiPost((prevState) => ({
                                                       ...prevState,
                                                       startDate: event.target.value,
                                                   }))
@@ -141,7 +134,7 @@ const Modale = (props) => {
                                                       startDate: event.target.value,
                                                   }));
                                         }}
-                                        value={ismakingaput ? esperienza.startDate : datiPost.startDate}
+                                        value={ismakingaput ? datiPost.startDate : datiPost.startDate}
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
@@ -151,7 +144,7 @@ const Modale = (props) => {
                                         placeholder="AAAA-MM-GG"
                                         onChange={(event) => {
                                             ismakingaput
-                                                ? setEsperienzaData((prevState) => ({
+                                                ? setDatiPost((prevState) => ({
                                                       ...prevState,
                                                       endDate: event.target.value,
                                                   }))
@@ -160,7 +153,7 @@ const Modale = (props) => {
                                                       endDate: event.target.value,
                                                   }));
                                         }}
-                                        value={ismakingaput ? esperienza.endDate : datiPost.endDate}
+                                        value={ismakingaput ? datiPost.endDate : datiPost.endDate}
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
@@ -171,7 +164,7 @@ const Modale = (props) => {
                                         placeholder="ruolo aziendale"
                                         onChange={(event) => {
                                             ismakingaput
-                                                ? setEsperienzaData((prevState) => ({
+                                                ? setDatiPost((prevState) => ({
                                                       ...prevState,
                                                       description: event.target.value,
                                                   }))
@@ -180,7 +173,7 @@ const Modale = (props) => {
                                                       description: event.target.value,
                                                   }));
                                         }}
-                                        value={ismakingaput ? esperienza.description : datiPost.description}
+                                        value={ismakingaput ? datiPost.description : datiPost.description}
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formGroupPassword">
@@ -191,7 +184,7 @@ const Modale = (props) => {
                                         placeholder="Luogo di lavoro..."
                                         onChange={(event) => {
                                             ismakingaput
-                                                ? setEsperienzaData((prevState) => ({
+                                                ? setDatiPost((prevState) => ({
                                                       ...prevState,
                                                       area: event.target.value,
                                                   }))
@@ -200,7 +193,7 @@ const Modale = (props) => {
                                                       area: event.target.value,
                                                   }));
                                         }}
-                                        value={ismakingaput ? esperienza.area : datiPost.area}
+                                        value={ismakingaput ? datiPost.area : datiPost.area}
                                     />
                                 </Form.Group>
                                 <Button className="me-2" type="submit" variant="success">

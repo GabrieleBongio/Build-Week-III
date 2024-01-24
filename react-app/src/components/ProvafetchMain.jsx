@@ -170,8 +170,8 @@ const ProvafetchMain = () => {
                             <Col className="d-none d-lg-block" lg="3">
                                 <Row className="bg-light">
                                     <Col className=" border rounded ">
-                                        <div className="d-flex justify-content-between">
-                                            <p className="fw-bold">LinkedIn Notizie</p>
+                                        <div className="d-flex justify-content-between align-items-center">
+                                            <p className="fw-bold my-2">LinkedIn Notizie</p>
                                             <InfoSquareFill />
                                         </div>
                                         <Row>

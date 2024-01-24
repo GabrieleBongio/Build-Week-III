@@ -1,81 +1,81 @@
 .bg-image {
-    background-image: url("https://media.istockphoto.com/id/1422146151/it/vettoriale/sfondo-creativo-astratto.jpg?s=2048x2048&w=is&k=20&c=adnL11F8oZVkmoTRUPD-KnDayaiD75tCKYhLxujKOWM=");
-    background-position: top;
-    height: 20vh;
+  background-image: url("https://media.istockphoto.com/id/1422146151/it/vettoriale/sfondo-creativo-astratto.jpg?s=2048x2048&w=is&k=20&c=adnL11F8oZVkmoTRUPD-KnDayaiD75tCKYhLxujKOWM=");
+  background-position: top;
+  height: 20vh;
 }
 
 .sfondo-chiaro {
-    background-color: #dde7f1;
+  background-color: #dde7f1;
 }
 
 .fs-7 {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 .fs-8 {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 .hover:hover {
-    background-color: #ebebeb;
-    cursor: pointer;
+  background-color: #ebebeb;
+  cursor: pointer;
 }
 
 .custom-top {
-    top: 50% !important;
+  top: 50% !important;
 }
 
 .custom-left {
-    left: 4% !important;
+  left: 4% !important;
 }
 
 .bg-secondary-custom {
-    background-color: #f8fafd;
+  background-color: #f8fafd;
 }
 a.text-black.active {
-    color: #004c33 !important;
-    border-bottom: 3px solid #004c33 !important;
+  color: #004c33 !important;
+  border-bottom: 3px solid #004c33 !important;
 }
 
 .messaggistica-height {
-    height: 80vh;
+  height: 80vh;
 }
 
 .index {
-    z-index: 999;
+  z-index: 999;
 }
 
 .mt-7 {
-    margin-top: 5rem !important;
+  margin-top: 5rem !important;
 }
 
 .mt-respect-up {
-    margin-block-start: 2.8rem !important;
+  margin-block-start: 2.8rem !important;
 }
 
 .mt-respect-down {
-    margin-block-end: 5rem !important;
+  margin-block-end: 5rem !important;
 }
 
 .bg-white {
-    background-color: white;
+  background-color: white;
 }
 
 body {
-    font-family: "Source Sans 3", sans-serif;
-    background-color: #f4f2ee;
+  font-family: "Source Sans 3", sans-serif;
+  background-color: #f4f2ee;
 }
 
 .w-35 {
-    width: 35%;
+  width: 35%;
 }
 
 #tarles {
-    width: 300px;
-    height: 250px;
-    margin: auto;
+  width: 300px;
+  height: 250px;
+  margin: auto;
 }
 
 .custom-left-dropdown {
-    left: -85px !important;
+  left: -85px !important;
 }

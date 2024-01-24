@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Form, FormControl, Nav, NavDropdown, Navbar, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, FormControl, Nav, NavDropdown, Navbar, Row } from "react-bootstrap";
 import {
     BellFill,
     BriefcaseFill,
@@ -8,6 +8,7 @@ import {
     PeopleFill,
     PersonFill,
     MenuAppFill,
+    Hr,
 } from "react-bootstrap-icons";
 
 const MyNavigationBar = () => {
@@ -114,15 +115,52 @@ const MyNavigationBar = () => {
                                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
-                                <Row style={{ width: "300px" }}>
-                                    <Col xs="12">
-                                        <img
-                                            className="rounded-circle"
-                                            width={"40px"}
-                                            src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
-                                            alt="placeholder"
-                                        />
-                                    </Col>
+                                <Row style={{ width: "250px" }}>
+                                    <div className="d-flex flex-column mb-2">
+                                        <div className="d-flex">
+                                            <img
+                                                className="rounded-circle p-1"
+                                                width={"60px"}
+                                                height={"60px"}
+                                                src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+                                                alt="placeholder"
+                                            />{" "}
+                                            <div className="d-flex flex-column">
+                                                <h6 className="m-1">Nome Cognome </h6>
+                                                <p className="m-0 fs-8 mx-1">Lorem, ipsum. </p>
+                                                <p className="m-0 fs-8 mx-1">Lorem, ipsum. </p>
+                                            </div>
+                                        </div>
+                                        <div className="d-flex justify-content-center mt-2">
+                                            <Button variant="outline-primary" className=" px-4 py-0">
+                                                Visualizza Profilo
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </Row>
+                                <hr className="my-1" />
+                                <Row>
+                                    {/* <div className="d-flex flex-column">
+                                        <div className="d-flex">
+                                            <img
+                                                className="rounded-circle p-1"
+                                                width={"60px"}
+                                                height={"60px"}
+                                                src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+                                                alt="placeholder"
+                                            />{" "}
+                                            <div className="d-flex flex-column">
+                                                <h6 className="m-1">Nome Cognome </h6>
+                                                <p className="m-0 fs-8 mx-1">Lorem, ipsum. </p>
+                                                <p className="m-0 fs-8 mx-1">Lorem, ipsum. </p>
+                                            </div>
+                                        </div>
+                                        <div className="d-flex justify-content-center mt-2">
+                                            <Button variant="outline-primary" className=" px-4 py-0">
+                                                Visualizza Profilo
+                                            </Button>
+                                        </div>
+                                    </div> */}
                                 </Row>
                             </NavDropdown>
                         </div>

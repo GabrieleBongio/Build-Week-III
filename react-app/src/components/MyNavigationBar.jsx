@@ -140,27 +140,41 @@ const MyNavigationBar = () => {
                                 </Row>
                                 <hr className="my-1" />
                                 <Row>
-                                    {/* <div className="d-flex flex-column">
-                                        <div className="d-flex">
-                                            <img
-                                                className="rounded-circle p-1"
-                                                width={"60px"}
-                                                height={"60px"}
-                                                src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
-                                                alt="placeholder"
-                                            />{" "}
-                                            <div className="d-flex flex-column">
-                                                <h6 className="m-1">Nome Cognome </h6>
-                                                <p className="m-0 fs-8 mx-1">Lorem, ipsum. </p>
-                                                <p className="m-0 fs-8 mx-1">Lorem, ipsum. </p>
-                                            </div>
+                                    <div>
+                                        <div>
+                                            <p className="m-0 p-1 mx-3 fs-6 fw-bold">Account</p>
                                         </div>
-                                        <div className="d-flex justify-content-center mt-2">
-                                            <Button variant="outline-primary" className=" px-4 py-0">
-                                                Visualizza Profilo
-                                            </Button>
+                                        <div>
+                                            <p className="m-0 p-1 mx-3 fs-7 fw-semibold text-secondary">
+                                                Prova Premium per 0 Eur
+                                            </p>
                                         </div>
-                                    </div> */}
+                                        <div>
+                                            <p className="m-0 p-1 mx-3 fs-7 text-secondary">Impostazioni e privacy</p>
+                                        </div>
+                                        <div>
+                                            <p className="m-0 p-1 mx-3 fs-7 text-secondary">Guida</p>
+                                        </div>
+                                        <div>
+                                            <p className="m-0 p-1 mx-3 fs-7 text-secondary">Lingua</p>
+                                        </div>
+                                    </div>
+                                </Row>
+                                <hr className="my-1" />
+                                <Row>
+                                    <div>
+                                        <div>
+                                            <p className="m-0 p-1 mx-3 fs-6 fw-bold">Gestisci</p>
+                                        </div>
+                                        <div>
+                                            <p className="m-0 p-1 mx-3 fs-7 text-secondary">Post e Attività</p>
+                                        </div>
+                                        <div>
+                                            <p className="m-0 p-1 mx-3 fs-7 text-secondary">
+                                                Lorem ipsum dolor sit. lorem prova{" "}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </Row>
                             </NavDropdown>
                         </div>

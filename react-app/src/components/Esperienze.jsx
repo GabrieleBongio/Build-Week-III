@@ -7,7 +7,7 @@ import { fetchData } from "../redux/functions/fetch";
 import { setDataFetchEsperienze } from "../redux/reducers/StateSliceReducers";
 import Modale from "./Modale";
 import { fetchDelete } from "../redux/functions/fetchDelete";
-import { usePrevious } from "@uidotdev/usehooks";
+/* import { usePrevious } from "@uidotdev/usehooks"; */
 
 const URL = "https://striveschool-api.herokuapp.com/api/profile/";
 
@@ -33,9 +33,8 @@ const Esperienze = (props) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [ismakingaput, setIsMakingAput] = useState(false);
     const datiFetchEsperienze = useSelector((state) => state.FetchData.dataFetchEsperienze);
-    const previusState_FetchEsperienza = usePrevious(datiFetchEsperienze);
+
     console.log("datiFetchEsperienze", datiFetchEsperienze);
-    console.log("previusState_FetchEsperienza", previusState_FetchEsperienza);
 
     useEffect(() => {
         dispatch(fetchData(URL, `${userid}/experiences`, optionsGet, setDataFetchEsperienze));

@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Form, FormControl, NavDropdown, Navbar, Row } from "react-bootstrap";
+import { Col, Container, Form, FormControl, Nav, NavDropdown, Navbar, Row } from "react-bootstrap";
 import {
     BellFill,
     BriefcaseFill,
@@ -46,8 +46,43 @@ const MyNavigationBar = () => {
                                 </Form>{" "}
                             </Col>
                         </div>
+                        <Navbar.Toggle className="d-md-none" aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="me-auto d-md-none">
+                                <Nav.Link href="#home">
+                                    <div className="d-flex align-items-center p-1">
+                                        <HouseDoorFill className="fs-4" />
+                                        <p className="m-0">Home</p>
+                                    </div>
+                                </Nav.Link>
+                                <Nav.Link href="#link">
+                                    <div className="d-flex align-items-center p-1">
+                                        <PeopleFill className="fs-4" />
+                                        <p className="m-0">Rete</p>
+                                    </div>
+                                </Nav.Link>
+                                <Nav.Link href="#link">
+                                    <div className="d-flex align-items-center p-1">
+                                        <BriefcaseFill className="fs-4" />
+                                        <p className="m-0">Lavoro</p>
+                                    </div>
+                                </Nav.Link>
+                                <Nav.Link href="#link">
+                                    <div className="d-flex align-items-center p-1">
+                                        <ChatRightDotsFill className="fs-4" />
+                                        <p className="m-0">Messaggistica</p>
+                                    </div>
+                                </Nav.Link>
+                                <Nav.Link href="#link">
+                                    <div className="d-flex align-items-center p-1">
+                                        <BellFill className="fs-4" />
+                                        <p className="m-0">Notifiche</p>
+                                    </div>
+                                </Nav.Link>
+                            </Nav>
+                        </Navbar.Collapse>
 
-                        <div className="d-flex justify-content-sm-center justify-content-end gap-4 flex-grow-1">
+                        <div className="d-none d-md-flex justify-content-sm-center justify-content-end gap-4 flex-grow-1">
                             <div className="d-flex flex-column align-items-center p-1">
                                 <HouseDoorFill className="fs-4" />
                                 <p className="m-0">Home</p>
@@ -66,7 +101,7 @@ const MyNavigationBar = () => {
                             </div>
                             <div className="d-flex flex-column align-items-center p-1">
                                 <BellFill className="fs-4" />
-                                <p className="m-0">Notichife</p>
+                                <p className="m-0">Notifiche</p>
                             </div>
                         </div>
 

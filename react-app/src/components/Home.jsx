@@ -320,6 +320,31 @@ const Home = () => {
                     </Row>
                   </Col>
                 </Row>
+                <Row>
+                  <Col className="text-center text-black-50 mt-5">
+                    <div className="d-flex justify-content-around">
+                      <p>Informazioni</p>
+                      <p>Accessibilità</p>
+                    </div>
+                    <p>Centro assistenza</p>
+                    <p>
+                      Privacy e condizioni
+                      <CaretDownFill className="ms-2" />
+                    </p>
+                    <p>Opzioni per gli annunci pubblicitari</p>
+                    <div className="d-flex justify-content-around">
+                      <p>Pubblicità</p>
+                      <p>
+                        Servizi alle aziende
+                        <CaretDownFill className="ms-2" />
+                      </p>
+                    </div>
+                    <div className="d-flex justify-content-around">
+                      <p>Scarica l'app LinkedIn</p>
+                      <p>Altro</p>
+                    </div>
+                  </Col>
+                </Row>
               </Col>{" "}
             </Row>
           </Container>

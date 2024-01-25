@@ -139,7 +139,7 @@ const Home = () => {
                                                 src="https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg"
                                                 alt="img profilo"
                                             />
-                                            <Form onSubmit={handleSubmitHome} className="d-flex w-75 gap-3">
+                                            <Form onSubmit={handleSubmitHome} className="d-flex gap-3">
                                                 <input
                                                     placeholder="Avvia un post..."
                                                     aria-label="Username"
@@ -149,7 +149,7 @@ const Home = () => {
                                                     }
                                                     value={datiPost.text}
                                                 />
-                                                <input type="file" onChange={handleImageChange} accept="image/*" />
+                                                {/*     <input type="file" onChange={handleImageChange} accept="image/*" /> */}
                                                 <Button type="submit" variant="primary">
                                                     <SendExclamationFill />
                                                 </Button>
@@ -284,6 +284,118 @@ const Home = () => {
                             </Col>
                             {/* SIDE DX */}
                             <HomeParteDestra />
+                            {datiPaginaNotizie.map((miocommento) => (
+                                <>
+                                    {" "}
+                                    {miocommento.user.email === "antonio.rizzuti@hotmail.com" ? (
+                                        <div
+                                            key={`post -${miocommento._id}`}
+                                            className="bg-white my-2 border rounded-3"
+                                        >
+                                            <Row>
+                                                <Col>
+                                                    <div>
+                                                        <div>
+                                                            <div className="d-flex gap-2 my-2 p-2">
+                                                                <div>
+                                                                    <div>
+                                                                        <img
+                                                                            className="rounded-circle"
+                                                                            width={"50px"}
+                                                                            height={"50px"}
+                                                                            src={miocommento.user.image}
+                                                                            alt="immagine profilo"
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                                <div className="me-auto">
+                                                                    <div>
+                                                                        <h6 className="fw-bold m-0 fs-6">
+                                                                            {miocommento.user.name}{" "}
+                                                                            {miocommento.user.surname}
+                                                                        </h6>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p className="m-0 fs-7 text-secondary">
+                                                                            {miocommento.user.title}
+                                                                        </p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p className="m-0 fs-7 text-secondary">
+                                                                            {miocommento.user.email}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    {miocommento.user.email ===
+                                                                    dataFetchProfilo.email ? (
+                                                                        <Button
+                                                                            onClick={() => {
+                                                                                handleDelete(miocommento._id);
+                                                                            }}
+                                                                            variant="trasparent"
+                                                                        >
+                                                                            ❌
+                                                                        </Button>
+                                                                    ) : (
+                                                                        ""
+                                                                    )}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <Col>
+                                                        <div className="px-2">
+                                                            {" "}
+                                                            <p className="m-0 mx-2 mb-3">{miocommento.text}</p>
+                                                        </div>
+                                                        <div className="d-flex justify-content-center">
+                                                            {" "}
+                                                            <img
+                                                                className="rounded-3"
+                                                                width={"95%"}
+                                                                src={miocommento.image}
+                                                                alt="immagine"
+                                                            />
+                                                        </div>
+                                                        <div className="d-flex justify-content-center flex-grow-1">
+                                                            <div className="d-flex justify-content-end column-gap-5 flex-wrap">
+                                                                <div className="d-flex align-items-center p-1 gap-2">
+                                                                    <HandThumbsUpFill fontSize={"25"} />{" "}
+                                                                    <Button className="p-0" variant="transparent">
+                                                                        <p className="m-0 fs-7">Consiglia</p>
+                                                                    </Button>
+                                                                </div>
+                                                                <div className="d-flex align-items-center p-1 gap-2">
+                                                                    <ChatDotsFill fontSize={"25"} />{" "}
+                                                                    <Button className="p-0" variant="transparent">
+                                                                        <p className="m-0 fs-7">Commenta</p>
+                                                                    </Button>
+                                                                </div>
+                                                                <div className="d-flex align-items-center p-1 gap-2">
+                                                                    <Shuffle fontSize={"25"} />{" "}
+                                                                    <Button className="p-0" variant="transparent">
+                                                                        <p className="m-0 fs-7">Diffondi il Post</p>
+                                                                    </Button>
+                                                                </div>
+                                                                <div className="d-flex align-items-center p-1 py-3 gap-2">
+                                                                    <SendExclamationFill fontSize={"25"} />{" "}
+                                                                    <Button className="p-0" variant="transparent">
+                                                                        <p className="m-0 fs-7">Invia</p>
+                                                                    </Button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </Col>
+                                                </Col>
+                                            </Row>
+                                        </div>
+                                    ) : (
+                                        ""
+                                    )}
+                                </>
+                            ))}
                         </Row>
                     </Container>
                 </div>

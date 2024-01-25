@@ -5,7 +5,6 @@ import { Token } from "../token";
 import { setDataFetchPaginaNotizie, setDataFetchProfilo } from "../redux/reducers/StateSliceReducers";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import {
     ImageFill,
     CalendarFill,
@@ -28,7 +27,10 @@ const Home = () => {
     const dispatch = useDispatch();
     const datiPaginaNotizie = useSelector((state) => state.FetchData.dataFetchPaginaNotizie);
     const { dataFetchProfilo } = useSelector((state) => state.FetchData);
-    const [datiPost, setDatiPost] = useState("");
+    const [datiPost, setDatiPost] = useState({
+        text: "",
+    });
+    /*     const [arrayCommenti, setArrayCommenti] = useState([]) */
     console.log("datiPaginaNotizie", datiPaginaNotizie);
     console.log("dataFetchProfilo", dataFetchProfilo);
 
@@ -51,8 +53,8 @@ const Home = () => {
         );
     };
 
-    const PostData = async () => {
-        await fetchDataPostHome(urlpostHome, datiPost);
+    const PostData = () => {
+        fetchDataPostHome(urlpostHome, datiPost);
     };
 
     useEffect(() => {
@@ -62,6 +64,7 @@ const Home = () => {
     const handleSubmitHome = (event) => {
         event.preventDefault();
         PostData();
+        setDatiPost({ text: "" });
     };
 
     return (
@@ -210,8 +213,8 @@ const Home = () => {
                                                     placeholder="Avvia un post..."
                                                     aria-label="Username"
                                                     aria-describedby="basic-addon1"
-                                                    onChange={(event) => setDatiPost(event.target.value)}
-                                                    value={datiPost}
+                                                    onChange={(event) => setDatiPost({ text: event.target.value })}
+                                                    value={datiPost.text}
                                                 />
 
                                                 <Button type="submit" variant="primary">
@@ -242,9 +245,9 @@ const Home = () => {
                                 {datiPaginaNotizie.slice(-10).map((post) => (
                                     <div key={`post -${post._id}`} className="bg-white my-2 border rounded-3">
                                         <Row>
-                                            <Row>
-                                                <Row>
-                                                    <Col>
+                                            <Col>
+                                                <div>
+                                                    <div>
                                                         <div className="d-flex gap-2 my-2 p-2">
                                                             <div>
                                                                 <div>
@@ -276,8 +279,8 @@ const Home = () => {
                                                             </div>
                                                             {/* <div> Mood del Giorno: {post.user.bio}</div> */}
                                                         </div>
-                                                    </Col>
-                                                </Row>
+                                                    </div>
+                                                </div>
 
                                                 <Col>
                                                     <div className="px-2">
@@ -313,7 +316,7 @@ const Home = () => {
                                                         </div>
                                                     </div>
                                                 </Col>
-                                            </Row>
+                                            </Col>
                                         </Row>
                                     </div>
                                 ))}

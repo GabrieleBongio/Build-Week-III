@@ -27,7 +27,7 @@ const Home = () => {
 
     const { dataFetchProfilo } = useSelector((state) => state.FetchData);
     const [datiPost, setDatiPost] = useState("");
-    const [image, setImage] = useState(null);
+    /*     const [image, setImage] = useState(null); */
 
     const arrayCommentiTagliato = function () {
         let arrayNotizie = [...datiPaginaNotizie];
@@ -40,6 +40,7 @@ const Home = () => {
         if (datiPaginaNotizie) {
             arrayCommentiTagliato();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [datiPaginaNotizie]);
 
     /*     const [arrayCommenti, setArrayCommenti] = useState([]) */
@@ -104,12 +105,6 @@ const Home = () => {
         }, 500);
     };
 
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        // Fai qualcosa con il file, come impostarlo nello stato del componente
-        setImage(file);
-    };
-
     const addImgToComment = (event, postid) => {
         event.preventDefault();
         console.log("ciao");
@@ -157,7 +152,7 @@ const Home = () => {
                                                     onChange={(event) => setDatiPost({ text: event.target.value })}
                                                     value={datiPost.text}
                                                 />
-                                                {/*     <input type="file" onChange={handleImageChange} accept="image/*" /> */}
+
                                                 <Button type="submit" variant="primary">
                                                     <SendExclamationFill />
                                                 </Button>
@@ -278,7 +273,6 @@ const Home = () => {
                                                                             name="post"
                                                                             type="file"
                                                                             accept="image/*"
-                                                                            onChange={handleImageChange}
                                                                         />
                                                                         <Button variant="transparent" type="submit">
                                                                             {" "}

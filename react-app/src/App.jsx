@@ -7,6 +7,7 @@ import Me from "./components/Me";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProfilePage from "./components/ProfilePage";
 import Home from "./components/Home";
+import Lavoro from "./components/Lavoro";
 
 function App() {
   return (

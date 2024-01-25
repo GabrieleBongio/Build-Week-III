@@ -42,7 +42,7 @@ const HomeParteSInistra = () => {
                         </div>
                     </div>
                 </div>
-                <div className="p-2 bg-white border rounded-4 ">
+                <div className="p-2 bg-white border rounded-4 mb-2">
                     <div className="p-2 d-flex align-items-center gap-2">
                         <BookmarkFill />
                         <p className="m-0">I miei elementi</p>

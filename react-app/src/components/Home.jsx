@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { fetchData } from "../redux/functions/fetch";
 import { useSelector, useDispatch } from "react-redux";
 import { Token } from "../token";
@@ -13,12 +14,6 @@ import {
     ChatDotsFill,
     Shuffle,
     SendExclamationFill,
-    InfoSquareFill,
-    CaretDownFill,
-    CaretUpFill,
-    Plus,
-    BookmarkFill,
-    SlashSquareFill,
 } from "react-bootstrap-icons";
 import { fetchDataPostHome } from "../redux/functions/fetchPostHome";
 import { fetchDeleteHome } from "../redux/functions/fetchDeleteHome";
@@ -34,6 +29,7 @@ const Home = () => {
     const [datiPost, setDatiPost] = useState({
         text: "",
     });
+    const [image, setImage] = useState(null);
 
     const arrayCommentiTagliato = function () {
         let arrayNotizie = [...datiPaginaNotizie];
@@ -77,6 +73,7 @@ const Home = () => {
 
     useEffect(() => {
         fetchingData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleSubmitHome = async (event) => {
@@ -101,6 +98,31 @@ const Home = () => {
         await dispatch(
             fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
         );
+    };
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        setImage(file);
+    };
+
+    const handleUpload = async () => {
+        try {
+            const formData = new FormData();
+            formData.append("image", image);
+
+            // Puoi aggiungere altri campi del tuo modulo a formData se necessario
+
+            const response = await axios.post("URL_DEL_SERVER", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    // Altri header se necessari, ad esempio l'autorizzazione
+                },
+            });
+
+            console.log("Risposta dal server:", response.data);
+        } catch (error) {
+            console.error("Errore durante l'upload dell'immagine:", error);
+        }
     };
 
     return (
@@ -144,8 +166,12 @@ const Home = () => {
                                             {" "}
                                             <div className="d-flex align-items-center gap-1">
                                                 {" "}
-                                                <ImageFill fontSize={"22"} />
-                                                <p className="m-0">contenuti Multimediali</p>
+                                                <Button onClick={handleUpload} className="d-flex" variant="transparent">
+                                                    {" "}
+                                                    <ImageFill fontSize={"22"} />
+                                                    <p className="m-0">Carica Immagine</p>
+                                                    <input type="file" onChange={handleImageChange} />
+                                                </Button>
                                             </div>
                                             <div className="d-flex align-items-center gap-1">
                                                 <CalendarFill fontSize={"22"} /> <p className="m-0">Evento</p>

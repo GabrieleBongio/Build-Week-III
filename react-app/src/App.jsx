@@ -7,7 +7,6 @@ import Me from "./components/Me";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProfilePage from "./components/ProfilePage";
 import Home from "./components/Home";
-import Lavoro from "./components/Lavoro";
 
 function App() {
   return (
@@ -18,7 +17,6 @@ function App() {
         <Route path="/me" element={<Me />} />
         <Route path="/job" element={<Lavoro />} />
         <Route path="/:userId" element={<ProfilePage />} />
-        <Route path="/lavoro" element={<Lavoro />}></Route>
       </Routes>
       <Messaggistica />
       <Footer />

@@ -112,3 +112,18 @@ body {
 
 	/* Aggiungi altri stili per viewport stretta se necessario */
 }
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+#custombutton {
+	border: 1px solid black; /* Imposta il colore del bordo e lo spessore iniziale */
+
+	transition: border-width 0.1s; /* Aggiungi una transizione per una transizione più fluida */
+}
+
+#custombutton:hover {
+	border: 2px solid;
+	background-color: #d9e6f0;
+}

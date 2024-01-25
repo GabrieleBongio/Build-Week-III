@@ -9,7 +9,7 @@ export const fetchDataPut = (datas, userid, expid) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token} `,
         },
-        data: JSON.stringify(datas),
+        body: JSON.stringify(datas),
     };
 
     console.log("datas", datas);

@@ -8,8 +8,6 @@ import {
     PeopleFill,
     PersonFill,
     MenuAppFill,
-    Hr,
-    Link,
 } from "react-bootstrap-icons";
 import { NavLink } from "react-router-dom";
 

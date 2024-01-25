@@ -55,11 +55,9 @@ const Home = () => {
     };
 
     const fetchingData = async () => {
-        /* prendo info del profilo */
         await dispatch(
             fetchData("https://striveschool-api.herokuapp.com/api/profile/me", "", optionsGet, setDataFetchProfilo)
         );
-        /* faccio fetch pagina notizie  */
         await dispatch(
             fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
         );
@@ -72,10 +70,8 @@ const Home = () => {
 
     const handleSubmitHome = async (event) => {
         event.preventDefault();
-        /* post dell immagine e testo  */
+
         await fetchPost(urlpostHome, datiPost.text);
-        /* post del testo  */
-        /* await fetchPost(urlpostHome, datiPost); */
         setDatiPost("");
         await dispatch(
             fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
@@ -91,34 +87,19 @@ const Home = () => {
     };
     const handleDelete = async (commentID) => {
         await fetchDeleteHome(optionsDelete, commentID);
-
-        setTimeout(() => {
-            dispatch(
-                fetchData(
-                    "https://striveschool-api.herokuapp.com/api/posts/",
-                    "",
-                    optionsGet,
-                    setDataFetchPaginaNotizie
-                )
-            );
-        }, 500);
+        await dispatch(
+            fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
+        );
     };
 
-    const addImgToComment = (event, postid) => {
+    const addImgToComment = async (event, postid) => {
         event.preventDefault();
         console.log("ciao");
         const formData = new FormData(event.target);
-        dispatch(postImageHome(postid, formData));
-        setTimeout(() => {
-            dispatch(
-                fetchData(
-                    "https://striveschool-api.herokuapp.com/api/posts/",
-                    "",
-                    optionsGet,
-                    setDataFetchPaginaNotizie
-                )
-            );
-        }, 800);
+        await dispatch(postImageHome(postid, formData));
+        await dispatch(
+            fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
+        );
     };
 
     return (

@@ -1,6 +1,6 @@
-import { Token } from "../../token";
+/* import { Token } from "../../token";
 
-export const fetchDataPutHome = (datas, postId) => {
+export const fetchDataPutHome = async (datas, postId) => {
     const URLPUT = `https://striveschool-api.herokuapp.com/api/posts/${postId}`;
 
     const optionsPut = {
@@ -13,17 +13,17 @@ export const fetchDataPutHome = (datas, postId) => {
     };
 
     console.log("datas", datas);
-    fetch(URLPUT, optionsPut)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("qualcosa è andato storto");
-            }
 
-            if (response.ok) {
-                console.log(response);
-                return response.json();
-            }
-        })
+    try {
+        const response = await fetch(URLPUT, optionsPut);
 
-        .catch((error) => console.error(error));
-};
+        if (!response.ok) {
+            throw new Error("Qualcosa è andato storto");
+        }
+
+        console.log(response);
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+    }
+}; */

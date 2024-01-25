@@ -57,10 +57,8 @@ const Modale = (props) => {
 
         event.preventDefault();
         console.log("ciao ciao ");
-        fetchDataPut(optionsPut, props.userid, props.esperienza._id);
-        setTimeout(() => {
-            dispatch(fetchData(URL, `${props.userid}/experiences`, optionsGet, setDataFetchEsperienze));
-        }, 500);
+        await fetchDataPut(optionsPut, props.userid, props.esperienza._id);
+        await dispatch(fetchData(URL, `${props.userid}/experiences`, optionsGet, setDataFetchEsperienze));
     };
 
     const handleSubmitPost = async (event) => {
@@ -76,10 +74,8 @@ const Modale = (props) => {
         event.preventDefault();
         props.onHide();
 
-        fetchDataPost(optionsPost, props.userid, "experiences");
-        setTimeout(() => {
-            dispatch(fetchData(URL, `${props.userid}/experiences`, optionsGet, setDataFetchEsperienze));
-        }, 500);
+        await fetchDataPost(optionsPost, props.userid, "experiences");
+        await dispatch(fetchData(URL, `${props.userid}/experiences`, optionsGet, setDataFetchEsperienze));
     };
 
     return (

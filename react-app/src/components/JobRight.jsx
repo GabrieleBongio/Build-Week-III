@@ -11,34 +11,25 @@ const JobRight = () => {
             }`}
           >
             <Row className="flex-column bg-white">
-              <Col className="d-flex align-items-start py-3 flex-column" style={{ fontSize: "14px" }}>
-                <p className="mb-0 fw-bold">
-                  <BookmarkFill className="me-2 text-black-50" />I miei elementi
-                </p>
+              <Col className="d-flex align-items-start py-3" style={{ fontSize: "14px" }}>
+                <BookmarkFill className="me-2 text-black-50 fs-4" />
+                <span className="mb-0 fw-bold">I miei elementi</span>
               </Col>
-              <Col className="d-flex align-items-start py-3 flex-column " style={{ fontSize: "14px" }}>
-                <p className="mb-0 fw-bold">
-                  <ListTask className="me-2 text-black-50" />
-                  Preferenza
-                </p>
+              <Col className="d-flex align-items-start py-3 " style={{ fontSize: "14px" }}>
+                <ListTask className="me-2 text-black-50 fs-4" />
+                <p className="mb-0 fw-bold">Preferenza</p>
               </Col>
-              <Col className="d-flex align-items-start py-3 flex-column" style={{ fontSize: "14px" }}>
-                <p className="mb-0 fw-bold">
-                  <Clipboard2Check className="me-2 text-black-50" />
-                  Valutazioni delle competenze
-                </p>
+              <Col className="d-flex align-items-start py-3" style={{ fontSize: "14px" }}>
+                <Clipboard2Check className="me-2 text-black-50 fs-4" />
+                <p className="mb-0 fw-bold">Valutazioni delle competenze</p>
               </Col>
-              <Col className="d-flex align-items-start py-3 flex-column" style={{ fontSize: "14px" }}>
-                <p className="mb-0 fw-bold">
-                  <PlayBtnFill className="me-2 text-black-50" />
-                  Indicazioni per chi cerca lavoro
-                </p>
+              <Col className="d-flex align-items-start py-3" style={{ fontSize: "14px" }}>
+                <PlayBtnFill className="me-2 text-black-50 fs-4" />
+                <p className="mb-0 fw-bold">Indicazioni per chi cerca lavoro</p>
               </Col>
-              <Col className="d-flex align-items-start py-3 flex-column " style={{ fontSize: "14px" }}>
-                <p className="mb-0 fw-bold">
-                  <GearFill className="me-2 text-black-50" />
-                  Impostazioni candidatura
-                </p>
+              <Col className="d-flex align-items-start py-3 " style={{ fontSize: "14px" }}>
+                <GearFill className="me-2 text-black-50 fs-4" />
+                <p className="mb-0 fw-bold">Impostazioni candidatura</p>
               </Col>
             </Row>
             <Col>

@@ -4,10 +4,10 @@ import { InfoSquareFill } from "react-bootstrap-icons";
 
 const HomeParteDestra = () => {
     return (
-        <>
-            <Col className="d-none d-lg-block" lg="3">
+        <div className="d-flex justify-content-end">
+            <Col className="d-none d-lg-block" lg="8" xl="3">
                 <Row>
-                    <div className="border border-1 rounded-3 bg-white">
+                    <div className=" border border-1 rounded-3 bg-white">
                         <div className="d-flex justify-content-between align-items-center">
                             <p className="fw-bold my-2">LinkedIn Notizie</p>
                             <InfoSquareFill />
@@ -41,7 +41,7 @@ const HomeParteDestra = () => {
                     </div>
                 </Row>
             </Col>{" "}
-        </>
+        </div>
     );
 };
 

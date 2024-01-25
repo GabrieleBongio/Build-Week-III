@@ -8,11 +8,11 @@ const HomeParteSInistra = () => {
     return (
         <>
             {" "}
-            <Col xs="12" sm="12" md="3" lg="3">
+            <Col xs="12" sm="12" md="12" lg="4" xl="3">
                 <div className="bg-white border rounded-4 mb-3">
-                    <div className=" d-flex flex-column">
+                    <div className=" d-flex flex-column ">
                         {/* IMAGE START*/}
-                        <div className="bg-image2 position-relative ">
+                        <div className="bg-image2 position-relative rounded-top-4">
                             <img
                                 width={"100px"}
                                 src={Profilo.image}

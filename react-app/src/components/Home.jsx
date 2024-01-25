@@ -168,18 +168,6 @@ const Home = () => {
                                     </Row>
                                     <Row>
                                         <div className="d-flex justify-content-center gap-4 my-2">
-                                            {" "}
-                                            {/* <div className="d-flex align-items-center gap-1">
-                                                {" "}
-                                                <Button
-                                                    onClick={uploadImageText}
-                                                    className="d-flex"
-                                                    variant="transparent"
-                                                >
-                                                    {" "}
-                                                    <ImageFill fontSize={"22"} />
-                                                </Button>
-                                            </div> */}
                                             <div className="d-flex align-items-center gap-1">
                                                 <CalendarFill fontSize={"22"} /> <p className="m-0">Evento</p>
                                             </div>
@@ -294,6 +282,8 @@ const Home = () => {
                             </Col>
                             {/* SIDE DX */}
                             <HomeParteDestra />
+
+                            {/* DA ELIMINARE  DA ELIMINARE  DA ELIMINARE  DA ELIMINARE  DA ELIMINARE  */}
                             {datiPaginaNotizie.map((miocommento) => (
                                 <>
                                     {" "}

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { fetchData } from "../redux/functions/fetch";
 import { useSelector, useDispatch } from "react-redux";
 import { Token } from "../token";
-import { setDataFetchPaginaNotizie } from "../redux/reducers/StateSliceReducers";
+import { setDataFetchPaginaNotizie, setDataFetchProfilo } from "../redux/reducers/StateSliceReducers";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -23,26 +23,39 @@ import {
 } from "react-bootstrap-icons";
 
 const options = {
+    method: "GET",
     headers: {
-        Authorization: "Bearer " + Token,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${Token} `,
     },
 };
 
 const ProvafetchMain = () => {
     const dispatch = useDispatch();
     const datiPaginaNotizie = useSelector((state) => state.FetchData.dataFetchPaginaNotizie);
+    const { dataFetchProfilo } = useSelector((state) => state.FetchData);
     console.log("datiPaginaNotizie", datiPaginaNotizie);
+    console.log("dataFetchProfilo", dataFetchProfilo);
 
-    useEffect(() => {
-        dispatch(
+    const fetchingData = async () => {
+        /* prendo info del profilo */
+        await dispatch(
+            fetchData("https://striveschool-api.herokuapp.com/api/profile/me", "", options, setDataFetchProfilo)
+        );
+        /* faccio fetch pagina notizie  */
+        await dispatch(
             fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", options, setDataFetchPaginaNotizie)
         );
+    };
+
+    useEffect(() => {
+        fetchingData();
     }, []);
 
     return (
         <>
             {datiPaginaNotizie && (
-                <div id="sezioneNotizie" className="mt-7">
+                /* dataFetchProfilo && */ <div id="sezioneNotizie" className="mt-7">
                     <Container>
                         <Row>
                             {/* SIDE SN */}

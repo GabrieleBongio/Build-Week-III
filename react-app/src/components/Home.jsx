@@ -13,11 +13,14 @@ import {
     ChatDotsFill,
     Shuffle,
     SendExclamationFill,
+    GearFill,
 } from "react-bootstrap-icons";
 import { fetchPost } from "../redux/functions/fetchPostHome";
 import { fetchDeleteHome } from "../redux/functions/fetchDeleteHome";
 import HomeParteDestra from "./HomeParteDestra";
 import HomeParteSInistra from "./HomeParteSinistraSez";
+import { postImageHome } from "../redux/functions/postImageHome";
+import { postImage } from "../redux/functions/postImage";
 
 const Home = () => {
     const urlpostHome = "https://striveschool-api.herokuapp.com/api/posts/";
@@ -25,11 +28,8 @@ const Home = () => {
     const datiPaginaNotizie = useSelector((state) => state.FetchData.dataFetchPaginaNotizie);
 
     const { dataFetchProfilo } = useSelector((state) => state.FetchData);
-    const [datiPost, setDatiPost] = useState({
-        text: "",
-        image: null,
-    });
-    console.log("DATIDAINVIARE", datiPost.image, datiPost.text);
+    const [datiPost, setDatiPost] = useState("");
+    const [image, setImage] = useState(null);
 
     const arrayCommentiTagliato = function () {
         let arrayNotizie = [...datiPaginaNotizie];
@@ -75,13 +75,10 @@ const Home = () => {
     const handleSubmitHome = async (event) => {
         event.preventDefault();
         /* post dell immagine e testo  */
-        await fetchPost(urlpostHome, datiPost.text, datiPost.image);
+        await fetchPost(urlpostHome, datiPost.text);
         /* post del testo  */
         /* await fetchPost(urlpostHome, datiPost); */
-        setDatiPost({
-            text: "",
-            image: null,
-        });
+        setDatiPost("");
         await dispatch(
             fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
         );
@@ -111,11 +108,18 @@ const Home = () => {
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
+        // Fai qualcosa con il file, come impostarlo nello stato del componente
+        setImage(file);
+    };
 
-        setDatiPost((prevState) => ({
-            ...prevState,
-            image: file,
-        }));
+    const addImgToComment = (event, postid) => {
+        event.preventDefault();
+        console.log("ciao");
+        const formData = new FormData(event.target);
+        postImageHome(postid, formData);
+        dispatch(
+            fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
+        );
     };
 
     return (
@@ -144,9 +148,7 @@ const Home = () => {
                                                     placeholder="Avvia un post..."
                                                     aria-label="Username"
                                                     aria-describedby="basic-addon1"
-                                                    onChange={(event) =>
-                                                        setDatiPost({ ...datiPost, text: event.target.value })
-                                                    }
+                                                    onChange={(event) => setDatiPost({ text: event.target.value })}
                                                     value={datiPost.text}
                                                 />
                                                 {/*     <input type="file" onChange={handleImageChange} accept="image/*" /> */}
@@ -289,7 +291,7 @@ const Home = () => {
                                     {" "}
                                     {miocommento.user.email === "antonio.rizzuti@hotmail.com" ? (
                                         <div
-                                            key={`post -${miocommento._id}`}
+                                            key={`post-il mio-${miocommento._id}`}
                                             className="bg-white my-2 border rounded-3"
                                         >
                                             <Row>
@@ -380,10 +382,23 @@ const Home = () => {
                                                                     </Button>
                                                                 </div>
                                                                 <div className="d-flex align-items-center p-1 py-3 gap-2">
-                                                                    <SendExclamationFill fontSize={"25"} />{" "}
+                                                                    <GearFill fontSize={"25"} />{" "}
                                                                     <Button className="p-0" variant="transparent">
-                                                                        <p className="m-0 fs-7">Invia</p>
+                                                                        <p className="m-0 fs-7">Modifica</p>
                                                                     </Button>
+                                                                    <Form
+                                                                        onSubmit={(event) => {
+                                                                            addImgToComment(event, miocommento._id);
+                                                                        }}
+                                                                    >
+                                                                        <input
+                                                                            name="post"
+                                                                            type="file"
+                                                                            accept="image/*"
+                                                                            onChange={handleImageChange}
+                                                                        />
+                                                                        <button type="submit"> modifica post </button>
+                                                                    </Form>
                                                                 </div>
                                                             </div>
                                                         </div>

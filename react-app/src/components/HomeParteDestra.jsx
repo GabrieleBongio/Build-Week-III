@@ -6,8 +6,8 @@ const HomeParteDestra = () => {
     return (
         <>
             <Col className="d-none d-lg-block" lg="3">
-                <Row className="bg-white">
-                    <div className="p-2 rounded-2 border-2">
+                <Row>
+                    <div className="border border-1 rounded-3 bg-white">
                         <div className="d-flex justify-content-between align-items-center">
                             <p className="fw-bold my-2">LinkedIn Notizie</p>
                             <InfoSquareFill />

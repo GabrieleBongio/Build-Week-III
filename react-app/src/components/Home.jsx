@@ -290,7 +290,7 @@ const Home = () => {
                                                                         width={"50px"}
                                                                         height={"50px"}
                                                                         src={post.user.image}
-                                                                        alt=""
+                                                                        alt="immagine profilo"
                                                                     />
                                                                 </div>
                                                             </div>

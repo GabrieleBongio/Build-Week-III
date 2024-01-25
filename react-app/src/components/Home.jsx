@@ -21,7 +21,7 @@ import {
     BookmarkFill,
     SlashSquareFill,
 } from "react-bootstrap-icons";
-import { fetchDataPostHome } from "../redux/functions/fetchPutHome";
+import { fetchDataPostHome } from "../redux/functions/fetchPostHome";
 
 const Home = () => {
     const urlpostHome = "https://striveschool-api.herokuapp.com/api/posts/";

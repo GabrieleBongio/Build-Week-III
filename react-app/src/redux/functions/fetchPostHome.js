@@ -2,7 +2,7 @@ import { Token } from "../../token";
 
 export const fetchDataPostHome = (url, datas) => {
     const optionsPut = {
-        method: "PUT",
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token} `,

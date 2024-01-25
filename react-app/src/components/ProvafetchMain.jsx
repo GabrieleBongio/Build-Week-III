@@ -193,13 +193,17 @@ const ProvafetchMain = () => {
                                                 src="https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg"
                                                 alt="img profilo"
                                             />
-                                            <InputGroup>
+                                            <Form className="d-flex w-75">
                                                 <Form.Control
                                                     placeholder="Avvia un post..."
                                                     aria-label="Username"
                                                     aria-describedby="basic-addon1"
                                                 />
-                                            </InputGroup>
+
+                                                <Button variant="primary">
+                                                    <SendExclamationFill />
+                                                </Button>
+                                            </Form>
                                         </div>
                                     </Row>
                                     <Row>

@@ -8,10 +8,10 @@ const HomeParteSInistra = () => {
             {" "}
             <Col xs="12" sm="12" md="3" lg="2">
                 <div className="flex-column">
-                    <Row className="flex-column position-relative">
+                    <Row className="flex-column">
                         <Col style={{ minHeight: "90px", maxHeight: "90px" }} className="bg-dark rounded-top"></Col>
                         <Col className="h-100  border pb-3">
-                            <Row className="h-100">
+                            <Row className="position-relative h-100">
                                 <Col xs={12}>
                                     <div
                                         style={{
@@ -21,12 +21,9 @@ const HomeParteSInistra = () => {
                                             left: "50%",
                                             borderRadius: "50%",
                                         }}
+                                        className="position-absolute bg-white peppa"
                                     >
-                                        <img
-                                            src=""
-                                            alt="img-profilo"
-                                            className="position-absolute top-0 start-0 bg-white"
-                                        />
+                                        <img src="" alt="img-profilo" />
                                     </div>
                                 </Col>
                                 <Col className="mt-5 text-center p-0">

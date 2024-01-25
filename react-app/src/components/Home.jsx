@@ -130,7 +130,7 @@ const Home = () => {
                             {/* SIDE SN */}
                             <HomeParteSInistra />
                             {/* CENTRALE */}
-                            <Col xs="12" sm="12" md="9" lg="7">
+                            <Col xs="12" sm="12" md="9" lg="6">
                                 {/* aggiungi un post  */}
                                 <div className="bg-white p-2 rounded-2">
                                     <Row>

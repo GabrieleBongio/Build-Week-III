@@ -6,8 +6,56 @@ const HomeParteSInistra = () => {
     return (
         <>
             {" "}
-            <Col xs="12" sm="12" md="3" lg="2">
-                <div className="flex-column">
+            <Col xs="12" sm="12" md="3" lg="3">
+                <div className="bg-white border rounded-4 mb-3">
+                    <div className=" d-flex flex-column">
+                        {/* IMAGE START*/}
+                        <div className="bg-image2 position-relative ">
+                            <img
+                                width={"70px"}
+                                src={
+                                    "https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg"
+                                }
+                                alt="immagine profilo"
+                                className="rounded-circle img-fluid circle-img position-absolute bottom-0 end-50 bottom-custom-img-home "
+                            />
+                        </div>
+                        {/* IMAGE END */}
+                        <div className="d-flex flex-column align-items-center p-2 pt-5">
+                            {" "}
+                            <h6 className="m-1 fs-6 fw-bold">Ti diamo il benvenuto</h6>
+                            <p className="m-0 fs-7 fw-bold">Nome Cognome </p>
+                            <p className="m-0 fs-7 text-primary">Aggiungi una foto </p>
+                        </div>
+                        <hr />
+                        <div className="p-2">
+                            <p className="m-0 fs-7">Collegamenti</p>
+                            <p className="m-0 fs-7">espandi la tua rete</p>
+                        </div>
+                        <hr />
+                        <div className="p-2">
+                            <p>accedi a strumenti e informazioni in esclusiva </p>
+                            <p>fatti assumere velocemente grazie a premium</p>
+                        </div>
+                        <hr />
+                        <div className="p-2">
+                            <BookmarkFill /> i miei elementi
+                        </div>
+                    </div>
+
+                    <div className="p-2">
+                        <div>
+                            <p>Gruppi</p>
+                        </div>
+                        <div>
+                            <p>Eventi</p>
+                        </div>
+                        <div>
+                            <p>Hashtag seguiti </p>
+                        </div>
+                    </div>
+                </div>
+                {/* <div className="flex-column">
                     <Row className="flex-column">
                         <Col style={{ minHeight: "90px", maxHeight: "90px" }} className="bg-dark rounded-top"></Col>
                         <Col className="h-100  border pb-3">
@@ -98,7 +146,7 @@ const HomeParteSInistra = () => {
                             <CaretDownFill />
                         </span>
                     </div>
-                </Col>
+                </Col> */}
             </Col>
         </>
     );

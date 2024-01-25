@@ -63,15 +63,14 @@ const ColumnJob = () => {
 
   return (
     <>
-      <div className="d-none d-md-block d-lg-none p-4"></div>
       {(company || category || queryLavori) && (
-        <div className="border border-2 rounded-3 mb-2 mt-7 bg-white p-3">
+        <div className="border border-2 rounded-3 mb-2 bg-white p-3">
           <h5>Filtri:</h5>
-          <div className="py-2 bg-primary rounded-5 gap-2 d-flex w-25 justify-content-center align-items-center">
-            <p className="text-white m-0">{company ? company : category ? category : queryLavori}</p>
+          <div className="d-inline-block py-2 bg-primary rounded-5 p-3">
+            <span className="text-white m-0 align-middle">{company ? company : category ? category : queryLavori}</span>
             <Button
               variant="outline-danger"
-              className="rounded-pill p-0"
+              className="rounded-pill p-0 ms-2"
               onClick={() =>
                 category ? handleCategory(category) : company ? handleCompany(company) : handleSetQuery()
               }
@@ -81,9 +80,7 @@ const ColumnJob = () => {
           </div>
         </div>
       )}
-      <div
-        className={`p-3 border border-2 rounded-3 mb-2 bg-white ${company || category || queryLavori ? "" : "mt-7"}`}
-      >
+      <div className={`p-3 border border-2 rounded-3 mb-2 bg-white`}>
         <h5>Lavori consigliati per te:</h5>
         {dataFetchLavori && (
           <p>
@@ -91,23 +88,6 @@ const ColumnJob = () => {
             {dataFetchLavori["data"].length < numberOfJobs ? dataFetchLavori["data"].length : numberOfJobs} mostrati
           </p>
         )}
-        {/* <Form onSubmit={handleSubmit}>
-          <Row>
-            <Col xs="auto">
-              <Form.Control
-                type="text"
-                placeholder="Search"
-                className=" mr-sm-2"
-                value={queryLavori}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-            </Col>
-            <Col xs="auto">
-              <Button type="submit">Submit</Button>
-            </Col>
-          </Row>
-        </Form> */}
-
         {dataFetchLavori &&
           dataFetchLavori["data"].slice(0, numberOfJobs).map((lavoro) => (
             <div key={lavoro._id} className="border rounded-3 p-3 mb-2">

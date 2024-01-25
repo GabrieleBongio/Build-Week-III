@@ -73,7 +73,7 @@ const Home = () => {
 
         await fetchPost(urlpostHome, datiPost.text);
         setDatiPost("");
-        await dispatch(
+        dispatch(
             fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
         );
     };

@@ -32,6 +32,20 @@ const Home = () => {
     const [datiPost, setDatiPost] = useState({
         text: "",
     });
+
+    const arrayCommentiTagliato = function () {
+        let arrayNotizie = [...datiPaginaNotizie];
+        let arrayNotizieTagliato = arrayNotizie.reverse().slice(0, 10);
+        console.log("arrayNotizieTagliato", arrayNotizieTagliato);
+        return arrayNotizieTagliato;
+    };
+
+    useEffect(() => {
+        if (datiPaginaNotizie) {
+            arrayCommentiTagliato();
+        }
+    }, [datiPaginaNotizie]);
+
     /*     const [arrayCommenti, setArrayCommenti] = useState([]) */
     console.log("datiPaginaNotizie", datiPaginaNotizie);
     console.log("dataFetchProfilo", dataFetchProfilo);
@@ -262,7 +276,7 @@ const Home = () => {
                                     </Row>
                                 </div>
                                 {/* sezione notizie  */}
-                                {datiPaginaNotizie.slice(-10).map((post) => (
+                                {arrayCommentiTagliato().map((post) => (
                                     <div key={`post -${post._id}`} className="bg-white my-2 border rounded-3">
                                         <Row>
                                             <Col>

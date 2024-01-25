@@ -7,7 +7,7 @@ import Me from "./components/Me";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProfilePage from "./components/ProfilePage";
 import Home from "./components/Home";
-import ColumnJob from "./components/ColumnJob";
+import Lavoro from "./components/Lavoro";
 
 function App() {
   return (
@@ -16,8 +16,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/me" element={<Me />} />
+        <Route path="/job" element={<Lavoro />} />
         <Route path="/:userId" element={<ProfilePage />} />
-        <Route path="/job" element={<ColumnJob />} />
       </Routes>
       <Messaggistica />
       <Footer />

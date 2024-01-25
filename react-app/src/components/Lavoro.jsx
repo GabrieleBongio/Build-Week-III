@@ -5,6 +5,7 @@ import { Token } from "../token";
 import { setDataFetchPaginaNotizie, setDataFetchProfilo } from "../redux/reducers/StateSliceReducers";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 import {
   ImageFill,
   CalendarFill,
@@ -19,6 +20,11 @@ import {
   Plus,
   BookmarkFill,
   SlashSquareFill,
+  PencilSquare,
+  ListTask,
+  Clipboard2Check,
+  PlayBtnFill,
+  GearFill,
 } from "react-bootstrap-icons";
 
 const options = {
@@ -29,7 +35,7 @@ const options = {
   },
 };
 
-const Home = () => {
+const Lavoro = () => {
   const dispatch = useDispatch();
   const datiPaginaNotizie = useSelector((state) => state.FetchData.dataFetchPaginaNotizie);
   const { dataFetchProfilo } = useSelector((state) => state.FetchData);
@@ -49,7 +55,6 @@ const Home = () => {
 
   useEffect(() => {
     fetchingData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -62,107 +67,50 @@ const Home = () => {
               <Col xs="12" sm="12" md="3" lg="2">
                 <div className="flex-column">
                   <Row className="flex-column">
-                    <Col style={{ minHeight: "90px", maxHeight: "90px" }} className="bg-dark rounded-top"></Col>
-                    <Col className="h-100  border pb-3">
-                      <Row className="position-relative h-100">
-                        <Col xs={12}>
-                          <div
-                            style={{
-                              width: "100px",
-                              height: "100px",
-                              top: "50%",
-                              left: "50%",
-                              borderRadius: "50%",
-                            }}
-                            className="position-absolute bg-white peppa"
-                          >
-                            <img
-                              src=""
-                              alt=""
-                              style={{
-                                position: "absolute",
-                                top: "4.3%",
-                                left: "5%",
-                                borderRadius: "50%",
-                                width: "90px",
-                                height: "90px",
-                              }}
-                            />
-                          </div>
-                        </Col>
-                        <Col className="mt-5 text-center p-0">
-                          <div className="fw-bold text-nowrap text-center" style={{ fontSize: "15px" }}></div>
-                          <div className="text-nowrap text-black-50" style={{ fontSize: "14px" }}></div>
-                        </Col>
-                      </Row>
-                    </Col>
-
                     <Col
-                      className={`d-lg-block border-start border-end border-bottom rounded-bottom  "d-block" : "d-none"
+                      className={`d-lg-block "d-block" : "d-none"
             }`}
                     >
-                      <Row className="flex-column">
-                        <Col className="d-flex align-items-start p-3" style={{ fontSize: "12px" }}>
-                          <div>
-                            <p className="mb-0 text-black-50">Collegamenti</p>
-                            <p className="mb-0 fw-bold">Espandi la tua rete</p>
-                          </div>
-                          <p className="text-primary fw-bold">14</p>
-                        </Col>
-                        <Col
-                          className="d-flex align-items-start p-3 flex-column border-top"
-                          style={{ fontSize: "12px" }}
-                        >
-                          <p className="mb-0">Accedi a strumenti e informazioni in esclusiva</p>
-                          <p className="fw-bold mb-0">
-                            <SlashSquareFill color="gold" />
-                            <u className="ms-2">Prova Premium gratis</u>
-                          </p>
-                        </Col>
-                        <Col
-                          className="d-flex align-items-start p-3 flex-column border-top"
-                          style={{ fontSize: "12px" }}
-                        >
-                          <p className="mb-0">
+                      <Row className="flex-column bg-white">
+                        <Col className="d-flex align-items-start py-3 flex-column" style={{ fontSize: "14px" }}>
+                          <p className="mb-0 fw-bold">
                             <BookmarkFill className="me-2 text-black-50" />I miei elementi
                           </p>
                         </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className={` d-lg-block `} style={{ fontSize: "14px" }}>
-                      <Row className="mt-3 flex-column">
-                        <Col className="border rounded-top p-2">
-                          <p className="text-primary fw-bold">Gruppi</p>
-                          <p className="text-primary fw-bold d-flex al'ign-item-center">
-                            Eventi
-                            <Plus className="ms-5 fs-4 text-black" />
+                        <Col className="d-flex align-items-start py-3 flex-column " style={{ fontSize: "14px" }}>
+                          <p className="mb-0 fw-bold">
+                            <ListTask className="me-2 text-black-50" />
+                            Preferenza
                           </p>
-                          <p className="text-primary fw-bold mb-0">Hashtag seguiti</p>
                         </Col>
-                        <Col className="border-start border-end border-bottom rounded-bottom">
-                          <p className="text-black-50 text-center fw-bold my-2">Scopri di più</p>
+                        <Col className="d-flex align-items-start py-3 flex-column" style={{ fontSize: "14px" }}>
+                          <p className="mb-0 fw-bold">
+                            <Clipboard2Check className="me-2 text-black-50" />
+                            Valutazioni delle competenze
+                          </p>
+                        </Col>
+                        <Col className="d-flex align-items-start py-3 flex-column" style={{ fontSize: "14px" }}>
+                          <p className="mb-0 fw-bold">
+                            <PlayBtnFill className="me-2 text-black-50" />
+                            Indicazioni per chi cerca lavoro
+                          </p>
+                        </Col>
+                        <Col className="d-flex align-items-start py-3 flex-column " style={{ fontSize: "14px" }}>
+                          <p className="mb-0 fw-bold">
+                            <GearFill className="me-2 text-black-50" />
+                            Impostazioni candidatura
+                          </p>
                         </Col>
                       </Row>
+                      <Col>
+                        <div className="border rounded-4 border-primary d-flex gap-3 justify-content-center align-items-center btn btn-outline-primary mt-3 mb-3">
+                          <PencilSquare />
+                          <p className="mb-0 fs-8 fw-bold">Pubblica offerta gratuita</p>
+                        </div>
+                      </Col>
                     </Col>
                   </Row>
                 </div>
-                <Col xs={12} lg={3} className="text-center mt-3 rounded-1 d-lg-none mb-2 peppas">
-                  <div className="d-lg-none">
-                    <span>
-                      Meno dettagli
-                      <CaretUpFill />
-                    </span>
-                  </div>
-
-                  <div className="d-lg-none">
-                    <span>
-                      Vedi altro
-                      <CaretDownFill />
-                    </span>
-                  </div>
-                </Col>
               </Col>
               {/* CENTRALE */}
               <Col xs="12" sm="12" md="9" lg="7">
@@ -287,38 +235,7 @@ const Home = () => {
               {/* SIDE DX */}
               <Col className="d-none d-lg-block" lg="3">
                 <Row className="bg-white">
-                  <Col className=" border rounded-2 ">
-                    <div className="d-flex justify-content-between align-items-center">
-                      <p className="fw-bold my-2">LinkedIn Notizie</p>
-                      <InfoSquareFill />
-                    </div>
-                    <Row>
-                      <Col className="p-0">
-                        <ul>
-                          <li className="border-0 fw-bold" style={{ fontSize: "13px" }}>
-                            Assunzioni e nuovi premi in Ferrari
-                            <p className="fw-light">Notizie principali | 182 lettori</p>
-                          </li>
-                          <li className="border-0 fw-bold" style={{ fontSize: "13px" }}>
-                            Saipem punta sull'eolico di Naval Enginering
-                            <p className="fw-light">2 ore fa</p>
-                          </li>
-                          <li className="border-0 fw-bold" style={{ fontSize: "13px" }}>
-                            Quante barriere ci sono nella società
-                            <p className="fw-light">4 ore fa</p>
-                          </li>
-                          <li className="border-0 fw-bold" style={{ fontSize: "13px" }}>
-                            Inclusione LGBTQ+
-                            <p className="fw-light">1 giorno fa | 1.1765 lettori</p>
-                          </li>
-                          <li className="border-0 fw-bold" style={{ fontSize: "13px" }}>
-                            Nuova acquisiszione per Zenga
-                            <p className="fw-light">11 ore fa | 124 lettori</p>
-                          </li>
-                        </ul>
-                      </Col>
-                    </Row>
-                  </Col>
+                  <Col className=""></Col>
                 </Row>
                 <Row>
                   <Col className="text-center text-black-50 mt-5">
@@ -343,6 +260,27 @@ const Home = () => {
                       <p>Scarica l'app LinkedIn</p>
                       <p>Altro</p>
                     </div>
+                    <div className="text-black">
+                      <svg
+                        className="me-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 56 14"
+                        id="linkedin-logo-blue-xxsmall"
+                        ariaHidden="true"
+                        role="none"
+                        data-supported-dps="56x14"
+                        width="56"
+                        height="14"
+                      >
+                        <g>
+                          <path
+                            d="M22.1 8.2l3.09 3.8h-2.44L20 8.51V12h-2V2h2v5.88L22.54 5h2.55zm-8-3.4A2.7 2.7 0 0011.89 6V5H10v7h2V8.73a1.73 1.73 0 011.54-1.92h.12C14.82 6.8 15 7.94 15 8.73V12h2V8.29c0-2.2-.73-3.49-2.86-3.49zM32 8.66a3.23 3.23 0 010 .44h-5.25v.07a1.79 1.79 0 001.83 1.43 2.51 2.51 0 001.84-.69l1.33 1a4.3 4.3 0 01-3.25 1.29 3.49 3.49 0 01-3.7-3.26 4 4 0 010-.49 3.58 3.58 0 013.5-3.65h.26C30.44 4.8 32 6.13 32 8.66zm-1.86-.86a1.45 1.45 0 00-1.51-1.4h-.08a1.63 1.63 0 00-1.8 1.4zM2 2H0v10h6v-2H2zm36 0h2v10h-1.89v-.7a2.45 2.45 0 01-2 .9 3.41 3.41 0 01-3.32-3.5 1.41 1.41 0 010-.2 3.35 3.35 0 013-3.68h.3a2.61 2.61 0 011.9.7zm.15 6.5a1.64 1.64 0 00-1.4-1.84h-.22A1.76 1.76 0 0034.9 8.5a1.76 1.76 0 001.63 1.85 1.62 1.62 0 001.63-1.63.81.81 0 00-.01-.22zM8 1.8A1.27 1.27 0 006.75 3a1.25 1.25 0 002.5 0A1.27 1.27 0 008 1.8zM7 12h2V5H7zM56 1v12a1 1 0 01-1 1H43a1 1 0 01-1-1V1a1 1 0 011-1h12a1 1 0 011 1zM46 5h-2v7h2zm.25-2A1.25 1.25 0 1045 4.25 1.25 1.25 0 0046.25 3zM54 8.29c0-2.2-.73-3.49-2.86-3.49A2.71 2.71 0 0048.89 6V5H47v7h2V8.73a1.73 1.73 0 011.54-1.92h.12C51.82 6.8 52 7.94 52 8.73V12h2z"
+                            fill="#0a66c2"
+                          />
+                        </g>
+                      </svg>
+                      LinkedIn Corporation &copy; 2024
+                    </div>
                   </Col>
                 </Row>
               </Col>{" "}
@@ -354,4 +292,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Lavoro;

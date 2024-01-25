@@ -127,13 +127,16 @@ const MyNavigationBar = () => {
                                 <Row style={{ width: "250px" }}>
                                     <div className="d-flex flex-column mb-2">
                                         <div className="d-flex">
-                                            <img
-                                                className="rounded-circle p-1"
-                                                width={"60px"}
-                                                height={"60px"}
-                                                src={Profilo.image}
-                                                alt="placeholder"
-                                            />{" "}
+                                            {Profilo && (
+                                                <img
+                                                    className="rounded-circle p-1"
+                                                    width={"60px"}
+                                                    height={"60px"}
+                                                    src={Profilo.image}
+                                                    alt="placeholder"
+                                                />
+                                            )}
+
                                             <div className="d-flex flex-column">
                                                 <h6 className="m-1">Nome Cognome </h6>
                                                 <p className="m-0 fs-8 mx-1">Lorem, ipsum. </p>

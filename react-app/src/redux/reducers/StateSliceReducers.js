@@ -6,6 +6,7 @@ const SliceMain = createSlice({
         dataFetchProfilo: null,
         dataFetchEsperienze: null,
         dataFetchPaginaNotizie: null,
+        dataFetchPostCommenti: null,
     },
 
     reducers: {
@@ -19,6 +20,10 @@ const SliceMain = createSlice({
 
         setDataFetchPaginaNotizie: (state, action) => {
             state.dataFetchPaginaNotizie = action.payload;
+        },
+
+        setdataFetchPostCommenti: (state, action) => {
+            state.dataFetchPostCommenti = action.payload;
         },
     },
 });

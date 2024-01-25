@@ -58,7 +58,7 @@ const Modale = (props) => {
         event.preventDefault();
         console.log("ciao ciao ");
         await fetchDataPut(optionsPut, props.userid, props.esperienza._id);
-        await dispatch(fetchData(URL, `${props.userid}/experiences`, optionsGet, setDataFetchEsperienze));
+        dispatch(fetchData(URL, `${props.userid}/experiences`, optionsGet, setDataFetchEsperienze));
     };
 
     const handleSubmitPost = async (event) => {
@@ -75,7 +75,7 @@ const Modale = (props) => {
         props.onHide();
 
         await fetchDataPost(optionsPost, props.userid, "experiences");
-        await dispatch(fetchData(URL, `${props.userid}/experiences`, optionsGet, setDataFetchEsperienze));
+        dispatch(fetchData(URL, `${props.userid}/experiences`, optionsGet, setDataFetchEsperienze));
     };
 
     return (

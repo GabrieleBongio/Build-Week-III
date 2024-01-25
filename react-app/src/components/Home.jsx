@@ -55,10 +55,10 @@ const Home = () => {
     };
 
     const fetchingData = async () => {
-        await dispatch(
+        dispatch(
             fetchData("https://striveschool-api.herokuapp.com/api/profile/me", "", optionsGet, setDataFetchProfilo)
         );
-        await dispatch(
+        dispatch(
             fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
         );
     };
@@ -87,7 +87,7 @@ const Home = () => {
     };
     const handleDelete = async (commentID) => {
         await fetchDeleteHome(optionsDelete, commentID);
-        await dispatch(
+        dispatch(
             fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
         );
     };
@@ -96,8 +96,8 @@ const Home = () => {
         event.preventDefault();
         console.log("ciao");
         const formData = new FormData(event.target);
-        await dispatch(postImageHome(postid, formData));
-        await dispatch(
+        dispatch(postImageHome(postid, formData));
+        dispatch(
             fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
         );
     };

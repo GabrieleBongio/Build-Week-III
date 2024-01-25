@@ -4,7 +4,7 @@ import { fetchData } from "../redux/functions/fetch";
 import { useSelector, useDispatch } from "react-redux";
 import { Token } from "../token";
 import { setDataFetchPaginaNotizie, setDataFetchProfilo } from "../redux/reducers/StateSliceReducers";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, FormControl, InputGroup, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import {
     CalendarFill,
@@ -117,9 +117,16 @@ const Home = () => {
         console.log("ciao");
         const formData = new FormData(event.target);
         dispatch(postImageHome(postid, formData));
-        dispatch(
-            fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
-        );
+        setTimeout(() => {
+            dispatch(
+                fetchData(
+                    "https://striveschool-api.herokuapp.com/api/posts/",
+                    "",
+                    optionsGet,
+                    setDataFetchPaginaNotizie
+                )
+            );
+        }, 800);
     };
 
     return (
@@ -143,8 +150,9 @@ const Home = () => {
                                                 src="https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg"
                                                 alt="img profilo"
                                             />
-                                            <Form onSubmit={handleSubmitHome} className="d-flex gap-3">
-                                                <input
+                                            <Form onSubmit={handleSubmitHome} className="d-flex w-100 gap-3">
+                                                <FormControl
+                                                    className="w-100"
                                                     placeholder="Avvia un post..."
                                                     aria-label="Username"
                                                     aria-describedby="basic-addon1"
@@ -159,7 +167,7 @@ const Home = () => {
                                         </div>
                                     </Row>
                                     <Row>
-                                        <div className="d-flex justify-content-center gap-4 m-1">
+                                        <div className="d-flex justify-content-center gap-4 my-2">
                                             {" "}
                                             {/* <div className="d-flex align-items-center gap-1">
                                                 {" "}

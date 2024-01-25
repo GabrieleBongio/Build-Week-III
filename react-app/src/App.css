@@ -122,3 +122,7 @@ body {
 .bottom-custom-img-home {
     bottom: -36px !important;
 }
+
+.custom-end {
+    right: 57% !important;
+}

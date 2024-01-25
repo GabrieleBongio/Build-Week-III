@@ -1,8 +1,10 @@
 import React from "react";
 import { Col } from "react-bootstrap";
 import { BookmarkFill } from "react-bootstrap-icons";
+import { useSelector } from "react-redux";
 
 const HomeParteSInistra = () => {
+    const Profilo = useSelector((state) => state.FetchData.dataFetchProfilo);
     return (
         <>
             {" "}
@@ -12,10 +14,8 @@ const HomeParteSInistra = () => {
                         {/* IMAGE START*/}
                         <div className="bg-image2 position-relative ">
                             <img
-                                width={"80px"}
-                                src={
-                                    "https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg"
-                                }
+                                width={"100px"}
+                                src={Profilo.image}
                                 alt="immagine profilo"
                                 className="rounded-circle img-fluid circle-img position-absolute bottom-0 custom-end bottom-custom-img-home "
                             />
@@ -24,7 +24,10 @@ const HomeParteSInistra = () => {
                         <div className="d-flex flex-column align-items-center p-2 pt-5">
                             {" "}
                             <h6 className="m-1 fs-6 fw-bold">Ti diamo il benvenuto</h6>
-                            <p className="m-0 fs-7 fw-bold">Nome Cognome </p>
+                            <div className="d-flex gap-1">
+                                <p className="m-0 fs-7 fw-bold">{Profilo.name} </p>
+                                <p className="m-0 fs-7 fw-bold">{Profilo.surname}</p>
+                            </div>
                             <p className="m-0 fs-7 text-primary">Aggiungi una foto </p>
                         </div>
                         <hr />

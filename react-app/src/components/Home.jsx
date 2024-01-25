@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 import { fetchData } from "../redux/functions/fetch";
 import { useSelector, useDispatch } from "react-redux";
 import { Token } from "../token";
@@ -7,7 +7,6 @@ import { setDataFetchPaginaNotizie, setDataFetchProfilo } from "../redux/reducer
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import {
-    ImageFill,
     CalendarFill,
     EnvelopePaperFill,
     HandThumbsUpFill,
@@ -15,7 +14,7 @@ import {
     Shuffle,
     SendExclamationFill,
 } from "react-bootstrap-icons";
-import { fetchDataPostHome } from "../redux/functions/fetchPostHome";
+import { fetchPost } from "../redux/functions/fetchPostHome";
 import { fetchDeleteHome } from "../redux/functions/fetchDeleteHome";
 import HomeParteDestra from "./HomeParteDestra";
 import HomeParteSInistra from "./HomeParteSinistraSez";
@@ -28,8 +27,9 @@ const Home = () => {
     const { dataFetchProfilo } = useSelector((state) => state.FetchData);
     const [datiPost, setDatiPost] = useState({
         text: "",
+        image: null,
     });
-    const [image, setImage] = useState(null);
+    console.log("DATIDAINVIARE", datiPost.image, datiPost.text);
 
     const arrayCommentiTagliato = function () {
         let arrayNotizie = [...datiPaginaNotizie];
@@ -67,10 +67,6 @@ const Home = () => {
         );
     };
 
-    const PostData = () => {
-        fetchDataPostHome(urlpostHome, datiPost);
-    };
-
     useEffect(() => {
         fetchingData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -78,8 +74,14 @@ const Home = () => {
 
     const handleSubmitHome = async (event) => {
         event.preventDefault();
-        await PostData();
-        setDatiPost({ text: "" });
+        /* post dell immagine e testo  */
+        await fetchPost(urlpostHome, datiPost.text, datiPost.image);
+        /* post del testo  */
+        /* await fetchPost(urlpostHome, datiPost); */
+        setDatiPost({
+            text: "",
+            image: null,
+        });
         await dispatch(
             fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
         );
@@ -95,34 +97,25 @@ const Home = () => {
     const handleDelete = async (commentID) => {
         await fetchDeleteHome(optionsDelete, commentID);
 
-        await dispatch(
-            fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
-        );
+        setTimeout(() => {
+            dispatch(
+                fetchData(
+                    "https://striveschool-api.herokuapp.com/api/posts/",
+                    "",
+                    optionsGet,
+                    setDataFetchPaginaNotizie
+                )
+            );
+        }, 500);
     };
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
-        setImage(file);
-    };
 
-    const handleUpload = async () => {
-        try {
-            const formData = new FormData();
-            formData.append("image", image);
-
-            // Puoi aggiungere altri campi del tuo modulo a formData se necessario
-
-            const response = await axios.post("URL_DEL_SERVER", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                    // Altri header se necessari, ad esempio l'autorizzazione
-                },
-            });
-
-            console.log("Risposta dal server:", response.data);
-        } catch (error) {
-            console.error("Errore durante l'upload dell'immagine:", error);
-        }
+        setDatiPost((prevState) => ({
+            ...prevState,
+            image: file,
+        }));
     };
 
     return (
@@ -147,14 +140,16 @@ const Home = () => {
                                                 alt="img profilo"
                                             />
                                             <Form onSubmit={handleSubmitHome} className="d-flex w-75 gap-3">
-                                                <Form.Control
+                                                <input
                                                     placeholder="Avvia un post..."
                                                     aria-label="Username"
                                                     aria-describedby="basic-addon1"
-                                                    onChange={(event) => setDatiPost({ text: event.target.value })}
+                                                    onChange={(event) =>
+                                                        setDatiPost({ ...datiPost, text: event.target.value })
+                                                    }
                                                     value={datiPost.text}
                                                 />
-
+                                                <input type="file" onChange={handleImageChange} accept="image/*" />
                                                 <Button type="submit" variant="primary">
                                                     <SendExclamationFill />
                                                 </Button>
@@ -164,15 +159,17 @@ const Home = () => {
                                     <Row>
                                         <div className="d-flex justify-content-center gap-4 m-1">
                                             {" "}
-                                            <div className="d-flex align-items-center gap-1">
+                                            {/* <div className="d-flex align-items-center gap-1">
                                                 {" "}
-                                                <Button onClick={handleUpload} className="d-flex" variant="transparent">
+                                                <Button
+                                                    onClick={uploadImageText}
+                                                    className="d-flex"
+                                                    variant="transparent"
+                                                >
                                                     {" "}
                                                     <ImageFill fontSize={"22"} />
-                                                    <p className="m-0">Carica Immagine</p>
-                                                    <input type="file" onChange={handleImageChange} />
                                                 </Button>
-                                            </div>
+                                            </div> */}
                                             <div className="d-flex align-items-center gap-1">
                                                 <CalendarFill fontSize={"22"} /> <p className="m-0">Evento</p>
                                             </div>

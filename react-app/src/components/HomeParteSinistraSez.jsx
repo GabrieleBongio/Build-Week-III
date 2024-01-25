@@ -1,6 +1,6 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
-import { BookmarkFill, CaretDownFill, CaretUpFill, Plus, SlashSquareFill } from "react-bootstrap-icons";
+import { Col } from "react-bootstrap";
+import { BookmarkFill } from "react-bootstrap-icons";
 
 const HomeParteSInistra = () => {
     return (

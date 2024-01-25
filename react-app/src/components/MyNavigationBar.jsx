@@ -9,9 +9,12 @@ import {
     PersonFill,
     MenuAppFill,
 } from "react-bootstrap-icons";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const MyNavigationBar = () => {
+    const Profilo = useSelector((state) => state.FetchData.dataFetchProfilo);
+
     return (
         <Container fluid>
             <Row>
@@ -128,7 +131,7 @@ const MyNavigationBar = () => {
                                                 className="rounded-circle p-1"
                                                 width={"60px"}
                                                 height={"60px"}
-                                                src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+                                                src={Profilo.image}
                                                 alt="placeholder"
                                             />{" "}
                                             <div className="d-flex flex-column">

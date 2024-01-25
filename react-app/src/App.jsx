@@ -7,6 +7,7 @@ import Me from "./components/Me";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProfilePage from "./components/ProfilePage";
 import Home from "./components/Home";
+import ColumnJob from "./components/ColumnJob";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/me" element={<Me />} />
         <Route path="/:userId" element={<ProfilePage />} />
+        <Route path="/job" element={<ColumnJob />} />
       </Routes>
       <Messaggistica />
       <Footer />

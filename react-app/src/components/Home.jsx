@@ -21,11 +21,13 @@ import {
     SlashSquareFill,
 } from "react-bootstrap-icons";
 import { fetchDataPostHome } from "../redux/functions/fetchPostHome";
+import { fetchDeleteHome } from "../redux/functions/fetchDeleteHome";
 
 const Home = () => {
     const urlpostHome = "https://striveschool-api.herokuapp.com/api/posts/";
     const dispatch = useDispatch();
     const datiPaginaNotizie = useSelector((state) => state.FetchData.dataFetchPaginaNotizie);
+
     const { dataFetchProfilo } = useSelector((state) => state.FetchData);
     const [datiPost, setDatiPost] = useState({
         text: "",
@@ -61,16 +63,34 @@ const Home = () => {
         fetchingData();
     }, []);
 
-    const handleSubmitHome = (event) => {
+    const handleSubmitHome = async (event) => {
         event.preventDefault();
-        PostData();
+        await PostData();
         setDatiPost({ text: "" });
+        await dispatch(
+            fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
+        );
+    };
+
+    const optionsDelete = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${Token} `,
+        },
+    };
+    const handleDelete = async (commentID) => {
+        await fetchDeleteHome(optionsDelete, commentID);
+
+        await dispatch(
+            fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
+        );
     };
 
     return (
         <>
             {datiPaginaNotizie && (
-                /* dataFetchProfilo && */ <div id="sezioneNotizie" className="mt-7">
+                <div id="sezioneNotizie" className="mt-7">
                     <Container>
                         <Row>
                             {/* SIDE SN */}
@@ -276,6 +296,20 @@ const Home = () => {
                                                                         {post.user.email}
                                                                     </p>
                                                                 </div>
+                                                            </div>
+                                                            <div>
+                                                                {post.user.email === dataFetchProfilo.email ? (
+                                                                    <Button
+                                                                        onClick={() => {
+                                                                            handleDelete(post._id);
+                                                                        }}
+                                                                        variant="trasparent"
+                                                                    >
+                                                                        ❌
+                                                                    </Button>
+                                                                ) : (
+                                                                    ""
+                                                                )}
                                                             </div>
                                                             {/* <div> Mood del Giorno: {post.user.bio}</div> */}
                                                         </div>

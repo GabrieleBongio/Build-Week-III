@@ -113,6 +113,10 @@ body {
   /* Aggiungi altri stili per viewport stretta se necessario */
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 #custombutton {
   border: 1px solid black; /* Imposta il colore del bordo e lo spessore iniziale */
 

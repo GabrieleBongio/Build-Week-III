@@ -21,11 +21,10 @@ import {
     BookmarkFill,
     SlashSquareFill,
 } from "react-bootstrap-icons";
-import { fetchDataPut } from "../redux/functions/fetchPut";
-
-const handleSubmitHome = () => {};
+import { fetchDataPostHome } from "../redux/functions/fetchPutHome";
 
 const Home = () => {
+    const urlpostHome = "https://striveschool-api.herokuapp.com/api/posts/";
     const dispatch = useDispatch();
     const datiPaginaNotizie = useSelector((state) => state.FetchData.dataFetchPaginaNotizie);
     const { dataFetchProfilo } = useSelector((state) => state.FetchData);
@@ -41,15 +40,6 @@ const Home = () => {
         },
     };
 
-    const optionsPost = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${Token} `,
-        },
-        body: JSON.stringify(datiPost),
-    };
-
     const fetchingData = async () => {
         /* prendo info del profilo */
         await dispatch(
@@ -61,14 +51,18 @@ const Home = () => {
         );
     };
 
-    const PutData = async () => {
-        fetchDataPut();
+    const PostData = async () => {
+        await fetchDataPostHome(urlpostHome, datiPost);
     };
 
     useEffect(() => {
         fetchingData();
-        PutData();
     }, []);
+
+    const handleSubmitHome = (event) => {
+        event.preventDefault();
+        PostData();
+    };
 
     return (
         <>

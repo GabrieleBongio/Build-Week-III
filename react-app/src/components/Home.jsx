@@ -43,7 +43,6 @@ const Home = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [datiPaginaNotizie]);
 
-    /*     const [arrayCommenti, setArrayCommenti] = useState([]) */
     console.log("datiPaginaNotizie", datiPaginaNotizie);
     console.log("dataFetchProfilo", dataFetchProfilo);
 
@@ -160,7 +159,7 @@ const Home = () => {
                                         </div>
                                     </Row>
                                     <Row>
-                                        <div className="d-flex justify-content-center gap-4 my-2">
+                                        <div className="d-flex justify-content-center gap-5 my-2">
                                             <div className="d-flex align-items-center gap-1">
                                                 <CalendarFill fontSize={"22"} /> <p className="m-0">Evento</p>
                                             </div>

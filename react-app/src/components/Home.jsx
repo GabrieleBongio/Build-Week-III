@@ -116,7 +116,7 @@ const Home = () => {
         event.preventDefault();
         console.log("ciao");
         const formData = new FormData(event.target);
-        postImageHome(postid, formData);
+        dispatch(postImageHome(postid, formData));
         dispatch(
             fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
         );

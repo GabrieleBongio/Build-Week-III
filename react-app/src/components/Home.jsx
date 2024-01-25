@@ -239,7 +239,7 @@ const Home = () => {
                                     </Row>
                                 </div>
                                 {/* sezione notizie  */}
-                                {datiPaginaNotizie.slice(45, 60).map((post) => (
+                                {datiPaginaNotizie.slice(-10).map((post) => (
                                     <div key={`post -${post._id}`} className="bg-white my-2 border rounded-3">
                                         <Row>
                                             <Row>

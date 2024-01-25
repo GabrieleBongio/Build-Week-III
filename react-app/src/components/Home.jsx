@@ -5,7 +5,6 @@ import { Token } from "../token";
 import { setDataFetchPaginaNotizie, setDataFetchProfilo } from "../redux/reducers/StateSliceReducers";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import {
   ImageFill,
   CalendarFill,
@@ -50,6 +49,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchingData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

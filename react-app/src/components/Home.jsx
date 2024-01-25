@@ -4,7 +4,7 @@ import { fetchData } from "../redux/functions/fetch";
 import { useSelector, useDispatch } from "react-redux";
 import { Token } from "../token";
 import { setDataFetchPaginaNotizie, setDataFetchProfilo } from "../redux/reducers/StateSliceReducers";
-import { Button, Col, Container, FormControl, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Container, FormControl, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import {
     CalendarFill,
@@ -13,14 +13,12 @@ import {
     ChatDotsFill,
     Shuffle,
     SendExclamationFill,
-    GearFill,
 } from "react-bootstrap-icons";
 import { fetchPost } from "../redux/functions/fetchPostHome";
 import { fetchDeleteHome } from "../redux/functions/fetchDeleteHome";
 import HomeParteDestra from "./HomeParteDestra";
 import HomeParteSInistra from "./HomeParteSinistraSez";
 import { postImageHome } from "../redux/functions/postImageHome";
-import { postImage } from "../redux/functions/postImage";
 
 const Home = () => {
     const urlpostHome = "https://striveschool-api.herokuapp.com/api/posts/";
@@ -213,7 +211,7 @@ const Home = () => {
                                                                         {post.user.email}
                                                                     </p>
                                                                 </div>
-                                                            </div>
+                                                            </div>{" "}
                                                             <div>
                                                                 {post.user.email === dataFetchProfilo.email ? (
                                                                     <Button
@@ -247,30 +245,49 @@ const Home = () => {
                                                         />
                                                     </div>
                                                     <div className="d-flex justify-content-center flex-grow-1">
-                                                        <div className="d-flex justify-content-end column-gap-5 flex-wrap">
-                                                            <div className="d-flex align-items-center p-1 gap-2">
-                                                                <HandThumbsUpFill fontSize={"25"} />{" "}
-                                                                <Button className="p-0" variant="transparent">
-                                                                    <p className="m-0 fs-7">Consiglia</p>
-                                                                </Button>
+                                                        <div className="d-flex justify-content-center  ">
+                                                            <div className="d-flex column-gap-5 flex-wrap">
+                                                                <div className="d-flex align-items-center p-1 gap-2 m-1">
+                                                                    <HandThumbsUpFill fontSize={"25"} />{" "}
+                                                                    <Button className="p-0" variant="transparent">
+                                                                        <p className="m-0 fs-7">Consiglia</p>
+                                                                    </Button>
+                                                                </div>
+                                                                <div className="d-flex align-items-center p-1 gap-2 m-1">
+                                                                    <ChatDotsFill fontSize={"25"} />{" "}
+                                                                    <Button className="p-0" variant="transparent">
+                                                                        <p className="m-0 fs-7">Commenta</p>
+                                                                    </Button>
+                                                                </div>
+                                                                <div className="d-flex align-items-center p-1 gap-2 m-1">
+                                                                    <Shuffle fontSize={"25"} />{" "}
+                                                                    <Button className="p-0" variant="transparent">
+                                                                        <p className="m-0 fs-7">Diffondi il Post</p>
+                                                                    </Button>
+                                                                </div>
                                                             </div>
-                                                            <div className="d-flex align-items-center p-1 gap-2">
-                                                                <ChatDotsFill fontSize={"25"} />{" "}
-                                                                <Button className="p-0" variant="transparent">
-                                                                    <p className="m-0 fs-7">Commenta</p>
-                                                                </Button>
-                                                            </div>
-                                                            <div className="d-flex align-items-center p-1 gap-2">
-                                                                <Shuffle fontSize={"25"} />{" "}
-                                                                <Button className="p-0" variant="transparent">
-                                                                    <p className="m-0 fs-7">Diffondi il Post</p>
-                                                                </Button>
-                                                            </div>
-                                                            <div className="d-flex align-items-center p-1 py-3 gap-2">
-                                                                <SendExclamationFill fontSize={"25"} />{" "}
-                                                                <Button className="p-0" variant="transparent">
-                                                                    <p className="m-0 fs-7">Invia</p>
-                                                                </Button>
+                                                            <div className="my-3">
+                                                                {post.user.email === "antonio.rizzuti@hotmail.com" ? (
+                                                                    <Form
+                                                                        className="d-flex align-items-center"
+                                                                        onSubmit={(event) => {
+                                                                            addImgToComment(event, post._id);
+                                                                        }}
+                                                                    >
+                                                                        <Form.Control
+                                                                            name="post"
+                                                                            type="file"
+                                                                            accept="image/*"
+                                                                            onChange={handleImageChange}
+                                                                        />
+                                                                        <Button variant="transparent" type="submit">
+                                                                            {" "}
+                                                                            Aggiungi immagine{" "}
+                                                                        </Button>
+                                                                    </Form>
+                                                                ) : (
+                                                                    ""
+                                                                )}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -282,133 +299,6 @@ const Home = () => {
                             </Col>
                             {/* SIDE DX */}
                             <HomeParteDestra />
-
-                            {/* DA ELIMINARE  DA ELIMINARE  DA ELIMINARE  DA ELIMINARE  DA ELIMINARE  */}
-                            {datiPaginaNotizie.map((miocommento) => (
-                                <>
-                                    {" "}
-                                    {miocommento.user.email === "antonio.rizzuti@hotmail.com" ? (
-                                        <div
-                                            key={`post-il mio-${miocommento._id}`}
-                                            className="bg-white my-2 border rounded-3"
-                                        >
-                                            <Row>
-                                                <Col>
-                                                    <div>
-                                                        <div>
-                                                            <div className="d-flex gap-2 my-2 p-2">
-                                                                <div>
-                                                                    <div>
-                                                                        <img
-                                                                            className="rounded-circle"
-                                                                            width={"50px"}
-                                                                            height={"50px"}
-                                                                            src={miocommento.user.image}
-                                                                            alt="immagine profilo"
-                                                                        />
-                                                                    </div>
-                                                                </div>
-                                                                <div className="me-auto">
-                                                                    <div>
-                                                                        <h6 className="fw-bold m-0 fs-6">
-                                                                            {miocommento.user.name}{" "}
-                                                                            {miocommento.user.surname}
-                                                                        </h6>
-                                                                    </div>
-                                                                    <div>
-                                                                        <p className="m-0 fs-7 text-secondary">
-                                                                            {miocommento.user.title}
-                                                                        </p>
-                                                                    </div>
-                                                                    <div>
-                                                                        <p className="m-0 fs-7 text-secondary">
-                                                                            {miocommento.user.email}
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                                <div>
-                                                                    {miocommento.user.email ===
-                                                                    dataFetchProfilo.email ? (
-                                                                        <Button
-                                                                            onClick={() => {
-                                                                                handleDelete(miocommento._id);
-                                                                            }}
-                                                                            variant="trasparent"
-                                                                        >
-                                                                            ❌
-                                                                        </Button>
-                                                                    ) : (
-                                                                        ""
-                                                                    )}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <Col>
-                                                        <div className="px-2">
-                                                            {" "}
-                                                            <p className="m-0 mx-2 mb-3">{miocommento.text}</p>
-                                                        </div>
-                                                        <div className="d-flex justify-content-center">
-                                                            {" "}
-                                                            <img
-                                                                className="rounded-3"
-                                                                width={"95%"}
-                                                                src={miocommento.image}
-                                                                alt="immagine"
-                                                            />
-                                                        </div>
-                                                        <div className="d-flex justify-content-center flex-grow-1">
-                                                            <div className="d-flex justify-content-end column-gap-5 flex-wrap">
-                                                                <div className="d-flex align-items-center p-1 gap-2">
-                                                                    <HandThumbsUpFill fontSize={"25"} />{" "}
-                                                                    <Button className="p-0" variant="transparent">
-                                                                        <p className="m-0 fs-7">Consiglia</p>
-                                                                    </Button>
-                                                                </div>
-                                                                <div className="d-flex align-items-center p-1 gap-2">
-                                                                    <ChatDotsFill fontSize={"25"} />{" "}
-                                                                    <Button className="p-0" variant="transparent">
-                                                                        <p className="m-0 fs-7">Commenta</p>
-                                                                    </Button>
-                                                                </div>
-                                                                <div className="d-flex align-items-center p-1 gap-2">
-                                                                    <Shuffle fontSize={"25"} />{" "}
-                                                                    <Button className="p-0" variant="transparent">
-                                                                        <p className="m-0 fs-7">Diffondi il Post</p>
-                                                                    </Button>
-                                                                </div>
-                                                                <div className="d-flex align-items-center p-1 py-3 gap-2">
-                                                                    <GearFill fontSize={"25"} />{" "}
-                                                                    <Button className="p-0" variant="transparent">
-                                                                        <p className="m-0 fs-7">Modifica</p>
-                                                                    </Button>
-                                                                    <Form
-                                                                        onSubmit={(event) => {
-                                                                            addImgToComment(event, miocommento._id);
-                                                                        }}
-                                                                    >
-                                                                        <input
-                                                                            name="post"
-                                                                            type="file"
-                                                                            accept="image/*"
-                                                                            onChange={handleImageChange}
-                                                                        />
-                                                                        <button type="submit"> modifica post </button>
-                                                                    </Form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </Col>
-                                                </Col>
-                                            </Row>
-                                        </div>
-                                    ) : (
-                                        ""
-                                    )}
-                                </>
-                            ))}
                         </Row>
                     </Container>
                 </div>

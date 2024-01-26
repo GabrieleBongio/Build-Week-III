@@ -198,10 +198,13 @@ const HomeCentro = () => {
                                     {" "}
                                     <p className="m-0 mx-2 mb-3">{post.text}</p>
                                 </div>
-                                <div className="d-flex justify-content-center">
-                                    {" "}
-                                    <img className="rounded-3" width={"95%"} src={post.image} alt="immagine" />
-                                </div>
+                                {post.image && (
+                                    <div className="d-flex justify-content-center">
+                                        {" "}
+                                        <img className="rounded-3" width={"95%"} src={post.image} alt="immagine" />
+                                    </div>
+                                )}
+
                                 <div className="d-flex justify-content-center flex-grow-1">
                                     <div className="d-flex justify-content-center  ">
                                         <div className="d-flex column-gap-5 flex-wrap">

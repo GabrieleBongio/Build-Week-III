@@ -30,6 +30,7 @@ const HomeCentro = () => {
   const [datiPost, setDatiPost] = useState("");
   const [commentId, setCommentId] = useState("");
   const [iscommentVisible, setIsCommentVisible] = useState(false);
+
   const [commentData, setCommentData] = useState({
     comment: "",
     rate: "",

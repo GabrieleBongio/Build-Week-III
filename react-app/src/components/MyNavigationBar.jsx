@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Nav, NavDropdown, Navbar, Row } from "react-bootstrap";
 import {
   BellFill,
@@ -10,13 +10,27 @@ import {
   MenuAppFill,
 } from "react-bootstrap-icons";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setQueryLavori } from "../redux/reducers/StateSliceReducers";
+import { useDispatch, useSelector } from "react-redux";
+import { setDataFetchProfilo, setQueryLavori } from "../redux/reducers/StateSliceReducers";
+import { fetchData } from "../redux/functions/fetch";
+import { Token } from "../token";
 
 const MyNavigationBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
+  const { dataFetchProfilo } = useSelector((state) => state.FetchData);
+
+  useEffect(() => {
+    const link = "https://striveschool-api.herokuapp.com/api/profile/me";
+
+    const options = {
+      headers: {
+        Authorization: "Bearer " + Token,
+      },
+    };
+    dispatch(fetchData(link, "", options, setDataFetchProfilo));
+  }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,24 +77,24 @@ const MyNavigationBar = () => {
             <Navbar.Toggle className="d-md-none" aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto d-md-none">
-                <Nav.Link href="#home">
+                <NavLink className="nav-link" to={"/"}>
                   <div className="d-flex align-items-center p-1">
                     <HouseDoorFill className="fs-4" />
                     <p className="m-0">Home</p>
                   </div>
-                </Nav.Link>
+                </NavLink>
                 <Nav.Link href="#link">
                   <div className="d-flex align-items-center p-1">
                     <PeopleFill className="fs-4" />
                     <p className="m-0">Rete</p>
                   </div>
                 </Nav.Link>
-                <Nav.Link href="#link">
+                <NavLink className={"nav-link"} to={"/job"}>
                   <div className="d-flex align-items-center p-1">
                     <BriefcaseFill className="fs-4" />
                     <p className="m-0">Lavoro</p>
                   </div>
-                </Nav.Link>
+                </NavLink>
                 <Nav.Link href="#link">
                   <div className="d-flex align-items-center p-1">
                     <ChatRightDotsFill className="fs-4" />
@@ -110,8 +124,12 @@ const MyNavigationBar = () => {
                 <p className="m-0">Rete</p>
               </div>
               <div className="d-flex flex-column align-items-center p-1 text-secondary">
-                <BriefcaseFill className="fs-4" />
-                <p className="m-0">Lavoro</p>
+                <NavLink className="text-decoration-none" to={"/job"}>
+                  <div className="d-flex flex-column align-items-center text-secondary">
+                    <BriefcaseFill className="fs-4" />
+                    <p className="m-0">Lavoro</p>
+                  </div>
+                </NavLink>
               </div>
               <div className="d-flex flex-column align-items-center p-1 text-secondary">
                 <ChatRightDotsFill className="fs-4" />
@@ -127,25 +145,37 @@ const MyNavigationBar = () => {
             <div className="d-none d-md-flex d-flex flex-column align-items-center ms-3 me-2">
               <PersonFill className="fs-4 text-secondary" />
               <NavDropdown drop="down-centered" className="mx-2 text-secondary" title="Tu">
-                {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
                 <Row style={{ width: "250px" }}>
                   <div className="d-flex flex-column mb-2">
                     <div className="d-flex">
-                      <img
-                        className="rounded-circle p-1"
-                        width={"60px"}
-                        height={"60px"}
-                        src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
-                        alt="placeholder"
-                      />{" "}
+                      {dataFetchProfilo ? (
+                        <img
+                          className="rounded-circle p-1 circle-img"
+                          width={"60px"}
+                          height={"60px"}
+                          src={dataFetchProfilo.image}
+                          alt="placeholder"
+                        />
+                      ) : (
+                        <img
+                          className="rounded-circle p-1"
+                          width={"60px"}
+                          height={"60px"}
+                          src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+                          alt="placeholder"
+                        />
+                      )}
                       <div className="d-flex flex-column">
-                        <h6 className="m-1">Nome Cognome </h6>
-                        <p className="m-0 fs-8 mx-1">Lorem, ipsum. </p>
-                        <p className="m-0 fs-8 mx-1">Lorem, ipsum. </p>
+                        {dataFetchProfilo ? (
+                          <h6 className="m-1">{dataFetchProfilo.name + " " + dataFetchProfilo.surname}</h6>
+                        ) : (
+                          <h6 className="m-1">Nome Cognome</h6>
+                        )}
+                        {dataFetchProfilo ? (
+                          <p className="m-0 fs-8 mx-1">{dataFetchProfilo.title}</p>
+                        ) : (
+                          <p className="m-0 fs-8 mx-1">Lorem, ipsum. </p>
+                        )}
                       </div>
                     </div>
                     <div className="d-flex justify-content-center mt-2">
@@ -196,13 +226,7 @@ const MyNavigationBar = () => {
             <div className="vr d-none d-md-block"></div>
             <div className="d-none d-md-flex d-flex flex-column align-items-center">
               <MenuAppFill className="fs-4 text-secondary" />
-              <NavDropdown className="mx-2 text-secondary" title="Per le aziende" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                {/*     <NavDropdown.Divider /> */}
-                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-              </NavDropdown>
+              <NavDropdown className="mx-2 text-secondary" title="Per le aziende" id="basic-nav-dropdown"></NavDropdown>
               {/* <p>Prova Premium per 0 EUR</p> */}
             </div>
             {/*   </Navbar.Collapse> */}

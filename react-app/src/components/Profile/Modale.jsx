@@ -7,7 +7,7 @@ import { Token } from "../../token";
 import { fetchDataPost } from "../../redux/functions/fetchPost";
 import { fetchData } from "../../redux/functions/fetch";
 import { setDataFetchEsperienze } from "../../redux/reducers/StateSliceReducers";
-import { optionsGet } from "../components/Esperienze";
+import { optionsGet } from "./Esperienze";
 import { useDispatch } from "react-redux";
 import { fetchDataPut } from "../../redux/functions/fetchPut";
 

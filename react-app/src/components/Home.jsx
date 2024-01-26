@@ -27,7 +27,8 @@ const Home = () => {
 
     const { dataFetchProfilo } = useSelector((state) => state.FetchData);
     const [datiPost, setDatiPost] = useState("");
-    /*     const [image, setImage] = useState(null); */
+    const [commentId, setCommentId] = useState("");
+    const [iscommentVisible, setIsCommentVisible] = useState(false);
 
     const arrayCommentiTagliato = function () {
         let arrayNotizie = [...datiPaginaNotizie];
@@ -101,6 +102,8 @@ const Home = () => {
             fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
         );
     };
+
+    const handleComment = () => {};
 
     return (
         <>
@@ -230,16 +233,37 @@ const Home = () => {
                                                                 </div>
                                                                 <div className="d-flex align-items-center p-1 gap-2 m-1">
                                                                     <ChatDotsFill fontSize={"25"} />{" "}
-                                                                    <Button className="p-0" variant="transparent">
+                                                                    <Button
+                                                                        onClick={() => {
+                                                                            setCommentId(post._id);
+                                                                            setIsCommentVisible(!iscommentVisible);
+                                                                        }}
+                                                                        className="p-0"
+                                                                        variant="transparent"
+                                                                    >
                                                                         <p className="m-0 fs-7">Commenta</p>
                                                                     </Button>
                                                                 </div>
+
                                                                 <div className="d-flex align-items-center p-1 gap-2 m-1">
                                                                     <Shuffle fontSize={"25"} />{" "}
                                                                     <Button className="p-0" variant="transparent">
                                                                         <p className="m-0 fs-7">Diffondi il Post</p>
                                                                     </Button>
                                                                 </div>
+                                                                {commentId === post._id && iscommentVisible ? (
+                                                                    <div className="my-3 mx-3 w-100 d-flex justify-content-center">
+                                                                        {" "}
+                                                                        <Form.Control
+                                                                            className="w-75"
+                                                                            placeholder="scrivi un commento..."
+                                                                            aria-label="Username"
+                                                                            aria-describedby="basic-addon1"
+                                                                        />
+                                                                    </div>
+                                                                ) : (
+                                                                    ""
+                                                                )}
                                                             </div>
                                                             <div className="my-3">
                                                                 {post.user.email === "antonio.rizzuti@hotmail.com" ? (

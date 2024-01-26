@@ -21,6 +21,8 @@ const HomeCentro = () => {
     const urlpostHome = "https://striveschool-api.herokuapp.com/api/posts/";
     const dispatch = useDispatch();
     const datiPaginaNotizie = useSelector((state) => state.FetchData.dataFetchPaginaNotizie);
+    const commentiHome = useSelector((state) => state.FetchData.dataFetchGetCommenti);
+    console.log("commentiHome", commentiHome);
 
     const { dataFetchProfilo } = useSelector((state) => state.FetchData);
     const [datiPost, setDatiPost] = useState("");
@@ -32,18 +34,30 @@ const HomeCentro = () => {
         elementId: "",
     });
 
-    const arrayCommentiTagliato = function () {
+    /* nozie home */
+    const arrayNotizieTagliato = function () {
         let arrayNotizie = [...datiPaginaNotizie];
         let arrayNotizieTagliato = arrayNotizie.reverse().slice(0, 10);
         return arrayNotizieTagliato;
     };
 
+    /* commenti sotto i post  */
+    const arrayCommentiPostTagliato = function () {
+        let arraycommenti = [...commentiHome];
+        let arraycommentiTagliato = arraycommenti.reverse().slice(0, 10);
+        console.log("arraycommentiTagliato", arraycommentiTagliato);
+        return arraycommentiTagliato;
+    };
+
     useEffect(() => {
         if (datiPaginaNotizie) {
-            arrayCommentiTagliato();
+            arrayNotizieTagliato();
+        }
+        if (commentiHome) {
+            arrayCommentiPostTagliato();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [datiPaginaNotizie]);
+    }, [datiPaginaNotizie, commentiHome]);
 
     const optionsGet = {
         method: "GET",
@@ -130,7 +144,7 @@ const HomeCentro = () => {
                 </Row>
             </div>
             {/* sezione notizie  */}
-            {arrayCommentiTagliato().map((post) => (
+            {arrayNotizieTagliato().map((post) => (
                 <div key={`post -${post._id}`} className="bg-white my-2 border rounded-3">
                     <Row>
                         <Col>
@@ -218,52 +232,65 @@ const HomeCentro = () => {
                                                 </Button>
                                             </div>
                                             {commentId === post._id && iscommentVisible ? (
-                                                <div className="my-3 mx-3 w-100 d-flex justify-content-center flex-column">
-                                                    {" "}
-                                                    {/* commento */}
-                                                    <Form.Control
-                                                        className="w-75"
-                                                        placeholder="scrivi un commento..."
-                                                        aria-label="Username"
-                                                        aria-describedby="basic-addon1"
-                                                        onChange={(event) => {
-                                                            setCommentData({
-                                                                ...commentData,
-                                                                comment: event.target.value,
-                                                            });
-                                                        }}
-                                                        /* value={} */
-                                                    />
-                                                    {/* rate */}
-                                                    <Form.Control
-                                                        className="w-75"
-                                                        placeholder="scrivi un commento..."
-                                                        aria-label="Username"
-                                                        aria-describedby="basic-addon1"
-                                                        onChange={(event) => {
-                                                            setCommentData({
-                                                                ...commentData,
-                                                                rate: event.target.value,
-                                                            });
-                                                        }}
-                                                        /* value={} */
-                                                    />
-                                                    {/* comment id */}
-                                                    <Form.Control
-                                                        readOnly
-                                                        className="w-75 "
-                                                        placeholder="scrivi un commento..."
-                                                        aria-label="Username"
-                                                        aria-describedby="basic-addon1"
-                                                        onChange={(event) => {
-                                                            setCommentData({
-                                                                ...commentData,
-                                                                rate: event.target.value,
-                                                            });
-                                                        }}
-                                                        value={post._id}
-                                                    />
-                                                </div>
+                                                <>
+                                                    <div className="my-3 mx-3 w-100 d-flex justify-content-center flex-column">
+                                                        {" "}
+                                                        {/* commento */}
+                                                        <Form.Control
+                                                            className="w-75"
+                                                            placeholder="scrivi un commento..."
+                                                            aria-label="Username"
+                                                            aria-describedby="basic-addon1"
+                                                            onChange={(event) => {
+                                                                setCommentData({
+                                                                    ...commentData,
+                                                                    comment: event.target.value,
+                                                                });
+                                                            }}
+                                                            /* value={} */
+                                                        />
+                                                        {/* rate */}
+                                                        <Form.Control
+                                                            className="w-75"
+                                                            placeholder="scrivi un commento..."
+                                                            aria-label="Username"
+                                                            aria-describedby="basic-addon1"
+                                                            onChange={(event) => {
+                                                                setCommentData({
+                                                                    ...commentData,
+                                                                    rate: event.target.value,
+                                                                });
+                                                            }}
+                                                            /* value={} */
+                                                        />
+                                                        {/* comment id */}
+                                                        <Form.Control
+                                                            readOnly
+                                                            className="w-75 "
+                                                            placeholder="scrivi un commento..."
+                                                            aria-label="Username"
+                                                            aria-describedby="basic-addon1"
+                                                            onChange={(event) => {
+                                                                setCommentData({
+                                                                    ...commentData,
+                                                                    rate: event.target.value,
+                                                                });
+                                                            }}
+                                                            value={post._id}
+                                                        />
+                                                    </div>
+                                                    {arrayCommentiPostTagliato().map((commento) => (
+                                                        <Row>
+                                                            <Col xs="12">
+                                                                <div className="d-flex flex-column p-3">
+                                                                    <p className="m-0 my-1">{commento.author}</p>
+                                                                    <p className="m-0 my-1">{commento.comment}</p>
+                                                                    <p className="m-0 my-1">{commento.rate} 🧨 </p>
+                                                                </div>
+                                                            </Col>
+                                                        </Row>
+                                                    ))}
+                                                </>
                                             ) : (
                                                 ""
                                             )}

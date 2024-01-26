@@ -5,6 +5,7 @@ import { Token, TokenCommenti } from "../../token";
 import { setDataFetchPaginaNotizie } from "../../redux/reducers/StateSliceReducers";
 import { Button, Col, FormControl, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
 import {
   CalendarFill,
   EnvelopePaperFill,
@@ -77,9 +78,8 @@ const HomeCentro = () => {
 
   const handleSubmitHome = async (event) => {
     event.preventDefault();
-
     await fetchPost(urlpostHome, datiPost.text);
-    setDatiPost("");
+    setDatiPost({ text: "" });
     dispatch(fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie));
   };
 
@@ -141,6 +141,8 @@ const HomeCentro = () => {
       setInputImg(null);
     }
   };
+
+  const navigate = useNavigate();
 
   return (
     <Col xs="12" sm="12" md="12" lg="8" xl="6">
@@ -204,7 +206,7 @@ const HomeCentro = () => {
                     </div>
                     <div className="me-auto">
                       <div>
-                        <h6 className="fw-bold m-0 fs-6">
+                        <h6 className="fw-bold m-0 fs-6 cursor-pointer" onClick={() => navigate(`/${post.user._id}`)}>
                           {post.user.name} {post.user.surname}
                         </h6>
                       </div>

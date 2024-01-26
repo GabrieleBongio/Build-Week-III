@@ -151,6 +151,18 @@ const Esperienze = (props) => {
                             })}
                           </p>
                         </Col>
+                        {esperienza.endDate && (
+                          <Col md="8" lg="4">
+                            <p className="m-0">
+                              <span className="fw-semibold">Data Fine: </span>
+                              {new Date(esperienza.endDate).toLocaleDateString("it-IT", {
+                                day: "2-digit",
+                                month: "2-digit",
+                                year: "numeric",
+                              })}
+                            </p>
+                          </Col>
+                        )}
                       </Row>
                       {me && (
                         <Button

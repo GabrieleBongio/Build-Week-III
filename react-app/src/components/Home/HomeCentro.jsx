@@ -3,7 +3,7 @@ import { fetchData } from "../../redux/functions/fetch";
 import { useSelector, useDispatch } from "react-redux";
 import { Token } from "../../token";
 import { setDataFetchPaginaNotizie } from "../../redux/reducers/StateSliceReducers";
-import { Button, Col, FormControl, Row } from "react-bootstrap";
+import { Button, Col, Container, FormControl, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import {
     CalendarFill,
@@ -44,7 +44,7 @@ const HomeCentro = () => {
     /* commenti sotto i post  */
     const arrayCommentiPostTagliato = function () {
         let arraycommenti = [...commentiHome];
-        let arraycommentiTagliato = arraycommenti.reverse().slice(0, 10);
+        let arraycommentiTagliato = arraycommenti.reverse().slice(0, 50);
         console.log("arraycommentiTagliato", arraycommentiTagliato);
         return arraycommentiTagliato;
     };
@@ -270,25 +270,43 @@ const HomeCentro = () => {
                                                             placeholder="scrivi un commento..."
                                                             aria-label="Username"
                                                             aria-describedby="basic-addon1"
-                                                            onChange={(event) => {
+                                                            /* onChange={(event) => {
                                                                 setCommentData({
                                                                     ...commentData,
                                                                     rate: event.target.value,
                                                                 });
-                                                            }}
+                                                            }} */
                                                             value={post._id}
                                                         />
                                                     </div>
+
                                                     {arrayCommentiPostTagliato().map((commento) => (
-                                                        <Row>
-                                                            <Col xs="12">
-                                                                <div className="d-flex flex-column p-3">
-                                                                    <p className="m-0 my-1">{commento.author}</p>
-                                                                    <p className="m-0 my-1">{commento.comment}</p>
-                                                                    <p className="m-0 my-1">{commento.rate} 🧨 </p>
-                                                                </div>
-                                                            </Col>
-                                                        </Row>
+                                                        <Container key={`commenti-visibili-${commento._id}`}>
+                                                            {commento.elementId === post._id ? (
+                                                                <Row
+                                                                    key={`comment-id${commento._id}`}
+                                                                    className="w-100"
+                                                                >
+                                                                    <Col xs="12" sm="12" md="12">
+                                                                        <div className="d-flex gap-3 w-100 p-3">
+                                                                            <p className="m-0 my-1">
+                                                                                {commento.author}
+                                                                            </p>
+                                                                            <p className="m-0 my-1">
+                                                                                {commento.comment}
+                                                                            </p>
+                                                                            <p className="m-0 my-1">
+                                                                                {commento.rate} 🧨{" "}
+                                                                            </p>
+                                                                        </div>
+                                                                        {/* {{}  PER FARE LA DELETE PRIMA FAI LA POST 
+                                                                <div></div>} */}
+                                                                    </Col>
+                                                                </Row>
+                                                            ) : (
+                                                                ""
+                                                            )}
+                                                        </Container>
                                                     ))}
                                                 </>
                                             ) : (

@@ -236,53 +236,55 @@ const HomeCentro = () => {
                                                     <div className="my-3 mx-3 w-100 d-flex justify-content-center flex-column">
                                                         {" "}
                                                         {/* commento */}
-                                                        <Form.Control
-                                                            className="w-75"
-                                                            placeholder="scrivi un commento..."
-                                                            aria-label="Username"
-                                                            aria-describedby="basic-addon1"
-                                                            onChange={(event) => {
-                                                                setCommentData({
-                                                                    ...commentData,
-                                                                    comment: event.target.value,
-                                                                });
-                                                            }}
-                                                            /* value={} */
-                                                        />
-                                                        {/* rate */}
-                                                        <Form.Control
-                                                            className="w-75"
-                                                            placeholder="scrivi un commento..."
-                                                            aria-label="Username"
-                                                            aria-describedby="basic-addon1"
-                                                            onChange={(event) => {
-                                                                setCommentData({
-                                                                    ...commentData,
-                                                                    rate: event.target.value,
-                                                                });
-                                                            }}
-                                                            /* value={} */
-                                                        />
-                                                        {/* comment id */}
-                                                        <Form.Control
-                                                            className="w-75 "
-                                                            placeholder="scrivi un commento..."
-                                                            aria-label="Username"
-                                                            aria-describedby="basic-addon1"
-                                                            onFocus={() => {
-                                                                setCommentData({
-                                                                    ...commentData,
-                                                                    elementId: post._id,
-                                                                });
-                                                            }}
-                                                            /* onChange={() => {
+                                                        <Form>
+                                                            <Form.Control
+                                                                className="w-75"
+                                                                placeholder="scrivi un commento..."
+                                                                aria-label="Username"
+                                                                aria-describedby="basic-addon1"
+                                                                onChange={(event) => {
+                                                                    setCommentData({
+                                                                        ...commentData,
+                                                                        comment: event.target.value,
+                                                                    });
+                                                                }}
+                                                                /* value={} */
+                                                            />
+                                                            {/* rate */}
+                                                            <Form.Control
+                                                                className="w-75"
+                                                                placeholder="scrivi un commento..."
+                                                                aria-label="Username"
+                                                                aria-describedby="basic-addon1"
+                                                                onChange={(event) => {
+                                                                    setCommentData({
+                                                                        ...commentData,
+                                                                        rate: event.target.value,
+                                                                    });
+                                                                }}
+                                                                /* value={} */
+                                                            />
+                                                            {/* comment id */}
+                                                            <Form.Control
+                                                                className="w-75 "
+                                                                placeholder="scrivi un commento..."
+                                                                aria-label="Username"
+                                                                aria-describedby="basic-addon1"
+                                                                onFocus={() => {
+                                                                    setCommentData({
+                                                                        ...commentData,
+                                                                        elementId: post._id,
+                                                                    });
+                                                                }}
+                                                                /* onChange={() => {
                                                                 setCommentData({
                                                                     ...commentData,
                                                                     elementId: post._id,
                                                                 });
                                                             }} */
-                                                            value={post._id}
-                                                        />
+                                                                value={post._id}
+                                                            />
+                                                        </Form>
                                                     </div>
 
                                                     {arrayCommentiPostTagliato().map((commento) => (

@@ -3,7 +3,7 @@ import { fetchData } from "../../redux/functions/fetch";
 import { useSelector, useDispatch } from "react-redux";
 import { Token } from "../../token";
 import { setDataFetchPaginaNotizie } from "../../redux/reducers/StateSliceReducers";
-import { Button, Col, FormControl, Row } from "react-bootstrap";
+import { Button, Col, Container, FormControl, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import {
   CalendarFill,
@@ -25,25 +25,18 @@ const HomeCentro = () => {
   const urlpostHome = "https://striveschool-api.herokuapp.com/api/posts/";
   const dispatch = useDispatch();
   const datiPaginaNotizie = useSelector((state) => state.FetchData.dataFetchPaginaNotizie);
+  const commentiHome = useSelector((state) => state.FetchData.dataFetchGetCommenti);
+  console.log("commentiHome", commentiHome);
 
   const { dataFetchProfilo } = useSelector((state) => state.FetchData);
   const [datiPost, setDatiPost] = useState("");
   const [commentId, setCommentId] = useState("");
   const [iscommentVisible, setIsCommentVisible] = useState(false);
-
   const [commentData, setCommentData] = useState({
     comment: "",
     rate: "",
     elementId: "",
   });
-
-  const commenti = [
-    {
-      comment: "ciao",
-      rate: 5,
-      elementId: "65b3880531a73f0019d5c7d5",
-    },
-  ];
 
   const [inputImg, setInputImg] = useState(null);
 
@@ -56,19 +49,30 @@ const HomeCentro = () => {
     }
   };
 
-  const arrayCommentiTagliato = function () {
+  /* nozie home */
+  const arrayNotizieTagliato = function () {
     let arrayNotizie = [...datiPaginaNotizie];
     let arrayNotizieTagliato = arrayNotizie.reverse().slice(0, 10);
-    console.log("arrayNotizieTagliato", arrayNotizieTagliato);
     return arrayNotizieTagliato;
+  };
+
+  /* commenti sotto i post  */
+  const arrayCommentiPostTagliato = function () {
+    let arraycommenti = [...commentiHome];
+    let arraycommentiTagliato = arraycommenti.reverse().slice(0, 50);
+    console.log("arraycommentiTagliato", arraycommentiTagliato);
+    return arraycommentiTagliato;
   };
 
   useEffect(() => {
     if (datiPaginaNotizie) {
-      arrayCommentiTagliato();
+      arrayNotizieTagliato();
+    }
+    if (commentiHome) {
+      arrayCommentiPostTagliato();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [datiPaginaNotizie]);
+  }, [datiPaginaNotizie, commentiHome]);
 
   const optionsGet = {
     method: "GET",
@@ -102,7 +106,8 @@ const HomeCentro = () => {
     event.preventDefault();
     console.log("ciao");
     const formData = new FormData(event.target);
-    dispatch(postImageHome(postid, formData));
+    await postImageHome(postid, formData);
+    console.log("ciao");
     dispatch(fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie));
   };
 
@@ -148,7 +153,7 @@ const HomeCentro = () => {
         </Row>
       </div>
       {/* sezione notizie  */}
-      {arrayCommentiTagliato().map((post) => (
+      {arrayNotizieTagliato().map((post) => (
         <div key={`post -${post._id}`} className="bg-white my-2 border rounded-3 p-3">
           <Row className="g-0">
             <Col>
@@ -288,8 +293,9 @@ const HomeCentro = () => {
                         </Button>
                       </div>
                     )}
-                    {commenti.map((commento) => {
+                    {arrayCommentiPostTagliato().map((commento) => {
                       /* numberOfComments() */
+                      /* commento._idcommento.author */
                       return (
                         <div className="d-flex align-items-center gap-2 border rounded-3 p-2 mx-5">
                           <p className="m-0">{commento.comment}</p>

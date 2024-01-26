@@ -10,20 +10,20 @@ import Home from "./components/Home/Home";
 import Lavoro from "./components/Job/Lavoro";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <MyNavigationBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/me" element={<Me />} />
-        <Route path="/:userId" element={<ProfilePage />} />
-        <Route path="/job" element={<Lavoro />} />
-      </Routes>
-      <Messaggistica />
-      <Footer />
-      {/* PROVA DELLA FETCH  */}
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <MyNavigationBar />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/me" element={<Me />} />
+                <Route path="/:userId" element={<ProfilePage />} />
+                <Route path="/job" element={<Lavoro />} />
+            </Routes>
+            <Messaggistica />
+            <Footer />
+            {/* PROVA DELLA FETCH  */}
+        </BrowserRouter>
+    );
 }
 
 export default App;

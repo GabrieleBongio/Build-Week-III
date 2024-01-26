@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchData } from "../../redux/functions/fetch";
 import { useSelector, useDispatch } from "react-redux";
-import { Token } from "../../token";
+import { Token, TokenCommenti } from "../../token";
 import { setDataFetchPaginaNotizie } from "../../redux/reducers/StateSliceReducers";
 import { Button, Col, Container, FormControl, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
@@ -16,6 +16,9 @@ import {
 import { fetchPost } from "../../redux/functions/fetchPostHome";
 import { fetchDeleteHome } from "../../redux/functions/fetchDeleteHome";
 import { postImageHome } from "../../redux/functions/postImageHome";
+import { fetchPostCommenti } from "../../redux/functions/fetchPostCommenti";
+import { setdataFetchGetCommenti } from "../../redux/reducers/StateSliceReducers";
+import { fetchDeleteCommentiHome } from "../../redux/functions/fetchDeleteCommenti";
 
 const HomeCentro = () => {
     const urlpostHome = "https://striveschool-api.herokuapp.com/api/posts/";
@@ -38,6 +41,7 @@ const HomeCentro = () => {
     const arrayNotizieTagliato = function () {
         let arrayNotizie = [...datiPaginaNotizie];
         let arrayNotizieTagliato = arrayNotizie.reverse().slice(0, 10);
+        console.log("arrayNotizieTagliato", arrayNotizieTagliato);
         return arrayNotizieTagliato;
     };
 
@@ -99,6 +103,41 @@ const HomeCentro = () => {
         console.log("ciao");
         dispatch(
             fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
+        );
+    };
+
+    const optionsGetCommenti = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${TokenCommenti} `,
+        },
+    };
+
+    const handlesubmitCommento = async (event) => {
+        event.preventDefault();
+        console.log("ciao");
+        await fetchPostCommenti("https://striveschool-api.herokuapp.com/api/comments/", commentData);
+        /* rifaccio la fetch dei commenti per vedere aggiornamento in tempo reale  */
+        dispatch(
+            fetchData(
+                "https://striveschool-api.herokuapp.com/api/comments/",
+                "",
+                optionsGetCommenti,
+                setdataFetchGetCommenti
+            )
+        );
+    };
+
+    const handleDeleteCommento = async (idCommento) => {
+        await fetchDeleteCommentiHome(`https://striveschool-api.herokuapp.com/api/comments/${idCommento}`);
+        dispatch(
+            fetchData(
+                "https://striveschool-api.herokuapp.com/api/comments/",
+                "",
+                optionsGetCommenti,
+                setdataFetchGetCommenti
+            )
         );
     };
 
@@ -198,10 +237,13 @@ const HomeCentro = () => {
                                     {" "}
                                     <p className="m-0 mx-2 mb-3">{post.text}</p>
                                 </div>
-                                <div className="d-flex justify-content-center">
-                                    {" "}
-                                    <img className="rounded-3" width={"95%"} src={post.image} alt="immagine" />
-                                </div>
+                                {post.image && (
+                                    <div className="d-flex justify-content-center">
+                                        {" "}
+                                        <img className="rounded-3" width={"95%"} src={post.image} alt="immagine" />
+                                    </div>
+                                )}
+
                                 <div className="d-flex justify-content-center flex-grow-1">
                                     <div className="d-flex justify-content-center  ">
                                         <div className="d-flex column-gap-5 flex-wrap">
@@ -236,54 +278,74 @@ const HomeCentro = () => {
                                                     <div className="my-3 mx-3 w-100 d-flex justify-content-center flex-column">
                                                         {" "}
                                                         {/* commento */}
-                                                        <Form>
-                                                            <Form.Control
-                                                                className="w-75"
-                                                                placeholder="scrivi un commento..."
-                                                                aria-label="Username"
-                                                                aria-describedby="basic-addon1"
-                                                                onChange={(event) => {
-                                                                    setCommentData({
-                                                                        ...commentData,
-                                                                        comment: event.target.value,
-                                                                    });
-                                                                }}
-                                                                /* value={} */
-                                                            />
-                                                            {/* rate */}
-                                                            <Form.Control
-                                                                className="w-75"
-                                                                placeholder="scrivi un commento..."
-                                                                aria-label="Username"
-                                                                aria-describedby="basic-addon1"
-                                                                onChange={(event) => {
-                                                                    setCommentData({
-                                                                        ...commentData,
-                                                                        rate: event.target.value,
-                                                                    });
-                                                                }}
-                                                                /* value={} */
-                                                            />
-                                                            {/* comment id */}
-                                                            <Form.Control
-                                                                className="w-75 "
-                                                                placeholder="scrivi un commento..."
-                                                                aria-label="Username"
-                                                                aria-describedby="basic-addon1"
+                                                        <Form
+                                                            onSubmit={(event) => {
+                                                                handlesubmitCommento(event);
+                                                            }}
+                                                        >
+                                                            <div
                                                                 onFocus={() => {
                                                                     setCommentData({
                                                                         ...commentData,
                                                                         elementId: post._id,
                                                                     });
                                                                 }}
-                                                                /* onChange={() => {
+                                                            >
+                                                                <Form.Control
+                                                                    className="w-75"
+                                                                    placeholder="scrivi un commento..."
+                                                                    aria-label="Username"
+                                                                    aria-describedby="basic-addon1"
+                                                                    onChange={(event) => {
+                                                                        setCommentData({
+                                                                            ...commentData,
+                                                                            comment: event.target.value,
+                                                                        });
+                                                                    }}
+                                                                    /* value={} */
+                                                                />
+                                                                {/* rate */}
+                                                                <Form.Control
+                                                                    className="w-75"
+                                                                    placeholder="dai un voto..."
+                                                                    type="number"
+                                                                    aria-label="Username"
+                                                                    aria-describedby="basic-addon1"
+                                                                    onChange={(event) => {
+                                                                        setCommentData({
+                                                                            ...commentData,
+                                                                            rate: event.target.value,
+                                                                        });
+                                                                    }}
+                                                                    /* value={} */
+                                                                />
+                                                                {/* comment id */}
+                                                                <Form.Control
+                                                                    readOnly
+                                                                    className="w-75 invisible"
+                                                                    placeholder="scrivi un commento..."
+                                                                    aria-label="Username"
+                                                                    aria-describedby="basic-addon1"
+                                                                    /* onFocus={() => {
+                                                                        setCommentData({
+                                                                            ...commentData,
+                                                                            elementId: post._id,
+                                                                        });
+                                                                    }} */
+                                                                    /* onChange={() => {
                                                                 setCommentData({
                                                                     ...commentData,
                                                                     elementId: post._id,
                                                                 });
                                                             }} */
-                                                                value={post._id}
-                                                            />
+                                                                    value={post._id}
+                                                                />
+                                                            </div>
+
+                                                            <Button className="mt-2" type="submit">
+                                                                {" "}
+                                                                Send{" "}
+                                                            </Button>
                                                         </Form>
                                                     </div>
 
@@ -294,21 +356,40 @@ const HomeCentro = () => {
                                                                     key={`comment-id${commento._id}`}
                                                                     className="w-100"
                                                                 >
-                                                                    <Col xs="12" sm="12" md="12">
-                                                                        <div className="d-flex gap-3 w-100 p-3">
-                                                                            <p className="m-0 my-1">
-                                                                                {commento.author}
-                                                                            </p>
-                                                                            <p className="m-0 my-1">
-                                                                                {commento.comment}
-                                                                            </p>
-                                                                            <p className="m-0 my-1">
-                                                                                {commento.rate} 🧨{" "}
-                                                                            </p>
-                                                                        </div>
-                                                                        {/* {{}  PER FARE LA DELETE PRIMA FAI LA POST 
-                                                                <div></div>} */}
-                                                                    </Col>
+                                                                    <div className="d-flex align-items-center w-75">
+                                                                        <Col xs="12" sm="12" md="12">
+                                                                            <div className="d-flex  ">
+                                                                                <div className="d-flex gap-3 w-100 p-3 ">
+                                                                                    <p className="m-0 my-1">
+                                                                                        {commento.author}
+                                                                                    </p>
+                                                                                    <p className="m-0 my-1">
+                                                                                        {commento.comment}
+                                                                                    </p>
+                                                                                    <p className="m-0 my-1">
+                                                                                        {commento.rate} 🧨{" "}
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </Col>
+                                                                        {/* CONDIZIONE DA CAMBIARE AFFINCHE IO POSSA MODIFICARE ANCHE COMMENTI MIEI SU POST NON MIEI  */}
+                                                                        {dataFetchProfilo.email === commento.author ? (
+                                                                            <div>
+                                                                                <Button
+                                                                                    onClick={() => {
+                                                                                        handleDeleteCommento(
+                                                                                            commento._id
+                                                                                        );
+                                                                                    }}
+                                                                                    variant="transparent"
+                                                                                >
+                                                                                    ❌
+                                                                                </Button>
+                                                                            </div>
+                                                                        ) : (
+                                                                            ""
+                                                                        )}
+                                                                    </div>
                                                                 </Row>
                                                             ) : (
                                                                 ""

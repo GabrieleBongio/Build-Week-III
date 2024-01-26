@@ -1,4 +1,4 @@
-export const fetchDataPost = (option, idUtente, linkEnd) => async (dispatch) => {
+export const fetchDataPost = async (option, idUtente, linkEnd) => {
     const URLPOST = `https://striveschool-api.herokuapp.com/api/profile/${idUtente}/${linkEnd}`;
 
     try {

@@ -112,9 +112,8 @@ const HomeCentro = () => {
     },
   };
 
-  const handlesubmitCommento = async (event, postId) => {
+  const handlesubmitCommento = async (event) => {
     event.preventDefault();
-    setCommentData({ ...commentData, elementId: postId });
     console.log("ciao");
     await fetchPostCommenti("https://striveschool-api.herokuapp.com/api/comments/", commentData);
     /* rifaccio la fetch dei commenti per vedere aggiornamento in tempo reale  */
@@ -128,17 +127,6 @@ const HomeCentro = () => {
     dispatch(
       fetchData("https://striveschool-api.herokuapp.com/api/comments/", "", optionsGetCommenti, setdataFetchGetCommenti)
     );
-  };
-
-  const [inputImg, setInputImg] = useState(null);
-
-  const handleChange = (e) => {
-    const selectedPhoto = e.target.files[0];
-    if (selectedPhoto) {
-      setInputImg(URL.createObjectURL(selectedPhoto));
-    } else {
-      setInputImg(null);
-    }
   };
 
   return (
@@ -233,9 +221,9 @@ const HomeCentro = () => {
               </div>
 
               <Col>
-                <div>
+                <div className="px-2">
                   {" "}
-                  <p className="m-0 mb-3">{post.text}</p>
+                  <p className="m-0 mx-2 mb-3">{post.text}</p>
                 </div>
                 {post.image && (
                   <div className="d-flex justify-content-center">
@@ -244,126 +232,172 @@ const HomeCentro = () => {
                   </div>
                 )}
 
-                <div className="my-3">
-                  {post.user.email === dataFetchProfilo.email && (
-                    <form
-                      className=""
-                      onSubmit={(event) => {
-                        addImgToComment(event, post._id);
-                      }}
-                    >
-                      <Row className="g-0">
-                        <Col xs={12} md={8}>
-                          <label
-                            htmlFor="formFileLg"
-                            className="m-0 p-2 w-100 text-center form-label fw-normal fs-sm-5 border bg-body-tertiary"
-                          >
-                            Seleziona un'immagine cliccando qui
-                          </label>
-                        </Col>
-                        <input
-                          name="post"
-                          className="form-control form-control-lg d-none"
-                          id="formFileLg"
-                          type="file"
-                          accept="image/*"
-                          onChange={handleChange}
-                        />
-                        <Col xs={12} md={4}>
-                          <Button variant="primary" className="fs-sm-5 py-2 w-100" type="submit">
-                            Save Changes
-                          </Button>
-                        </Col>
-                        {inputImg && <img src={inputImg} alt="immagine-profilo" className="w-100" />}
-                      </Row>
-                    </form>
-                  )}
-                </div>
-                <div className="d-flex justify-content-center gap-5">
-                  <div className="d-flex align-items-center p-1 gap-2 m-1">
-                    <HandThumbsUpFill fontSize={"25"} />{" "}
-                    <Button className="p-0" variant="transparent">
-                      <p className="m-0 fs-7">Consiglia</p>
-                    </Button>
-                  </div>
-                  <div className="d-flex align-items-center p-1 gap-2 m-1">
-                    <ChatDotsFill fontSize={"25"} />{" "}
-                    <Button
-                      onClick={() => {
-                        setCommentId(post._id);
-                        setIsCommentVisible(!iscommentVisible);
-                      }}
-                      className="p-0"
-                      variant="transparent"
-                    >
-                      <p className="m-0 fs-7">Commenta</p>
-                    </Button>
-                  </div>
-                  <div className="d-flex align-items-center p-1 gap-2 m-1">
-                    <Shuffle fontSize={"25"} />{" "}
-                    <Button className="p-0" variant="transparent">
-                      <p className="m-0 fs-7">Diffondi il Post</p>
-                    </Button>
-                  </div>
-                </div>
-                {commentId === post._id && iscommentVisible && (
-                  <div>
-                    <div className="mx-5 d-flex align-items-center mb-2">
-                      <h6 className="m-0">Commenti:</h6>
-                      <Button
-                        variant="light"
-                        className="ms-auto"
-                        onClick={() => setIsMakingAComment(!isMakingAComment)}
-                      >
-                        {isMakingAComment ? <Dash></Dash> : <PlusLg></PlusLg>}
-                      </Button>
-                    </div>
-                    {true && (
-                      <div className="ms-5">
-                        <form onSubmit={(event) => handlesubmitCommento(event, post._id)}>
-                          <span>Aggiungi un commento: </span>
-                          <input
-                            type="text"
-                            className="me-2"
-                            value={commentData.comment}
-                            onChange={(e) => {
-                              setCommentData({ ...commentData, comment: e.target.value });
-                            }}
-                          ></input>
-                          <Button variant="light">
-                            <Check2></Check2>
-                          </Button>
-                        </form>
+                <div className="d-flex justify-content-center flex-grow-1">
+                  <div className="d-flex justify-content-center  ">
+                    <div className="d-flex column-gap-5 flex-wrap">
+                      <div className="d-flex align-items-center p-1 gap-2 m-1">
+                        <HandThumbsUpFill fontSize={"25"} />{" "}
+                        <Button className="p-0" variant="transparent">
+                          <p className="m-0 fs-7">Consiglia</p>
+                        </Button>
                       </div>
-                    )}
-                    {arrayCommentiPostTagliato().map((commento) => {
-                      if (commento.elementId === post._id) {
-                        return (
-                          <div
-                            key={`comment-id-${commento._id}`}
-                            className="d-flex align-items-center gap-2 border rounded-3 p-2 mx-5"
-                          >
-                            <p className="m-0">
-                              {commento.comment.length < 22 ? commento.comment : commento.comment.splice(0, 22)}
-                            </p>
-                            {(dataFetchProfilo.email === post.user.email ||
-                              dataFetchProfilo.email === commento.author) && (
-                              <Button
-                                variant="light"
-                                className="ms-auto"
-                                onClick={() => handleDeleteCommento(commento._id)}
+                      <div className="d-flex align-items-center p-1 gap-2 m-1">
+                        <ChatDotsFill fontSize={"25"} />{" "}
+                        <Button
+                          onClick={() => {
+                            setCommentId(post._id);
+                            setIsCommentVisible(!iscommentVisible);
+                          }}
+                          className="p-0"
+                          variant="transparent"
+                        >
+                          <p className="m-0 fs-7">Commenta</p>
+                        </Button>
+                      </div>
+
+                      <div className="d-flex align-items-center p-1 gap-2 m-1">
+                        <Shuffle fontSize={"25"} />{" "}
+                        <Button className="p-0" variant="transparent">
+                          <p className="m-0 fs-7">Diffondi il Post</p>
+                        </Button>
+                      </div>
+                      {commentId === post._id && iscommentVisible ? (
+                        <>
+                          <div className="my-3 mx-3 w-100 d-flex justify-content-center flex-column">
+                            {" "}
+                            {/* commento */}
+                            <Form
+                              onSubmit={(event) => {
+                                handlesubmitCommento(event);
+                              }}
+                            >
+                              <div
+                                onFocus={() => {
+                                  setCommentData({
+                                    ...commentData,
+                                    elementId: post._id,
+                                  });
+                                }}
                               >
-                                ❌
+                                <Form.Control
+                                  className="w-75"
+                                  placeholder="scrivi un commento..."
+                                  aria-label="Username"
+                                  aria-describedby="basic-addon1"
+                                  onChange={(event) => {
+                                    setCommentData({
+                                      ...commentData,
+                                      comment: event.target.value,
+                                    });
+                                  }}
+                                  /* value={} */
+                                />
+                                {/* rate */}
+                                <Form.Control
+                                  className="w-75"
+                                  placeholder="dai un voto..."
+                                  type="number"
+                                  aria-label="Username"
+                                  aria-describedby="basic-addon1"
+                                  onChange={(event) => {
+                                    setCommentData({
+                                      ...commentData,
+                                      rate: event.target.value,
+                                    });
+                                  }}
+                                  /* value={} */
+                                />
+                                {/* comment id */}
+                                <Form.Control
+                                  readOnly
+                                  className="w-75 invisible"
+                                  placeholder="scrivi un commento..."
+                                  aria-label="Username"
+                                  aria-describedby="basic-addon1"
+                                  /* onFocus={() => {
+                                                                        setCommentData({
+                                                                            ...commentData,
+                                                                            elementId: post._id,
+                                                                        });
+                                                                    }} */
+                                  /* onChange={() => {
+                                                                setCommentData({
+                                                                    ...commentData,
+                                                                    elementId: post._id,
+                                                                });
+                                                            }} */
+                                  value={post._id}
+                                />
+                              </div>
+
+                              <Button className="mt-2" type="submit">
+                                {" "}
+                                Send{" "}
                               </Button>
-                            )}
+                            </Form>
                           </div>
-                        );
-                      } else {
-                        return <div key={`comment-id-${commento._id}`} className="d-none"></div>;
-                      }
-                    })}
+
+                          {arrayCommentiPostTagliato().map((commento) => (
+                            <Container key={`commenti-visibili-${commento._id}`}>
+                              {commento.elementId === post._id ? (
+                                <Row key={`comment-id${commento._id}`} className="w-100">
+                                  <div className="d-flex align-items-center w-75">
+                                    <Col xs="12" sm="12" md="12">
+                                      <div className="d-flex  ">
+                                        <div className="d-flex gap-3 w-100 p-3 ">
+                                          <p className="m-0 my-1">{commento.author}</p>
+                                          <p className="m-0 my-1">{commento.comment}</p>
+                                          <p className="m-0 my-1">{commento.rate} 🧨 </p>
+                                        </div>
+                                      </div>
+                                    </Col>
+                                    {/* CONDIZIONE DA CAMBIARE AFFINCHE IO POSSA MODIFICARE ANCHE COMMENTI MIEI SU POST NON MIEI  */}
+                                    {dataFetchProfilo.email === commento.author ? (
+                                      <div>
+                                        <Button
+                                          onClick={() => {
+                                            handleDeleteCommento(commento._id);
+                                          }}
+                                          variant="transparent"
+                                        >
+                                          ❌
+                                        </Button>
+                                      </div>
+                                    ) : (
+                                      ""
+                                    )}
+                                  </div>
+                                </Row>
+                              ) : (
+                                ""
+                              )}
+                            </Container>
+                          ))}
+                        </>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    <div className="my-3">
+                      {post.user.email === dataFetchProfilo.email ? (
+                        <Form
+                          className="d-flex align-items-center"
+                          onSubmit={(event) => {
+                            addImgToComment(event, post._id);
+                          }}
+                        >
+                          <Form.Control name="post" type="file" accept="image/*" />
+                          <Button variant="transparent" type="submit">
+                            {" "}
+                            Aggiungi immagine{" "}
+                          </Button>
+                        </Form>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
-                )}
+                </div>
               </Col>
             </Col>
           </Row>

@@ -343,7 +343,7 @@ const HomeCentro = () => {
                                                                     key={`comment-id${commento._id}`}
                                                                     className="w-100"
                                                                 >
-                                                                    <div className="d-flex align-items-center w-100">
+                                                                    <div className="d-flex align-items-center w-75">
                                                                         <Col xs="12" sm="12" md="12">
                                                                             <div className="d-flex  ">
                                                                                 <div className="d-flex gap-3 w-100 p-3 ">
@@ -362,7 +362,9 @@ const HomeCentro = () => {
                                                                         {/* CONDIZIONE DA CAMBIARE AFFINCHE IO POSSA MODIFICARE ANCHE COMMENTI MIEI SU POST NON MIEI  */}
                                                                         {dataFetchProfilo.email === commento.author ? (
                                                                             <div>
-                                                                                <Button>❌</Button>
+                                                                                <Button variant="transparent">
+                                                                                    ❌
+                                                                                </Button>
                                                                             </div>
                                                                         ) : (
                                                                             ""

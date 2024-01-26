@@ -12,6 +12,8 @@ import {
     ChatDotsFill,
     Shuffle,
     SendExclamationFill,
+    PenFill,
+    Pen,
 } from "react-bootstrap-icons";
 import { fetchPost } from "../../redux/functions/fetchPostHome";
 import { fetchDeleteHome } from "../../redux/functions/fetchDeleteHome";
@@ -31,6 +33,7 @@ const HomeCentro = () => {
     const [datiPost, setDatiPost] = useState("");
     const [commentId, setCommentId] = useState("");
     const [iscommentVisible, setIsCommentVisible] = useState(false);
+
     const [commentData, setCommentData] = useState({
         comment: "",
         rate: "",
@@ -384,6 +387,16 @@ const HomeCentro = () => {
                                                                                     variant="transparent"
                                                                                 >
                                                                                     ❌
+                                                                                </Button>
+                                                                            </div>
+                                                                        ) : (
+                                                                            ""
+                                                                        )}
+
+                                                                        {dataFetchProfilo.email === commento.author ? (
+                                                                            <div>
+                                                                                <Button variant="transparent">
+                                                                                    <Pen fontSize={"18"} />
                                                                                 </Button>
                                                                             </div>
                                                                         ) : (

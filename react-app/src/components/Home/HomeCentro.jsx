@@ -359,6 +359,7 @@ const HomeCentro = () => {
                                                                                 </div>
                                                                             </div>
                                                                         </Col>
+                                                                        {/* CONDIZIONE DA CAMBIARE AFFINCHE IO POSSA MODIFICARE ANCHE COMMENTI MIEI SU POST NON MIEI  */}
                                                                         {post.user.email === commento.author ? (
                                                                             <div>❌</div>
                                                                         ) : (

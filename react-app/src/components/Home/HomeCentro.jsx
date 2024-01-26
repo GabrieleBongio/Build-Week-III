@@ -40,6 +40,7 @@ const HomeCentro = () => {
     const arrayNotizieTagliato = function () {
         let arrayNotizie = [...datiPaginaNotizie];
         let arrayNotizieTagliato = arrayNotizie.reverse().slice(0, 10);
+        console.log("arrayNotizieTagliato", arrayNotizieTagliato);
         return arrayNotizieTagliato;
     };
 
@@ -342,21 +343,28 @@ const HomeCentro = () => {
                                                                     key={`comment-id${commento._id}`}
                                                                     className="w-100"
                                                                 >
-                                                                    <Col xs="12" sm="12" md="12">
-                                                                        <div className="d-flex gap-3 w-100 p-3">
-                                                                            <p className="m-0 my-1">
-                                                                                {commento.author}
-                                                                            </p>
-                                                                            <p className="m-0 my-1">
-                                                                                {commento.comment}
-                                                                            </p>
-                                                                            <p className="m-0 my-1">
-                                                                                {commento.rate} 🧨{" "}
-                                                                            </p>
-                                                                        </div>
-                                                                        {/* {{}  PER FARE LA DELETE PRIMA FAI LA POST 
-                                                                <div></div>} */}
-                                                                    </Col>
+                                                                    <div className="d-flex align-items-center w-100">
+                                                                        <Col xs="12" sm="12" md="12">
+                                                                            <div className="d-flex  ">
+                                                                                <div className="d-flex gap-3 w-100 p-3 ">
+                                                                                    <p className="m-0 my-1">
+                                                                                        {commento.author}
+                                                                                    </p>
+                                                                                    <p className="m-0 my-1">
+                                                                                        {commento.comment}
+                                                                                    </p>
+                                                                                    <p className="m-0 my-1">
+                                                                                        {commento.rate} 🧨{" "}
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </Col>
+                                                                        {post.user.email === commento.author ? (
+                                                                            <div>❌</div>
+                                                                        ) : (
+                                                                            ""
+                                                                        )}
+                                                                    </div>
                                                                 </Row>
                                                             ) : (
                                                                 ""

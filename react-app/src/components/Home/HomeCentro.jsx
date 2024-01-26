@@ -35,7 +35,6 @@ const HomeCentro = () => {
     const arrayCommentiTagliato = function () {
         let arrayNotizie = [...datiPaginaNotizie];
         let arrayNotizieTagliato = arrayNotizie.reverse().slice(0, 10);
-        console.log("arrayNotizieTagliato", arrayNotizieTagliato);
         return arrayNotizieTagliato;
     };
 
@@ -82,7 +81,8 @@ const HomeCentro = () => {
         event.preventDefault();
         console.log("ciao");
         const formData = new FormData(event.target);
-        dispatch(postImageHome(postid, formData));
+        await postImageHome(postid, formData);
+        console.log("ciao");
         dispatch(
             fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
         );

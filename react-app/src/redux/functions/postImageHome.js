@@ -1,6 +1,6 @@
 import { Token } from "../../token";
 
-export const postImageHome = (postId, formData) => async () => {
+export const postImageHome = async (postId, formData) => {
     const options = {
         method: "POST",
         headers: {

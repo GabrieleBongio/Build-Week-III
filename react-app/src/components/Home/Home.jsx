@@ -26,8 +26,6 @@ const Home = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [datiPaginaNotizie]);
 
-    console.log("datiPaginaNotizie", datiPaginaNotizie);
-
     const optionsGet = {
         method: "GET",
         headers: {

@@ -265,15 +265,20 @@ const HomeCentro = () => {
                                                         />
                                                         {/* comment id */}
                                                         <Form.Control
-                                                            readOnly
                                                             className="w-75 "
                                                             placeholder="scrivi un commento..."
                                                             aria-label="Username"
                                                             aria-describedby="basic-addon1"
-                                                            /* onChange={(event) => {
+                                                            onFocus={() => {
                                                                 setCommentData({
                                                                     ...commentData,
-                                                                    rate: event.target.value,
+                                                                    elementId: post._id,
+                                                                });
+                                                            }}
+                                                            /* onChange={() => {
+                                                                setCommentData({
+                                                                    ...commentData,
+                                                                    elementId: post._id,
                                                                 });
                                                             }} */
                                                             value={post._id}

@@ -6,28 +6,28 @@ const JobLeft = () => {
     <Col className="d-none d-lg-block" lg="3">
       <Row>
         <Col className="text-center text-black-50 mt-5">
-          <div className="d-flex justify-content-around">
+          <div className="d-flex justify-content-around fs-8">
             <p>Informazioni</p>
             <p>Accessibilità</p>
           </div>
-          <p>Centro assistenza</p>
-          <p>
+          <p className="fs-8">Centro assistenza</p>
+          <p className="fs-8">
             Privacy e condizioni
             <CaretDownFill className="ms-2" />
           </p>
-          <p>Opzioni per gli annunci pubblicitari</p>
+          <p className="fs-8">Opzioni per gli annunci pubblicitari</p>
           <div className="d-flex justify-content-around">
-            <p>Pubblicità</p>
-            <p>
+            <p className="fs-8">Pubblicità</p>
+            <p className="fs-8">
               Servizi alle aziende
               <CaretDownFill className="ms-2" />
             </p>
           </div>
-          <div className="d-flex justify-content-around">
+          <div className="d-flex justify-content-around fs-8">
             <p>Scarica l'app LinkedIn</p>
             <p>Altro</p>
           </div>
-          <div className="text-black">
+          <div className="text-black fs-8">
             <svg
               className="me-2"
               xmlns="http://www.w3.org/2000/svg"

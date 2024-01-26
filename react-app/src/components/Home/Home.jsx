@@ -16,20 +16,6 @@ const Home = () => {
     const dispatch = useDispatch();
     const datiPaginaNotizie = useSelector((state) => state.FetchData.dataFetchPaginaNotizie);
 
-    /*     const arrayCommentiTagliato = function () {
-        let arrayNotizie = [...datiPaginaNotizie];
-        let arrayNotizieTagliato = arrayNotizie.reverse().slice(0, 10);
-        console.log("arrayNotizieTagliato", arrayNotizieTagliato);
-        return arrayNotizieTagliato;
-    };
-
-    useEffect(() => {
-        if (datiPaginaNotizie) {
-            arrayCommentiTagliato();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [datiPaginaNotizie]); */
-
     const optionsGet = {
         method: "GET",
         headers: {

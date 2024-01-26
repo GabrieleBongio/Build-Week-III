@@ -12,7 +12,6 @@ import {
     ChatDotsFill,
     Shuffle,
     SendExclamationFill,
-    PenFill,
     Pen,
 } from "react-bootstrap-icons";
 import { fetchPost } from "../../redux/functions/fetchPostHome";

@@ -36,7 +36,7 @@ const CambiaImmagine = ({ show, setShow, img, userid }) => {
     };
 
     e.preventDefault();
-    dispatch(postImage(userid, options));
+    dispatch(postImage(userid, "picture", options));
   };
 
   return (

@@ -8,6 +8,7 @@ const SliceMain = createSlice({
     dataFetchPaginaNotizie: null,
     dataFetchLavori: null,
     queryLavori: "",
+    dataFetchPostCommenti: null,
   },
 
   reducers: {
@@ -30,6 +31,10 @@ const SliceMain = createSlice({
     setQueryLavori: (state, action) => {
       state.queryLavori = action.payload;
     },
+
+    setdataFetchPostCommenti: (state, action) => {
+      state.dataFetchPostCommenti = action.payload;
+    },
   },
 });
 
@@ -39,5 +44,6 @@ export const {
   setDataFetchPaginaNotizie,
   setDataFetchLavori,
   setQueryLavori,
+  setdataFetchPostCommenti,
 } = SliceMain.actions;
 export default SliceMain.reducer;

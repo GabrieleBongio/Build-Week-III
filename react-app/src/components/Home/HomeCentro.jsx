@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { fetchData } from "../../redux/functions/fetch";
 import { useSelector, useDispatch } from "react-redux";
-import { Token } from "../../token";
+import { Token, TokenCommenti } from "../../token";
 import { setDataFetchPaginaNotizie } from "../../redux/reducers/StateSliceReducers";
-import { Button, Col, Container, FormControl, Row } from "react-bootstrap";
+import { Button, Col, FormControl, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import {
   CalendarFill,
@@ -12,14 +12,16 @@ import {
   ChatDotsFill,
   Shuffle,
   SendExclamationFill,
-  Pencil,
+  Dash,
   PlusLg,
   Check2,
-  Dash,
 } from "react-bootstrap-icons";
 import { fetchPost } from "../../redux/functions/fetchPostHome";
 import { fetchDeleteHome } from "../../redux/functions/fetchDeleteHome";
 import { postImageHome } from "../../redux/functions/postImageHome";
+import { fetchPostCommenti } from "../../redux/functions/fetchPostCommenti";
+import { setdataFetchGetCommenti } from "../../redux/reducers/StateSliceReducers";
+import { fetchDeleteCommentiHome } from "../../redux/functions/fetchDeleteCommenti";
 
 const HomeCentro = () => {
   const urlpostHome = "https://striveschool-api.herokuapp.com/api/posts/";
@@ -34,25 +36,16 @@ const HomeCentro = () => {
   const [iscommentVisible, setIsCommentVisible] = useState(false);
   const [commentData, setCommentData] = useState({
     comment: "",
-    rate: "",
+    rate: "3",
     elementId: "",
   });
-
-  const [inputImg, setInputImg] = useState(null);
-
-  const handleChange = (e) => {
-    const selectedPhoto = e.target.files[0];
-    if (selectedPhoto) {
-      setInputImg(URL.createObjectURL(selectedPhoto));
-    } else {
-      setInputImg(null);
-    }
-  };
+  const [isMakingAComment, setIsMakingAComment] = useState(false);
 
   /* nozie home */
   const arrayNotizieTagliato = function () {
     let arrayNotizie = [...datiPaginaNotizie];
     let arrayNotizieTagliato = arrayNotizie.reverse().slice(0, 10);
+    console.log("arrayNotizieTagliato", arrayNotizieTagliato);
     return arrayNotizieTagliato;
   };
 
@@ -109,6 +102,43 @@ const HomeCentro = () => {
     await postImageHome(postid, formData);
     console.log("ciao");
     dispatch(fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie));
+  };
+
+  const optionsGetCommenti = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${TokenCommenti} `,
+    },
+  };
+
+  const handlesubmitCommento = async (event, postId) => {
+    event.preventDefault();
+    setCommentData({ ...commentData, elementId: postId });
+    console.log("ciao");
+    await fetchPostCommenti("https://striveschool-api.herokuapp.com/api/comments/", commentData);
+    /* rifaccio la fetch dei commenti per vedere aggiornamento in tempo reale  */
+    dispatch(
+      fetchData("https://striveschool-api.herokuapp.com/api/comments/", "", optionsGetCommenti, setdataFetchGetCommenti)
+    );
+  };
+
+  const handleDeleteCommento = async (idCommento) => {
+    await fetchDeleteCommentiHome(`https://striveschool-api.herokuapp.com/api/comments/${idCommento}`);
+    dispatch(
+      fetchData("https://striveschool-api.herokuapp.com/api/comments/", "", optionsGetCommenti, setdataFetchGetCommenti)
+    );
+  };
+
+  const [inputImg, setInputImg] = useState(null);
+
+  const handleChange = (e) => {
+    const selectedPhoto = e.target.files[0];
+    if (selectedPhoto) {
+      setInputImg(URL.createObjectURL(selectedPhoto));
+    } else {
+      setInputImg(null);
+    }
   };
 
   return (
@@ -280,34 +310,57 @@ const HomeCentro = () => {
                   <div>
                     <div className="mx-5 d-flex align-items-center mb-2">
                       <h6 className="m-0">Commenti:</h6>
-                      <Button variant="light" className="ms-auto">
-                        {true ? <Dash></Dash> : <PlusLg></PlusLg>}
+                      <Button
+                        variant="light"
+                        className="ms-auto"
+                        onClick={() => setIsMakingAComment(!isMakingAComment)}
+                      >
+                        {isMakingAComment ? <Dash></Dash> : <PlusLg></PlusLg>}
                       </Button>
                     </div>
                     {true && (
                       <div className="ms-5">
-                        <span>Aggiungi un commento: </span>
-                        <input type="text" className="me-2"></input>
-                        <Button variant="light">
-                          <Check2></Check2>
-                        </Button>
+                        <form onSubmit={(event) => handlesubmitCommento(event, post._id)}>
+                          <span>Aggiungi un commento: </span>
+                          <input
+                            type="text"
+                            className="me-2"
+                            value={commentData.comment}
+                            onChange={(e) => {
+                              setCommentData({ ...commentData, comment: e.target.value });
+                            }}
+                          ></input>
+                          <Button variant="light">
+                            <Check2></Check2>
+                          </Button>
+                        </form>
                       </div>
                     )}
                     {arrayCommentiPostTagliato().map((commento) => {
-                      /* numberOfComments() */
-                      /* commento._idcommento.author */
-                      return (
-                        <div className="d-flex align-items-center gap-2 border rounded-3 p-2 mx-5">
-                          <p className="m-0">{commento.comment}</p>
-                          <input type="text"></input>
-                          <Button variant="light" className="ms-auto">
-                            ❌
-                          </Button>
-                          <Button variant="light">
-                            <Pencil></Pencil>
-                          </Button>
-                        </div>
-                      );
+                      if (commento.elementId === post._id) {
+                        return (
+                          <div
+                            key={`comment-id-${commento._id}`}
+                            className="d-flex align-items-center gap-2 border rounded-3 p-2 mx-5"
+                          >
+                            <p className="m-0">
+                              {commento.comment.length < 22 ? commento.comment : commento.comment.splice(0, 22)}
+                            </p>
+                            {(dataFetchProfilo.email === post.user.email ||
+                              dataFetchProfilo.email === commento.author) && (
+                              <Button
+                                variant="light"
+                                className="ms-auto"
+                                onClick={() => handleDeleteCommento(commento._id)}
+                              >
+                                ❌
+                              </Button>
+                            )}
+                          </div>
+                        );
+                      } else {
+                        return <div key={`comment-id-${commento._id}`} className="d-none"></div>;
+                      }
                     })}
                   </div>
                 )}

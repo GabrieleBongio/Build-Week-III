@@ -29,6 +29,11 @@ const Home = () => {
     const [datiPost, setDatiPost] = useState("");
     const [commentId, setCommentId] = useState("");
     const [iscommentVisible, setIsCommentVisible] = useState(false);
+    const [commentData, setCommentData] = useState({
+        comment: "",
+        rate: "",
+        elementId: "",
+    });
 
     const arrayCommentiTagliato = function () {
         let arrayNotizie = [...datiPaginaNotizie];
@@ -102,8 +107,6 @@ const Home = () => {
             fetchData("https://striveschool-api.herokuapp.com/api/posts/", "", optionsGet, setDataFetchPaginaNotizie)
         );
     };
-
-    const handleComment = () => {};
 
     return (
         <>
@@ -252,13 +255,50 @@ const Home = () => {
                                                                     </Button>
                                                                 </div>
                                                                 {commentId === post._id && iscommentVisible ? (
-                                                                    <div className="my-3 mx-3 w-100 d-flex justify-content-center">
+                                                                    <div className="my-3 mx-3 w-100 d-flex justify-content-center flex-column">
                                                                         {" "}
+                                                                        {/* commento */}
                                                                         <Form.Control
                                                                             className="w-75"
                                                                             placeholder="scrivi un commento..."
                                                                             aria-label="Username"
                                                                             aria-describedby="basic-addon1"
+                                                                            onChange={(event) => {
+                                                                                setCommentData({
+                                                                                    ...commentData,
+                                                                                    comment: event.target.value,
+                                                                                });
+                                                                            }}
+                                                                            /* value={} */
+                                                                        />
+                                                                        {/* rate */}
+                                                                        <Form.Control
+                                                                            className="w-75"
+                                                                            placeholder="scrivi un commento..."
+                                                                            aria-label="Username"
+                                                                            aria-describedby="basic-addon1"
+                                                                            onChange={(event) => {
+                                                                                setCommentData({
+                                                                                    ...commentData,
+                                                                                    rate: event.target.value,
+                                                                                });
+                                                                            }}
+                                                                            /* value={} */
+                                                                        />
+                                                                        {/* comment id */}
+                                                                        <Form.Control
+                                                                            readOnly
+                                                                            className="w-75 "
+                                                                            placeholder="scrivi un commento..."
+                                                                            aria-label="Username"
+                                                                            aria-describedby="basic-addon1"
+                                                                            onChange={(event) => {
+                                                                                setCommentData({
+                                                                                    ...commentData,
+                                                                                    rate: event.target.value,
+                                                                                });
+                                                                            }}
+                                                                            value={post._id}
                                                                         />
                                                                     </div>
                                                                 ) : (

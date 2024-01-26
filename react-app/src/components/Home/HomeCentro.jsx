@@ -18,6 +18,7 @@ import { fetchDeleteHome } from "../../redux/functions/fetchDeleteHome";
 import { postImageHome } from "../../redux/functions/postImageHome";
 import { fetchPostCommenti } from "../../redux/functions/fetchPostCommenti";
 import { setdataFetchGetCommenti } from "../../redux/reducers/StateSliceReducers";
+import { fetchDeleteCommentiHome } from "../../redux/functions/fetchDeleteCommenti";
 
 const HomeCentro = () => {
     const urlpostHome = "https://striveschool-api.herokuapp.com/api/posts/";
@@ -118,6 +119,18 @@ const HomeCentro = () => {
         console.log("ciao");
         await fetchPostCommenti("https://striveschool-api.herokuapp.com/api/comments/", commentData);
         /* rifaccio la fetch dei commenti per vedere aggiornamento in tempo reale  */
+        dispatch(
+            fetchData(
+                "https://striveschool-api.herokuapp.com/api/comments/",
+                "",
+                optionsGetCommenti,
+                setdataFetchGetCommenti
+            )
+        );
+    };
+
+    const handleDeleteCommento = async (idCommento) => {
+        await fetchDeleteCommentiHome(`https://striveschool-api.herokuapp.com/api/comments/${idCommento}`);
         dispatch(
             fetchData(
                 "https://striveschool-api.herokuapp.com/api/comments/",
@@ -362,7 +375,14 @@ const HomeCentro = () => {
                                                                         {/* CONDIZIONE DA CAMBIARE AFFINCHE IO POSSA MODIFICARE ANCHE COMMENTI MIEI SU POST NON MIEI  */}
                                                                         {dataFetchProfilo.email === commento.author ? (
                                                                             <div>
-                                                                                <Button variant="transparent">
+                                                                                <Button
+                                                                                    onClick={() => {
+                                                                                        handleDeleteCommento(
+                                                                                            commento._id
+                                                                                        );
+                                                                                    }}
+                                                                                    variant="transparent"
+                                                                                >
                                                                                     ❌
                                                                                 </Button>
                                                                             </div>

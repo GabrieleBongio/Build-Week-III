@@ -360,7 +360,7 @@ const HomeCentro = () => {
                                                                             </div>
                                                                         </Col>
                                                                         {/* CONDIZIONE DA CAMBIARE AFFINCHE IO POSSA MODIFICARE ANCHE COMMENTI MIEI SU POST NON MIEI  */}
-                                                                        {post.user.email === commento.author ? (
+                                                                        {dataFetchProfilo.email === commento.author ? (
                                                                             <div>
                                                                                 <Button>❌</Button>
                                                                             </div>

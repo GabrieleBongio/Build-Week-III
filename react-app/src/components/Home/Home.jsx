@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { fetchData } from "../redux/functions/fetch";
+import { fetchData } from "../../redux/functions/fetch";
 import { useSelector, useDispatch } from "react-redux";
-import { Token } from "../token";
-import { setDataFetchPaginaNotizie, setDataFetchProfilo } from "../redux/reducers/StateSliceReducers";
+import { Token } from "../../token";
+import { setDataFetchPaginaNotizie, setDataFetchProfilo } from "../../redux/reducers/StateSliceReducers";
 import { Container, Row } from "react-bootstrap";
 import HomeParteDestra from "./HomeParteDestra";
 import HomeParteSinistra from "./HomeParteSinistraSez";

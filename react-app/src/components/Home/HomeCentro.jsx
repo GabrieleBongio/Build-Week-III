@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-
-import { fetchData } from "../redux/functions/fetch";
+import { fetchData } from "../../redux/functions/fetch";
 import { useSelector, useDispatch } from "react-redux";
-import { Token } from "../token";
-import { setDataFetchPaginaNotizie } from "../redux/reducers/StateSliceReducers";
+import { Token } from "../../token";
+import { setDataFetchPaginaNotizie } from "../../redux/reducers/StateSliceReducers";
 import { Button, Col, FormControl, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import {
@@ -13,10 +12,14 @@ import {
   ChatDotsFill,
   Shuffle,
   SendExclamationFill,
+  Pencil,
+  PlusLg,
+  Check2,
+  Dash,
 } from "react-bootstrap-icons";
-import { fetchPost } from "../redux/functions/fetchPostHome";
-import { fetchDeleteHome } from "../redux/functions/fetchDeleteHome";
-import { postImageHome } from "../redux/functions/postImageHome";
+import { fetchPost } from "../../redux/functions/fetchPostHome";
+import { fetchDeleteHome } from "../../redux/functions/fetchDeleteHome";
+import { postImageHome } from "../../redux/functions/postImageHome";
 
 const HomeCentro = () => {
   const urlpostHome = "https://striveschool-api.herokuapp.com/api/posts/";
@@ -32,6 +35,25 @@ const HomeCentro = () => {
     rate: "",
     elementId: "",
   });
+
+  const commenti = [
+    {
+      comment: "ciao",
+      rate: 5,
+      elementId: "65b3880531a73f0019d5c7d5",
+    },
+  ];
+
+  const [inputImg, setInputImg] = useState(null);
+
+  const handleChange = (e) => {
+    const selectedPhoto = e.target.files[0];
+    if (selectedPhoto) {
+      setInputImg(URL.createObjectURL(selectedPhoto));
+    } else {
+      setInputImg(null);
+    }
+  };
 
   const arrayCommentiTagliato = function () {
     let arrayNotizie = [...datiPaginaNotizie];
@@ -126,16 +148,16 @@ const HomeCentro = () => {
       </div>
       {/* sezione notizie  */}
       {arrayCommentiTagliato().map((post) => (
-        <div key={`post -${post._id}`} className="bg-white my-2 border rounded-3">
-          <Row>
+        <div key={`post -${post._id}`} className="bg-white my-2 border rounded-3 p-3">
+          <Row className="g-0">
             <Col>
               <div>
                 <div>
-                  <div className="d-flex gap-2 my-2 p-2">
+                  <div className="d-flex gap-2 my-2">
                     <div>
                       <div>
                         <img
-                          className="rounded-circle"
+                          className="rounded-circle circle-img"
                           width={"50px"}
                           height={"50px"}
                           src={post.user.image}
@@ -175,114 +197,113 @@ const HomeCentro = () => {
               </div>
 
               <Col>
-                <div className="px-2">
+                <div>
                   {" "}
-                  <p className="m-0 mx-2 mb-3">{post.text}</p>
+                  <p className="m-0 mb-3">{post.text}</p>
                 </div>
-                <div className="d-flex justify-content-center">
-                  {" "}
-                  <img className="rounded-3" width={"95%"} src={post.image} alt="immagine" />
-                </div>
-                <div className="d-flex justify-content-center flex-grow-1">
-                  <div className="d-flex justify-content-center  ">
-                    <div className="d-flex column-gap-5 flex-wrap">
-                      <div className="d-flex align-items-center p-1 gap-2 m-1">
-                        <HandThumbsUpFill fontSize={"25"} />{" "}
-                        <Button className="p-0" variant="transparent">
-                          <p className="m-0 fs-7">Consiglia</p>
-                        </Button>
-                      </div>
-                      <div className="d-flex align-items-center p-1 gap-2 m-1">
-                        <ChatDotsFill fontSize={"25"} />{" "}
-                        <Button
-                          onClick={() => {
-                            setCommentId(post._id);
-                            setIsCommentVisible(!iscommentVisible);
-                          }}
-                          className="p-0"
-                          variant="transparent"
-                        >
-                          <p className="m-0 fs-7">Commenta</p>
-                        </Button>
-                      </div>
+                {post.image && (
+                  <div className="d-flex justify-content-center">
+                    {" "}
+                    <img className="rounded-3" width={"95%"} src={post.image} alt="immagine" />
+                  </div>
+                )}
 
-                      <div className="d-flex align-items-center p-1 gap-2 m-1">
-                        <Shuffle fontSize={"25"} />{" "}
-                        <Button className="p-0" variant="transparent">
-                          <p className="m-0 fs-7">Diffondi il Post</p>
-                        </Button>
-                      </div>
-                      {commentId === post._id && iscommentVisible ? (
-                        <div className="my-3 mx-3 w-100 d-flex justify-content-center flex-column">
-                          {" "}
-                          {/* commento */}
-                          <Form.Control
-                            className="w-75"
-                            placeholder="scrivi un commento..."
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            onChange={(event) => {
-                              setCommentData({
-                                ...commentData,
-                                comment: event.target.value,
-                              });
-                            }}
-                            /* value={} */
-                          />
-                          {/* rate */}
-                          <Form.Control
-                            className="w-75"
-                            placeholder="scrivi un commento..."
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            onChange={(event) => {
-                              setCommentData({
-                                ...commentData,
-                                rate: event.target.value,
-                              });
-                            }}
-                            /* value={} */
-                          />
-                          {/* comment id */}
-                          <Form.Control
-                            readOnly
-                            className="w-75 "
-                            placeholder="scrivi un commento..."
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            onChange={(event) => {
-                              setCommentData({
-                                ...commentData,
-                                rate: event.target.value,
-                              });
-                            }}
-                            value={post._id}
-                          />
-                        </div>
-                      ) : (
-                        ""
-                      )}
-                    </div>
-                    <div className="my-3">
-                      {post.user.email === dataFetchProfilo.email ? (
-                        <Form
-                          className="d-flex align-items-center"
-                          onSubmit={(event) => {
-                            addImgToComment(event, post._id);
-                          }}
-                        >
-                          <Form.Control name="post" type="file" accept="image/*" />
-                          <Button variant="transparent" type="submit">
-                            {" "}
-                            Aggiungi immagine{" "}
+                <div className="my-3">
+                  {post.user.email === dataFetchProfilo.email && (
+                    <form
+                      className=""
+                      onSubmit={(event) => {
+                        addImgToComment(event, post._id);
+                      }}
+                    >
+                      <Row className="g-0">
+                        <Col xs={12} md={8}>
+                          <label
+                            htmlFor="formFileLg"
+                            className="m-0 p-2 w-100 text-center form-label fw-normal fs-sm-5 border bg-body-tertiary"
+                          >
+                            Seleziona un'immagine cliccando qui
+                          </label>
+                        </Col>
+                        <input
+                          name="post"
+                          className="form-control form-control-lg d-none"
+                          id="formFileLg"
+                          type="file"
+                          accept="image/*"
+                          onChange={handleChange}
+                        />
+                        <Col xs={12} md={4}>
+                          <Button variant="primary" className="fs-sm-5 py-2 w-100" type="submit">
+                            Save Changes
                           </Button>
-                        </Form>
-                      ) : (
-                        ""
-                      )}
-                    </div>
+                        </Col>
+                        {inputImg && <img src={inputImg} alt="immagine-profilo" className="w-100" />}
+                      </Row>
+                    </form>
+                  )}
+                </div>
+                <div className="d-flex justify-content-center gap-5">
+                  <div className="d-flex align-items-center p-1 gap-2 m-1">
+                    <HandThumbsUpFill fontSize={"25"} />{" "}
+                    <Button className="p-0" variant="transparent">
+                      <p className="m-0 fs-7">Consiglia</p>
+                    </Button>
+                  </div>
+                  <div className="d-flex align-items-center p-1 gap-2 m-1">
+                    <ChatDotsFill fontSize={"25"} />{" "}
+                    <Button
+                      onClick={() => {
+                        setCommentId(post._id);
+                        setIsCommentVisible(!iscommentVisible);
+                      }}
+                      className="p-0"
+                      variant="transparent"
+                    >
+                      <p className="m-0 fs-7">Commenta</p>
+                    </Button>
+                  </div>
+                  <div className="d-flex align-items-center p-1 gap-2 m-1">
+                    <Shuffle fontSize={"25"} />{" "}
+                    <Button className="p-0" variant="transparent">
+                      <p className="m-0 fs-7">Diffondi il Post</p>
+                    </Button>
                   </div>
                 </div>
+                {commentId === post._id && iscommentVisible && (
+                  <div>
+                    <div className="mx-5 d-flex align-items-center mb-2">
+                      <h6 className="m-0">Commenti:</h6>
+                      <Button variant="light" className="ms-auto">
+                        {true ? <Dash></Dash> : <PlusLg></PlusLg>}
+                      </Button>
+                    </div>
+                    {true && (
+                      <div className="ms-5">
+                        <span>Aggiungi un commento: </span>
+                        <input type="text" className="me-2"></input>
+                        <Button variant="light">
+                          <Check2></Check2>
+                        </Button>
+                      </div>
+                    )}
+                    {commenti.map((commento) => {
+                      /* numberOfComments() */
+                      return (
+                        <div className="d-flex align-items-center gap-2 border rounded-3 p-2 mx-5">
+                          <p className="m-0">{commento.comment}</p>
+                          <input type="text"></input>
+                          <Button variant="light" className="ms-auto">
+                            ❌
+                          </Button>
+                          <Button variant="light">
+                            <Pencil></Pencil>
+                          </Button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </Col>
             </Col>
           </Row>
